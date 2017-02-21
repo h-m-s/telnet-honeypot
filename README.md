@@ -1,3 +1,2 @@
 # Honeypot Management System
-## AKA Her Majesty's Ship (HMS)
-_______________________________
+## (AKA Her Majesty's Ship)
