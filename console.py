@@ -16,7 +16,7 @@ CLIENT_LIST = []
 SERVER_RUN = True
 SCRIPTED = ["dd", "cd"]
 NOT_FOUND = ["nc", "shell"]
-BLACK_LIST = ["sh"]
+BLACK_LIST = ["sh", "chmod"]
 
 def signal_handler(signal, frame):
     print("\nClosing out cleanly...")
@@ -159,6 +159,8 @@ def run_cmd(client):
     for message in msg:
         print(message)
         cmd = message.split(' ')[0]
+        if 'quit' in message or 'exit' in message:
+            client.active = False
         if cmd == "cd":
             cd_command(client, message)
         elif cmd == "dd":
@@ -169,20 +171,19 @@ def run_cmd(client):
             if "No such" not in response:
                 with open("./mounts", "r+") as f:
                     response = f.read()
-            client.send(response)
+            client.send('\n' + response)
         elif cmd not in NOT_FOUND and cmd not in BLACK_LIST:
             newcmd = '/bin/sh -c "cd ' + client.pwd + ' && ' + message + '"'
             response = client.container.exec_run(newcmd)
             response = response.decode("utf-8", "replace")
-            if "exec failed" not in response:
+            if "syntax error" in response:
+                continue
+            elif "exec failed" not in response:
                 client.send(response)
             else:
                 not_found(client, cmd)
         elif cmd not in BLACK_LIST:
             not_found(client, cmd)
-        if message == 'quit' or message == 'exit':
-            client.active = False
-            print(client.container.diff())
     return_prompt(client)
 
 def logical_operator(client, msg):
@@ -221,6 +222,8 @@ def logical_operator(client, msg):
                 client.send(response)
             else:
                 not_found(client, line.split(' ')[0])
+            if 'quit' in line or 'exit' in line:
+                client.active = False
 
 def not_found(client, command):
     client.send("sh: {}: command not found\n".format(command))
