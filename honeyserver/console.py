@@ -10,7 +10,6 @@ import io
 import binascii
 import signal
 import sys
-from threading import Thread
 
 IDLE_TIMEOUT = 300
 CLIENT_LIST = []
@@ -52,7 +51,6 @@ def on_connect(client):
     client.pwd = "/"
     client.username = None
     client.password = None
-    client.download = 0
     client.uuid = uuid.uuid4()
     client.send("login: ")
     #    overwrite_files(client)
@@ -92,7 +90,6 @@ def cd_command(client, line):
     response = client.container.exec_run('/bin/sh -c "cd ' + client.pwd + ';cd ' + dir + ';pwd' '"').decode("utf-8")
     if "can't cd" in response:
         client.send("sh: cd: can't cd to {}\n".format(dir))
-        logger.info("sh: cd: can't cd to {}\n".format(dir))
     else:
         client.pwd = response[:-1]
         if (len(client.pwd) > 2) and client.pwd[-1] == '/':
@@ -102,8 +99,6 @@ def dd_command(client):
     header = "\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00\x1b\x00\x1a\x00"
     client.send(header)
     client.send("+10 records in\r\n1+0 records out\n")
-    logger.info(header)
-    logger.info("+10 records in\r\n1+0 records out\n")
 """
     with open("dd", "br+") as f:
         client.send(f.read())
@@ -165,9 +160,10 @@ def run_cmd(client):
     for message in msg:
         print(message)
         cmd = message.split(' ')[0]
+        if 'quit' in message or 'exit' in message:
+            client.active = False
         if cmd == "wget":
             client.download = 1
-            time.sleep(5)
         if cmd == "cd":
             cd_command(client, message)
         elif cmd == "dd":
@@ -179,7 +175,6 @@ def run_cmd(client):
                 with open("./mounts", "r+") as f:
                     response = f.read()
             client.send('\n' + response)
-            logger.info('\n' + response)
         elif cmd not in NOT_FOUND and cmd not in BLACK_LIST:
             newcmd = '/bin/sh -c "cd ' + client.pwd + ' && ' + message + '"'
             response = client.container.exec_run(newcmd)
@@ -187,7 +182,6 @@ def run_cmd(client):
             if "syntax error" in response:
                 continue
             elif "exec failed" not in response:
-                logger.info(response)
                 client.send(response)
             else:
                 not_found(client, cmd)
@@ -229,9 +223,10 @@ def logical_operator(client, msg):
                 exit_status = 1;
             if "exec failed" not in response:
                 client.send(response)
-                logger.info(response)
             else:
                 not_found(client, line.split(' ')[0])
+            if 'quit' in line or 'exit' in line:
+                client.active = False
 
 def not_found(client, command):
     client.send("sh: {}: command not found\n".format(command))
@@ -252,7 +247,7 @@ if __name__ == '__main__':
         address='',
         on_connect=on_connect,
         on_disconnect=on_disconnect,
-        timeout = .05
+        timeout = .2
         )
 
     logger = logging.getLogger(__name__)
