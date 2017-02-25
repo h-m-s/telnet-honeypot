@@ -40,7 +40,7 @@ from .xterm import word_wrap
 #
 #
 # The syntax is designed so that if both parties receive simultaneous requests
-# for the same option, each will see the other's request as a positive
+q# for the same option, each will see the other's request as a positive
 # acknowledgement of it's own.
 #
 # If a party receives a request to enter a mode that it is already in, the
@@ -260,7 +260,7 @@ class TelnetClient(object):
         if len(self.send_buffer):
             try:
                 #convert to ansi before sending
-                sent = self.sock.send(bytes(self.send_buffer, "utf-8"))
+                sent = self.sock.send(bytes(self.send_buffer, "cp1252"))
             except socket.error as err:
                 logging.error("SEND error '{}' from {}".format(err, self.addrport()))
                 self.active = False
