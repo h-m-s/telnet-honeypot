@@ -1,6 +1,4 @@
-none / aufs rw,relatime,si=236d0e0efa95b4b7,dio,dirperm1 0 0
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
 proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
-tmpfs /dev tmpfs rw,nosuid,mode=755 0 0
-devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=666 0 0
-sysfs /sys sysfs ro,nosuid,nodev,noexec,relatime 0 0
-tmpfs /sys/fs/cgroup tmpfs ro,nosuid,nodev,noexec,relatime,mode=755 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
