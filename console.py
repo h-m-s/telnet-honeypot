@@ -7,28 +7,52 @@ from os import listdir
 from os.path import isfile, join
 import os
 import io
+import binascii
+import signal
+import sys
 
 IDLE_TIMEOUT = 300
 CLIENT_LIST = []
 SERVER_RUN = True
+SCRIPTED = ["dd", "cd"]
 NOT_FOUND = ["nc", "shell"]
 BLACK_LIST = ["sh"]
+
+def signal_handler(signal, frame):
+    print("\nClosing out cleanly...")
+    clean_exit()
+    sys.exit(0)
+
+def clean_exit():
+    for client in CLIENT_LIST:
+        if client.container.diff():
+            for difference in client.container.diff():
+                md5 = client.container.exec_run("md5sum {}".format(difference['Path'])).decode("utf-8")
+                md5 = md5.split(' ')[0]
+                with open("./logs/{}{}.tar".format(md5, difference['Path'].split('/')[-1]), "bw+") as f:
+                    strm, stat = client.container.get_archive(difference['Path'])
+                    f.write(strm.data)
+        client.container.remove(force=True)
+        CLIENT_LIST.remove(client)
+
 
 def on_connect(client):
     """
     Sample on_connect function.
     Handles new connections.
     """
-    logging.info("Opened connection to {}".format(client.addrport()))
+    logger.info("Opened connection to {}".format(client.addrport()))
     CLIENT_LIST.append(client)
     client.dclient = docker.from_env()
     client.container = client.dclient.containers.run(
         "busybox", "/bin/sh", detach=True, tty=True)
     client.container.env = client.container.exec_run("env").decode("utf-8")
     client.pwd = "/"
+    client.username = None
+    client.password = None
     client.uuid = uuid.uuid4()
-#    overwrite_files(client)
-    return_prompt(client)
+    client.send("login: ")
+    #    overwrite_files(client)
 
 def overwrite_files(client):
     mypath = "./overwrite/"
@@ -38,7 +62,6 @@ def overwrite_files(client):
             containerpath = (root + "/")[len(mypath) - 1:]
             with open(filepath, "br+") as f:
                 data = io.BytesIO(f.read())
-            print(containerpath)
             client.container.exec_run("rm ".format(containerpath + "/" + file))
             client.container.put_archive(containerpath, data)
 
@@ -47,13 +70,15 @@ def on_disconnect(client):
     Sample on_disconnect function.
     Handles lost connections.
     """
-    logging.info("Lost connection to {}".format(client.addrport()))
+    logger.info("Lost connection to {}".format(client.addrport()))
     if client.container.diff():
         for difference in client.container.diff():
-            with open("./logs/{}{}.tar".format(client.uuid, difference['Path'].split('/')[-1]), "bw+") as f:
+            md5 = client.container.exec_run("md5sum {}".format(difference['Path'])).decode("utf-8")
+            md5 = md5.split(' ')[0]
+            with open("./logs/{}{}.tar".format(md5, difference['Path'].split('/')[-1]), "bw+") as f:
                 strm, stat = client.container.get_archive(difference['Path'])
                 f.write(strm.data)
-    client.container.stop()
+    client.container.remove(force=True)
     CLIENT_LIST.remove(client)
 
 def cd_command(client, line):
@@ -69,6 +94,14 @@ def cd_command(client, line):
         if (len(client.pwd) > 2) and client.pwd[-1] == '/':
             client.pwd = client.pwd[:-1]
 
+def dd_command(client):
+    header = "\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00\x1b\x00\x1a\x00"
+    client.send(header)
+    client.send("+10 records in\r\n1+0 records out\n")
+"""
+    with open("dd", "br+") as f:
+        client.send(f.read())
+"""
 def kick_idle():
     """
     Looks for idle clients and disconnects them by setting active to False.
@@ -76,7 +109,7 @@ def kick_idle():
     # Who hasn't been typing?
     for client in CLIENT_LIST:
         if client.idle() > IDLE_TIMEOUT:
-            logging.info("Kicking idle client from {}".format(client.addrport()))
+            logger.info("Kicking idle client from {}".format(client.addrport()))
             client.active = False
 
 def process_clients():
@@ -95,15 +128,28 @@ def broadcast(msg):
     for client in CLIENT_LIST:
         client.send(msg)
 
+def login_screen(client, msg):
+    if msg != "":
+        if not client.username:
+            client.username = msg
+            client.send("password: ")
+        else:
+            client.password = msg
+            return_prompt(client)
+            logger.info("{} logged in as {}-{}".format(client.addrport(), client.username, client.password))
+
 def run_cmd(client):
     """
     Echo whatever client types, evaluate commands.
     """
     msg = client.get_command()
+    if not client.username or not client.password:
+        login_screen(client, msg)
+        return
     if msg == "":
         return_prompt(client)
         return
-    logging.info("{}: '{}'".format(client.addrport(), msg))
+    logger.info("{}: '{}'".format(client.addrport(), msg))
 #   client.send("{}\n".format(msg)) (no echo)
     if '||' in msg:
         logical_operator(client, msg)
@@ -111,9 +157,12 @@ def run_cmd(client):
         return
     msg = msg.split(';');
     for message in msg:
+        print(message)
         cmd = message.split(' ')[0]
         if cmd == "cd":
             cd_command(client, message)
+        elif cmd == "dd":
+            dd_command(client)
         elif cmd == "cat" and "mounts" in message:
             newcmd = '/bin/sh -c "cd ' + client.pwd + ' && ' + message + '"'
             response = client.container.exec_run(newcmd).decode("utf-8")
@@ -123,17 +172,15 @@ def run_cmd(client):
             client.send(response)
         elif cmd not in NOT_FOUND and cmd not in BLACK_LIST:
             newcmd = '/bin/sh -c "cd ' + client.pwd + ' && ' + message + '"'
-            print(newcmd)
             response = client.container.exec_run(newcmd)
-            response = response.decode("utf-8")
-            print(response)
+            response = response.decode("utf-8", "replace")
             if "exec failed" not in response:
                 client.send(response)
             else:
                 not_found(client, cmd)
         elif cmd not in BLACK_LIST:
             not_found(client, cmd)
-        if message == 'quit':
+        if message == 'quit' or message == 'exit':
             client.active = False
             print(client.container.diff())
     return_prompt(client)
@@ -159,10 +206,15 @@ def logical_operator(client, msg):
                 parenth = 1
             if (i >= 1) and (i % 2 != 0) and exit_status == 0 and j == 0:
                 continue
+            if "dd" in line[:2]:
+                dd_command(client)
+                continue
+            if "cd" in line[:2]:
+                cd_command(client, line)
+                continue
             newcmd = '/bin/sh -c "cd ' + client.pwd + ' && ' + line + '"'
             response = client.container.exec_run(newcmd)
-            response = response.decode("ascii", "replace")
-            print(response)
+            response = response.decode("utf-8", "replace")
             if "can't open" in response:
                 exit_status = 1;
             if "exec failed" not in response:
@@ -174,25 +226,36 @@ def not_found(client, command):
     client.send("sh: {}: command not found\n".format(command))
 
 def return_prompt(client):
-    prompt = "{} # ".format(client.pwd);
+    prompt = "root@cam12:~# "
     client.send(prompt)
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
-
     # Create a telnet server with a port, address,
     # a function to call with new connections
     # and one to call with lost connections.
-
+    logging.basicConfig(level=logging.DEBUG)
+    signal.signal(signal.SIGINT, signal_handler)
+    
     telnet_server = TelnetServer(
-        port=7777,
+        port=23,
         address='',
         on_connect=on_connect,
         on_disconnect=on_disconnect,
-        timeout = .05
+        timeout = .2
         )
 
-    logging.info("Listening for connections on port {}. CTRL-C to break.".format(telnet_server.port))
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+
+    infohandler = logging.FileHandler("log")
+    infohandler.setLevel(logging.INFO)
+
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    infohandler.setFormatter(formatter)
+
+    logger.addHandler(infohandler)
+    
+    logger.info("Listening for connections on port {}. CTRL-C to break.".format(telnet_server.port))
 
     # Server Loop
     while SERVER_RUN:

