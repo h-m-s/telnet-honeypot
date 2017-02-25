@@ -53,6 +53,7 @@ def on_disconnect(client):
             with open("./logs/{}{}.tar".format(client.uuid, difference['Path'].split('/')[-1]), "bw+") as f:
                 strm, stat = client.container.get_archive(difference['Path'])
                 f.write(strm.data)
+    client.container.stop()
     CLIENT_LIST.remove(client)
 
 def cd_command(client, line):
@@ -185,7 +186,7 @@ if __name__ == '__main__':
 
     telnet_server = TelnetServer(
         port=7777,
-        address='138.68.51.103',
+        address='',
         on_connect=on_connect,
         on_disconnect=on_disconnect,
         timeout = .05
