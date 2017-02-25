@@ -29,7 +29,8 @@ def clean_exit():
             for difference in client.container.diff():
                 md5 = client.container.exec_run("md5sum {}".format(difference['Path'])).decode("utf-8")
                 md5 = md5.split(' ')[0]
-                with open("./logs/{}{}.tar".format(md5, difference['Path'].split('/')[-1]), "bw+") as f:
+                logger.info("Saving file {} with md5sum {} from {}".format(difference['Path'], md5, client.addrport()))
+                with open("./logs/{}{}{}.tar".format(client.uuid, md5, difference['Path'].split('/')[-1]), "bw+") as f:
                     strm, stat = client.container.get_archive(difference['Path'])
                     f.write(strm.data)
         client.container.remove(force=True)
@@ -161,6 +162,8 @@ def run_cmd(client):
         cmd = message.split(' ')[0]
         if 'quit' in message or 'exit' in message:
             client.active = False
+        if cmd == "wget":
+            client.download = 1
         if cmd == "cd":
             cd_command(client, message)
         elif cmd == "dd":
