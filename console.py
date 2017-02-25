@@ -185,7 +185,7 @@ if __name__ == '__main__':
 
     telnet_server = TelnetServer(
         port=7777,
-        address='',
+        address='138.68.51.103',
         on_connect=on_connect,
         on_disconnect=on_disconnect,
         timeout = .05
