@@ -3,14 +3,10 @@ import logging
 import docker
 import uuid
 from miniboa import TelnetServer
-#from os import listdir
-#from os.path import isfile, join
 import os
 import io
-#import binascii
 import signal
 import sys
-#from threading import Thread
 
 IDLE_TIMEOUT = 300
 CLIENT_LIST = []
@@ -104,7 +100,9 @@ def kick_idle():
     kicks idle client
     """
     for client in CLIENT_LIST:
-        if client.idle() > IDLE_TIMEOUT:
+        if client.download == 1:
+            client.download = 0
+        elif client.idle() > IDLE_TIMEOUT:
             logger.info("Kicking idle client from {}".format(client.addrport()))
             client.active = False
 
@@ -240,11 +238,15 @@ def return_prompt(client):
 
 if __name__ == '__main__':
     """ setup! """
+    if len(sys.argv) != 2:
+        print("Please specify a port number.")
+        exit()
+    portnumber = int(sys.argv[1])
     logging.basicConfig(level=logging.DEBUG)
     signal.signal(signal.SIGINT, signal_handler)
     
     telnet_server = TelnetServer(
-        port=23,
+        port=portnumber,
         address='',
         on_connect=on_connect,
         on_disconnect=on_disconnect,
