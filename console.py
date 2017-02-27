@@ -7,6 +7,7 @@ import os
 import io
 import signal
 import sys
+import time
 
 IDLE_TIMEOUT = 300
 CLIENT_LIST = []
@@ -23,15 +24,7 @@ def signal_handler(signal, frame):
 def clean_exit():
     """ cleans up any orphan containers on the way out """
     for client in CLIENT_LIST:
-        if client.container.diff() != None:
-            for difference in client.container.diff():
-                md5 = client.container.exec_run("md5sum {}".format(difference['Path'])).decode("utf-8")
-                md5 = md5.split(' ')[0]
-                logger.info("Saving file {} with md5sum {} from {}".format(difference['Path'], md5, client.addrport()))
-                with open("./logs/{}{}{}.tar".format(client.uuid, md5, difference['Path'].split('/')[-1]), "bw+") as f:
-                    strm, stat = client.container.get_archive(difference['Path'])
-                    f.write(strm.data)
-        print("Closing container...")
+        cleanup_container(client)
         client.container.remove(force=True)
         CLIENT_LIST.remove(client)
     sys.exit(0)
@@ -58,16 +51,22 @@ def on_disconnect(client):
     for disconnections
     """
     logger.info("Lost connection to {}".format(client.addrport()))
-    if client.container.diff():
+    cleanup_container(client)
+    CLIENT_LIST.remove(client)
+    
+def cleanup_container(client):
+    if client.container.diff() != None:
+        print(client.container.diff())
         for difference in client.container.diff():
             md5 = client.container.exec_run("md5sum {}".format(difference['Path'])).decode("utf-8")
             md5 = md5.split(' ')[0]
-            with open("./logs/{}{}.tar".format(md5, difference['Path'].split('/')[-1]), "bw+") as f:
+            logger.info("Saving file {} with md5sum {} from {}".format(difference['Path'], md5, client.addrport()))
+            with open("./logs/{}{}{}.tar".format(time.gmtime(), md5, difference['Path'].split('/')[-1]), "bw+") as f:
                 strm, stat = client.container.get_archive(difference['Path'])
                 f.write(strm.data)
     client.container.remove(force=True)
-    CLIENT_LIST.remove(client)
 
+    
 def cd_command(client, line):
     """
     hackish CD command

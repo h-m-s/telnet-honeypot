@@ -260,7 +260,8 @@ class TelnetClient(object):
         if len(self.send_buffer):
             try:
                 #convert to ansi before sending
-                sent = self.sock.send(bytes(self.send_buffer, "utf-8"))
+#                sent = self.sock.send(bytes(self.send_buffer, "utf-8"))
+                sent = self.sock.send(bytes(self.send_buffer, "cp850"))
             except socket.error as err:
                 logging.error("SEND error '{}' from {}".format(err, self.addrport()))
                 self.active = False
@@ -276,7 +277,7 @@ class TelnetClient(object):
         """
         try:
             #Encode recieved bytes in ansi
-            data = str(self.sock.recv(2048), "cp1252")
+            data = str(self.sock.recv(2048), "cp850")
         except socket.error as err:
             logging.error("RECIEVE socket error '{}' from {}".format(err, self.addrport()))
             raise ConnectionLost()
