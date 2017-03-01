@@ -25,7 +25,6 @@ def clean_exit():
     """ cleans up any orphan containers on the way out """
     for client in CLIENT_LIST:
         cleanup_container(client)
-        client.container.remove(force=True)
         CLIENT_LIST.remove(client)
     sys.exit(0)
 
@@ -38,11 +37,9 @@ def on_connect(client):
     client.dclient = docker.from_env()
     client.container = client.dclient.containers.run(
         "busybox", "/bin/sh", detach=True, tty=True)
-    client.container.env = client.container.exec_run("env").decode("utf-8")
     client.pwd = "/"
     client.username = None
     client.password = None
-    client.download = 0
     client.uuid = uuid.uuid4()
     client.send("login: ")
 
@@ -56,17 +53,31 @@ def on_disconnect(client):
     
 def cleanup_container(client):
     if client.container.diff() != None:
-        print(client.container.diff())
         for difference in client.container.diff():
             md5 = client.container.exec_run("md5sum {}".format(difference['Path'])).decode("utf-8")
             md5 = md5.split(' ')[0]
+            fname = "{}-{}-{}".format(str(time.isotime()).replace(" ", ""), md5, difference['Path'].split('/')[-1])
             logger.info("Saving file {} with md5sum {} from {}".format(difference['Path'], md5, client.addrport()))
-            with open("./logs/{}{}{}.tar".format(time.gmtime(), md5, difference['Path'].split('/')[-1]), "bw+") as f:
+            with open("./logs/{}.tar".format(fname), "bw+") as f:
                 strm, stat = client.container.get_archive(difference['Path'])
                 f.write(strm.data)
     client.container.remove(force=True)
 
-    
+def rm_command(client, line):
+    try:
+        target = line.split(' ')[1].strip()
+    except:
+        client.send(client.container.exec_run("/bin/sh -c rm").decode("utf-8"))
+        return
+    response = client.container.exec_run("/bin/sh -c cd {} && test -f {} && echo 0".format(client.pwd, target)).decode("utf-8").strip()
+    if response != "0":
+        response = client.container.exec_run("/bin/sh -c cd {} && rm {}".format(client.pwd, target))
+        print(response)
+        client.send(response)
+    else:
+        client.container.exec_run("/bin/sh -c cd {} && cp {} /tmp/".format(client.pwd, target))
+        client.container.exec_run("/bin/sh -c cd {} && rm {}".format(client.pwd, target))
+
 def cd_command(client, line):
     """
     hackish CD command
@@ -99,9 +110,7 @@ def kick_idle():
     kicks idle client
     """
     for client in CLIENT_LIST:
-        if client.download == 1:
-            client.download = 0
-        elif client.idle() > IDLE_TIMEOUT:
+        if client.idle() > IDLE_TIMEOUT:
             logger.info("Kicking idle client from {}".format(client.addrport()))
             client.active = False
 
@@ -139,18 +148,22 @@ def run_cmd(client):
         return_prompt(client)
         return
     logger.info("{}: '{}'".format(client.addrport(), msg))
-#   client.send("{}\n".format(msg)) (no echo)
     if '||' in msg:
         logical_operator(client, msg)
         return_prompt(client)
         return
     msg = msg.split(';');
     for message in msg:
-        cmd = message.split(' ')[0]
+        cmd = message.strip().split(' ')[0]
+        print("cmd: " + str(cmd))
         if cmd == "cd":
             cd_command(client, message)
+        if cmd[0] == ".":
+            continue
         elif cmd == "dd":
             dd_command(client)
+        elif cmd == "rm":
+            rm_command(client, message)
         elif cmd == "cat" and "mounts" in message:
             newcmd = '/bin/sh -c "cd ' + client.pwd + ' && ' + message + '"'
             response = client.container.exec_run(newcmd).decode("utf-8")
@@ -165,8 +178,6 @@ def run_cmd(client):
             response = response.decode("utf-8", "replace")
             if "quit" in cmd or "exit" in cmd:
                 client.active = False
-            if cmd == "wget":
-                client.download = 1
             if "syntax error" in response:
                 continue
             elif "exec failed" not in response:
@@ -190,6 +201,7 @@ def logical_operator(client, msg):
     for i in range(len(msg)):
         message = msg[i].strip().split(';')
         for j in range(len(message)):
+            print(message[j])
             line = message[j]
             if parenth == 1:
                 exit_status = 0
@@ -203,14 +215,17 @@ def logical_operator(client, msg):
                 parenth = 1
             if (i >= 1) and (i % 2 != 0) and exit_status == 0 and j == 0:
                 continue
+            if line in BLACK_LIST:
+                return
             if "dd" in line[:2]:
                 dd_command(client)
                 continue
             if "cd" in line[:2]:
                 cd_command(client, line)
                 continue
-            if "wget" in line[:4]:
-                client.download = 1
+            elif "rm" in line[:2]:
+                rm_command(client)
+                continue
             newcmd = '/bin/sh -c "cd ' + client.pwd + ' && ' + line + '"'
             response = client.container.exec_run(newcmd)
             response = response.decode("utf-8", "replace")
