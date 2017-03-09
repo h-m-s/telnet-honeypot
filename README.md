@@ -1,6 +1,7 @@
 # Honeypot Management System
 ## (AKA Her Majesty's Ship)
-### (AKA HMS)
+
+Created by [HoldenGs](https://github.com/HoldenGs/) and [Wintermanc3r](https://github.com/wintermanc3r/)
 
 The telnet-honeypot image runs a telnet server with a python console mediating client access while emulating an insecure server on a docker container. Downloaded binaries get redirected to the logs folder.
 
