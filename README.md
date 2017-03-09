@@ -1,5 +1,4 @@
-# Honeypot Management System
-## (AKA Her Majesty's Ship)
+# Honeypot Management System ## (AKA Her Majesty's Ship)
 
 Created by [HoldenGs](https://github.com/HoldenGs/) and [Wintermanc3r](https://github.com/wintermanc3r/)
 
