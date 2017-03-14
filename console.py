@@ -23,7 +23,7 @@ def signal_handler(signal, frame):
     telnet_server.clean_exit()
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
     infohandler = logging.FileHandler("log")
@@ -38,7 +38,6 @@ if __name__ == '__main__':
         )
     logger.info("Listening for connections on port {}. CTRL-C to break.".format(telnet_server.port))
     while telnet_server.SERVER_RUN:
-        telnet_server.poll()      
-        telnet_server.kick_idle() 
-        telnet_server.process_clients()  
-
+        telnet_server.poll()
+        telnet_server.kick_idle()
+        telnet_server.process_clients()

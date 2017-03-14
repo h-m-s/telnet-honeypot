@@ -13,7 +13,17 @@ class HoneyTelnetClient(TelnetClient):
         self.pwd = "/"
         self.username = None
         self.password = None
+        self.exit_code = 0
         self.uuid = uuid.uuid4()
+
+    def run_in_container(self, line):
+        newcmd = '/bin/sh -c "cd {} && {};echo $?"'.format(self.pwd, line)
+        result = self.container.exec_run(newcmd).decode("utf-8", "replace").split('\n')
+        var = self.container.exec_run('/bin/sh -c "echo $PWD"').decode("utf-8", "replace")
+        self.exit_status = var[0]
+        self.pwd = result[-1]
+        print(result)
+        return(result[:-2])
 
     def cleanup_container(self):
         if self.container.diff() != None:
