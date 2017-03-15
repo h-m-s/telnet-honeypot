@@ -8,6 +8,14 @@ Honeypot Management System is the term we have created for the use of honeypots 
 
 #### So far we have a single honeypot image designed to run on the swarm. We will be creating more images and adding them here.
 
+We want to build out more features; here is a list of what we've done and our planned features:
+*Bold Text == Finished feature*
+** * Example Honeypot, used in Hackathon**
+* More honeypots
+* Swarm Manager Honeypot Scaling Automation
+* Automated Port Forwarding
+* Swarm Mode startup guide
+
 The telnet-honeypot image runs a telnet server with a python console mediating client access while emulating an insecure server on a docker container. Downloaded binaries get redirected to the logs folder.
 
 
