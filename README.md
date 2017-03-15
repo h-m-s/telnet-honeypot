@@ -10,7 +10,7 @@ Honeypot Management System is the term we have created for the use of honeypots 
 
 We want to build out more features; here is a list of what we've done and our planned features:
 *Bold Text == Finished feature*
-** * Example Honeypot, used in Hackathon**
+* **Example Honeypot, used in Hackathon**
 * More honeypots
 * Swarm Manager Honeypot Scaling Automation
 * Automated Port Forwarding
