@@ -5,6 +5,10 @@
 
 The telnet-honeypot image runs a telnet server with a python console mediating client access while emulating an insecure server on a docker container. Downloaded binaries get redirected to the logs folder.
 
+
+So far we have a single honeypot image designed to run on the swarm.
+We will be creating more images and adding them here.
+
 This image requires docker to be installed on its host. This should not be run on your local machine.
 
 Run like so:
