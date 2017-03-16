@@ -1,7 +1,7 @@
 import re
 import sys
 
-SCRIPTED = ["dd", "rm", "exit"]
+SCRIPTED = ["dd", "rm", "exit", "cd"]
 NOT_FOUND = ["nc", "shell"]
 BLACK_LIST = ["sh", "chmod", "docker"]
 
@@ -49,6 +49,23 @@ def exit_cmd(client, line):
 	during the server master loop.
 	"""
 	client.active = False
+
+def cd_command(client, line):
+    """
+    hackish CD command
+    """
+    if len(line.split(' ')) < 2:
+            client.pwd = client.container.exec_run("/bin/sh -c 'echo $HOME'").decode("utf-8")[:-1]
+            return
+    dir = line.split(' ')[1]
+    response = client.container.exec_run('/bin/sh -c "cd ' + client.pwd + ';cd ' + dir + ';pwd' '"').decode("utf-8")
+    if "can't cd" in response:
+            client.send("sh: cd: can't cd to {}\n".format(dir))
+            logger.info("sh: cd: can't cd to {}\n".format(dir))
+    else:
+            client.pwd = response[:-1]
+            if (len(client.pwd) > 2) and client.pwd[-1] == '/':
+                    client.pwd = client.pwd[:-1]
 
 def run_cmd(server, client):
         """

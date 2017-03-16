@@ -8,3 +8,49 @@
 2017-03-16 12:27:35,185 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
 2017-03-16 12:27:47,279 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
 2017-03-16 12:28:09,581 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-16 13:11:05,081 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-16 13:11:07,581 - __main__ - INFO - Opened connection to 127.0.0.1:47844
+2017-03-16 13:11:08,723 - __main__ - INFO - 127.0.0.1:47844 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-16 13:11:09,011 - __main__ - INFO - COMMAND: 127.0.0.1:47844: '['ls']'
+2017-03-16 13:11:09,092 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-16 13:11:28,168 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-16 13:11:30,449 - __main__ - INFO - Opened connection to 127.0.0.1:47954
+2017-03-16 13:11:31,480 - __main__ - INFO - 127.0.0.1:47954 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-16 13:11:31,758 - __main__ - INFO - COMMAND: 127.0.0.1:47954: '['ls']'
+2017-03-16 13:11:31,875 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-16 13:11:34,944 - __main__ - INFO - COMMAND: 127.0.0.1:47954: '['echo $PWD']'
+2017-03-16 13:11:35,039 - __main__ - INFO - /
+
+2017-03-16 13:11:37,484 - __main__ - INFO - COMMAND: 127.0.0.1:47954: '['echo $LS']'
+2017-03-16 13:11:39,996 - __main__ - INFO - COMMAND: 127.0.0.1:47954: '['echo $ENV']'
+2017-03-16 13:11:40,343 - __main__ - INFO - COMMAND: 127.0.0.1:47954: '['env']'
+2017-03-16 13:11:40,407 - __main__ - INFO - HOSTNAME=c446526b7b54
+SHLVL=1
+OLDPWD=/
+HOME=/root
+TERM=xterm
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/
+
+2017-03-16 13:11:45,602 - __main__ - INFO - COMMAND: 127.0.0.1:47954: '['exit']'
+2017-03-16 13:11:45,603 - __main__ - INFO - Lost connection to 127.0.0.1:47954
