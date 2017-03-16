@@ -7,42 +7,29 @@ BLACK_LIST = ["sh", "chmod", "docker"]
 
 def rm_cmd(client, line):
         """
-        Instead of deleting stuff, let's move it to tmp. Good stuff gets deleted sometimes!
-        Would like to change this soon to just immediately copy it out of the container 
-        and still actually remove it, unless it's an unchanged file.
+        Instead of deleting stuff, let's move it to tmp. Good stuff gets deleted
+        sometimes! Would like to change this soon to just immediately copy it
+        out of the container.
         """
         try:
                 target = line.split(' ')[1].strip()
         except:
-                client.send(client.container.exec_run("/bin/sh -c rm").decode("utf-8"))
+                client.send(client.container.exec_run("/bin/sh -c rm")
+                            .decode("utf-8"))
                 return
-        response = client.container.exec_run("/bin/sh -c cd {} && test -f {} && echo 0".format(client.pwd, target)).decode("utf-8").strip()
+        response = client.container.exec_run(
+                "/bin/sh -c cd {} && test -f {} && echo 0"
+                .format(client.pwd, target)).decode("utf-8").strip()
         if response != "0":
-                response = client.container.exec_run("/bin/sh -c cd {} && rm {}".format(client.pwd, target))
+                response = client.container.exec_run("/bin/sh -c cd {} && rm {}"
+                                                     .format(client.pwd,target))
                 print(response)
                 client.send(response)
         else:
-                client.container.exec_run("/bin/sh -c cd {} && cp {} /tmp/".format(client.pwd, target))
-                client.container.exec_run("/bin/sh -c cd {} && rm {}".format(client.pwd, target))
-
-def cd_cmd(client, line):
-        """
-        We can't actually move directories in the container, so CD has to keep track of the PWD
-	on our side. Sort of ridiculous... but it works!
-        """
-        if len(line.split(' ')) < 2:
-                client.pwd = client.container.exec_run("/bin/sh -c 'echo $HOME'").decode("utf-8")[:-1]
-                return
-        dir = line.split(' ')[1]
-        response = client.container.exec_run('/bin/sh -c "cd ' + client.pwd + ';cd ' + dir + ';pwd' '"').decode("utf-8")
-        if "can't cd" in response:
-                client.send("sh: cd: can't cd to {}\n".format(dir))
-                logger.info("sh: cd: can't cd to {}\n".format(dir))
-        else:
-                client.pwd = response[:-1]
-                if (len(client.pwd) > 2) and client.pwd[-1] == '/':
-                        client.pwd = client.pwd[:-1]
-
+                client.container.exec_run("/bin/sh -c cd {} && cp {} /tmp/"
+                                          .format(client.pwd, target))
+                client.container.exec_run("/bin/sh -c cd {} && rm {}"
+                                          .format(client.pwd, target))
 def dd_cmd(client, line):
         """
         This dd is sorta hackish.
