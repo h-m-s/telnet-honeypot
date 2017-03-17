@@ -23,7 +23,6 @@ def rm_cmd(client, line):
         if response != "0":
                 response = client.container.exec_run("/bin/sh -c cd {} && rm {}"
                                                      .format(client.pwd,target))
-                print(response)
                 client.send(response)
         else:
                 client.container.exec_run("/bin/sh -c cd {} && cp {} /tmp/"
@@ -37,7 +36,10 @@ def dd_cmd(client, line):
         Mirai and Hajime like this a lot more than a 64 bit setup.
         Planning on adding more configurable choices soon.
         """
-        header = "\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00\x1b\x00\x1a\x00"
+        header = ("\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00 \
+        \x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00 \
+        \x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00 \
+        \x1b\x00\x1a\x00")
         client.send(header)
         client.send("+10 records in\r\n1+0 records out\n")
         logger.info(header)
@@ -50,7 +52,7 @@ def exit_cmd(client, line):
 	"""
 	client.active = False
 
-def cd_command(client, line):
+def cd_cmd(client, line):
     """
     hackish CD command
     """
@@ -107,7 +109,7 @@ def execute_cmd(client, server, msg):
                 method = getattr(sys.modules[__name__], "{}_cmd".format(cmd))
                 result = method(client, msg)
         elif cmd not in NOT_FOUND and cmd not in BLACK_LIST:
-                response = "\n".join(client.run_in_container(msg)) + "\n"
+                response = "\n".join(client.run_in_container(msg))
                 if "exec failed" not in response:
                         if response == "\n":
                                 return

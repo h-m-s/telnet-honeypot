@@ -17,10 +17,24 @@ class HoneyTelnetClient(TelnetClient):
         self.uuid = uuid.uuid4()
 
     def run_in_container(self, line):
-        newcmd = '/bin/sh -c "cd {} && {};echo EXIT: $?"'.format(self.pwd, line)
+        """
+        Takes in a command (pre-parsed/sanitized) and runs it in the client's
+        container. Sorta hacky way to get the exit code, and I'm super open
+        to suggestions on how else this could be done. The container doesn't
+        actually exit (it's running the whole time the client is, detached)
+        but does it even need to be running since I'm doing it this way anyways?
+        """
+        newcmd = '/bin/sh -c "cd {} && {};echo EXIT:$?"'.format(self.pwd, line)
         result = self.container.exec_run(newcmd).decode("utf-8", "replace").split('\n')
-        print(result)
-        return(result[:-2])
+        final = []
+        print("result: " + str(result))
+        for line in result:
+            print(line)
+            if "EXIT:" in line:
+                self.exit_status = line.split(":")[:-1]
+            elif line != "\n":
+                final += [line]
+        return(final)
 
     def cleanup_container(self):
         if self.container.diff() != None:

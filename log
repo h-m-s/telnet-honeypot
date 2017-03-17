@@ -54,3 +54,466 @@ PWD=/
 
 2017-03-16 13:11:45,602 - __main__ - INFO - COMMAND: 127.0.0.1:47954: '['exit']'
 2017-03-16 13:11:45,603 - __main__ - INFO - Lost connection to 127.0.0.1:47954
+2017-03-17 14:43:48,213 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:43:49,409 - __main__ - INFO - Opened connection to 127.0.0.1:52346
+2017-03-17 14:43:50,436 - __main__ - INFO - 127.0.0.1:52346 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:43:50,692 - __main__ - INFO - COMMAND: 127.0.0.1:52346: '['ls']'
+2017-03-17 14:43:50,731 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-17 14:43:52,036 - __main__ - INFO - COMMAND: 127.0.0.1:52346: '['ls eafhieai']'
+2017-03-17 14:43:52,072 - __main__ - INFO - ls: eafhieai: No such file or directory
+
+2017-03-17 14:43:53,892 - __main__ - INFO - COMMAND: 127.0.0.1:52346: '['ls echpeaicea']'
+2017-03-17 14:43:53,931 - __main__ - INFO - ls: echpeaicea: No such file or directory
+
+2017-03-17 14:43:54,596 - __main__ - INFO - COMMAND: 127.0.0.1:52346: '['lsd']'
+2017-03-17 14:43:54,632 - __main__ - INFO - EXIT: 127
+
+2017-03-17 14:43:55,636 - __main__ - INFO - COMMAND: 127.0.0.1:52346: '['ls']'
+2017-03-17 14:43:55,687 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-17 14:43:56,148 - __main__ - INFO - COMMAND: 127.0.0.1:52346: '['ls']'
+2017-03-17 14:43:56,191 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-17 14:43:56,508 - __main__ - INFO - COMMAND: 127.0.0.1:52346: '['ls']'
+2017-03-17 14:43:56,544 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-17 14:43:56,836 - __main__ - INFO - COMMAND: 127.0.0.1:52346: '['ls']'
+2017-03-17 14:43:56,872 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-17 14:43:57,356 - __main__ - INFO - COMMAND: 127.0.0.1:52346: '['exit']'
+2017-03-17 14:43:57,357 - __main__ - INFO - Lost connection to 127.0.0.1:52346
+2017-03-17 14:45:13,842 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:45:14,932 - __main__ - INFO - Opened connection to 127.0.0.1:52348
+2017-03-17 14:45:15,924 - __main__ - INFO - 127.0.0.1:52348 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:45:16,156 - __main__ - INFO - COMMAND: 127.0.0.1:52348: '['ls']'
+2017-03-17 14:45:16,191 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-17 14:45:17,172 - __main__ - INFO - COMMAND: 127.0.0.1:52348: '['dwiahdhiwa']'
+2017-03-17 14:45:17,207 - __main__ - INFO - EXIT: 127
+
+2017-03-17 14:45:18,213 - __main__ - INFO - COMMAND: 127.0.0.1:52348: '['exit']'
+2017-03-17 14:45:18,213 - __main__ - INFO - Lost connection to 127.0.0.1:52348
+2017-03-17 14:48:11,189 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:48:13,283 - __main__ - INFO - Opened connection to 127.0.0.1:52350
+2017-03-17 14:48:14,261 - __main__ - INFO - 127.0.0.1:52350 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:48:14,533 - __main__ - INFO - COMMAND: 127.0.0.1:52350: '['ls']'
+2017-03-17 14:48:14,591 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+EXIT:0
+
+
+2017-03-17 14:48:15,949 - __main__ - INFO - COMMAND: 127.0.0.1:52350: '['ls']'
+2017-03-17 14:48:15,985 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+EXIT:0
+
+
+2017-03-17 14:48:16,917 - __main__ - INFO - COMMAND: 127.0.0.1:52350: '['feohaifeha']'
+2017-03-17 14:48:16,951 - __main__ - INFO - /bin/sh: feohaifeha: not found
+EXIT:127
+
+
+2017-03-17 14:48:18,309 - __main__ - INFO - COMMAND: 127.0.0.1:52350: '['eofiheaofiea']'
+2017-03-17 14:48:18,344 - __main__ - INFO - EXIT:127
+/bin/sh: eofiheaofiea: not found
+
+
+2017-03-17 14:48:19,261 - __main__ - INFO - COMMAND: 127.0.0.1:52350: '['exit']'
+2017-03-17 14:48:19,261 - __main__ - INFO - Lost connection to 127.0.0.1:52350
+2017-03-17 14:48:49,043 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:48:49,891 - __main__ - INFO - Opened connection to 127.0.0.1:52352
+2017-03-17 14:48:50,933 - __main__ - INFO - 127.0.0.1:52352 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:48:51,197 - __main__ - INFO - COMMAND: 127.0.0.1:52352: '['ls']'
+2017-03-17 14:48:51,236 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+EXIT:0
+
+
+2017-03-17 14:49:55,052 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:49:55,943 - __main__ - INFO - Opened connection to 127.0.0.1:52354
+2017-03-17 14:49:56,996 - __main__ - INFO - 127.0.0.1:52354 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:49:57,277 - __main__ - INFO - COMMAND: 127.0.0.1:52354: '['ls']'
+2017-03-17 14:51:10,300 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:51:11,128 - __main__ - INFO - Opened connection to 127.0.0.1:52356
+2017-03-17 14:51:12,101 - __main__ - INFO - 127.0.0.1:52356 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:51:12,357 - __main__ - INFO - COMMAND: 127.0.0.1:52356: '['ls']'
+2017-03-17 14:51:12,392 - __main__ - INFO - b
+i
+n
+d
+e
+v
+e
+t
+c
+h
+o
+m
+e
+p
+r
+o
+c
+r
+o
+o
+t
+s
+y
+s
+t
+m
+p
+u
+s
+r
+v
+a
+r
+
+2017-03-17 14:51:14,037 - __main__ - INFO - COMMAND: 127.0.0.1:52356: '['exit']'
+2017-03-17 14:51:14,037 - __main__ - INFO - Lost connection to 127.0.0.1:52356
+2017-03-17 14:51:22,812 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:51:24,565 - __main__ - INFO - Opened connection to 127.0.0.1:52358
+2017-03-17 14:51:25,653 - __main__ - INFO - 127.0.0.1:52358 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:51:25,901 - __main__ - INFO - COMMAND: 127.0.0.1:52358: '['ls']'
+2017-03-17 14:52:29,069 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:52:29,769 - __main__ - INFO - Opened connection to 127.0.0.1:52360
+2017-03-17 14:52:30,893 - __main__ - INFO - 127.0.0.1:52360 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:52:31,125 - __main__ - INFO - COMMAND: 127.0.0.1:52360: '['ls']'
+2017-03-17 14:52:31,176 - __main__ - INFO - b
+i
+n
+d
+e
+v
+e
+t
+c
+h
+o
+m
+e
+p
+r
+o
+c
+r
+o
+o
+t
+s
+y
+s
+t
+m
+p
+u
+s
+r
+v
+a
+r
+
+2017-03-17 14:52:46,488 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:52:47,272 - __main__ - INFO - Opened connection to 127.0.0.1:52362
+2017-03-17 14:52:48,293 - __main__ - INFO - 127.0.0.1:52362 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:52:48,941 - __main__ - INFO - COMMAND: 127.0.0.1:52362: '['ls']'
+2017-03-17 14:52:48,996 - __main__ - INFO - b
+i
+n
+d
+e
+v
+e
+t
+c
+h
+o
+m
+e
+p
+r
+o
+c
+r
+o
+o
+t
+s
+y
+s
+t
+m
+p
+u
+s
+r
+v
+a
+r
+
+2017-03-17 14:53:25,511 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:53:26,220 - __main__ - INFO - Opened connection to 127.0.0.1:52364
+2017-03-17 14:53:27,197 - __main__ - INFO - 127.0.0.1:52364 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:53:27,469 - __main__ - INFO - COMMAND: 127.0.0.1:52364: '['ls']'
+2017-03-17 14:53:43,314 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:53:44,386 - __main__ - INFO - Opened connection to 127.0.0.1:52366
+2017-03-17 14:53:45,285 - __main__ - INFO - 127.0.0.1:52366 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:53:45,493 - __main__ - INFO - COMMAND: 127.0.0.1:52366: '['ls']'
+2017-03-17 14:53:53,427 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:53:54,012 - __main__ - INFO - Opened connection to 127.0.0.1:52368
+2017-03-17 14:53:54,845 - __main__ - INFO - 127.0.0.1:52368 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:53:55,125 - __main__ - INFO - COMMAND: 127.0.0.1:52368: '['ls']'
+2017-03-17 14:54:15,258 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:54:16,034 - __main__ - INFO - Opened connection to 127.0.0.1:52370
+2017-03-17 14:54:16,965 - __main__ - INFO - 127.0.0.1:52370 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:54:17,213 - __main__ - INFO - COMMAND: 127.0.0.1:52370: '['ls']'
+2017-03-17 14:54:26,915 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:54:39,487 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:54:40,252 - __main__ - INFO - Opened connection to 127.0.0.1:52372
+2017-03-17 14:54:41,213 - __main__ - INFO - 127.0.0.1:52372 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:54:41,525 - __main__ - INFO - COMMAND: 127.0.0.1:52372: '['ls']'
+2017-03-17 14:55:01,279 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:55:01,903 - __main__ - INFO - Opened connection to 127.0.0.1:52374
+2017-03-17 14:55:02,837 - __main__ - INFO - 127.0.0.1:52374 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:55:03,077 - __main__ - INFO - COMMAND: 127.0.0.1:52374: '['ls']'
+2017-03-17 14:55:15,405 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:55:16,105 - __main__ - INFO - Opened connection to 127.0.0.1:52376
+2017-03-17 14:55:16,941 - __main__ - INFO - 127.0.0.1:52376 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:55:17,189 - __main__ - INFO - COMMAND: 127.0.0.1:52376: '['ls']'
+2017-03-17 14:55:17,239 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+
+2017-03-17 14:55:31,027 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:55:31,722 - __main__ - INFO - Opened connection to 127.0.0.1:52378
+2017-03-17 14:55:32,613 - __main__ - INFO - 127.0.0.1:52378 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:55:33,117 - __main__ - INFO - COMMAND: 127.0.0.1:52378: '['ls']'
+2017-03-17 14:55:33,175 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+
+2017-03-17 14:55:34,765 - __main__ - INFO - COMMAND: 127.0.0.1:52378: '['ls']'
+2017-03-17 14:55:34,815 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+
+2017-03-17 14:55:39,533 - __main__ - INFO - COMMAND: 127.0.0.1:52378: '['¶\xa0²\x06\xa0¶\xa0²\x06awdhiwa']'
+2017-03-17 14:55:39,571 - __main__ - INFO - /bin/sh: ¶ ² ¶ ²awdhiwa: not found
+
+
+2017-03-17 14:55:40,901 - __main__ - INFO - COMMAND: 127.0.0.1:52378: '['¹\x06\xa0¹\x06leaf']'
+2017-03-17 14:55:40,937 - __main__ - INFO - /bin/sh: ¹ ¹leaf: not found
+
+
+2017-03-17 14:55:41,989 - __main__ - INFO - COMMAND: 127.0.0.1:52378: '['ls']'
+2017-03-17 14:55:42,024 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+
+2017-03-17 14:55:42,773 - __main__ - INFO - COMMAND: 127.0.0.1:52378: '['ls']'
+2017-03-17 14:55:42,809 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+
+2017-03-17 14:55:43,429 - __main__ - INFO - COMMAND: 127.0.0.1:52378: '['dwiahjdhwai']'
+2017-03-17 14:55:43,464 - __main__ - INFO - /bin/sh: dwiahjdhwai: not found
+
+
+2017-03-17 14:56:10,001 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:56:11,033 - __main__ - INFO - Opened connection to 127.0.0.1:52380
+2017-03-17 14:56:11,981 - __main__ - INFO - 127.0.0.1:52380 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:56:12,221 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['ls']'
+2017-03-17 14:56:12,258 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-17 14:56:13,309 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['dwaihdwa']'
+2017-03-17 14:56:13,344 - __main__ - INFO - /bin/sh: dwaihdwa: not found
+
+2017-03-17 14:56:14,253 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['eahfioae']'
+2017-03-17 14:56:14,303 - __main__ - INFO - /bin/sh: eahfioae: not found
+
+2017-03-17 14:56:14,973 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['ighiorh']'
+2017-03-17 14:56:15,009 - __main__ - INFO - /bin/sh: ighiorh: not found
+
+2017-03-17 14:56:15,693 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['vhoxdihv']'
+2017-03-17 14:56:15,728 - __main__ - INFO - /bin/sh: vhoxdihv: not found
+
+2017-03-17 14:56:16,077 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['ihdwa']'
+2017-03-17 14:56:16,112 - __main__ - INFO - /bin/sh: ihdwa: not found
+
+2017-03-17 14:56:16,317 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['idhawi']'
+2017-03-17 14:56:16,371 - __main__ - INFO - /bin/sh: idhawi: not found
+
+2017-03-17 14:56:16,501 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['']'
+2017-03-17 14:56:16,797 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['dwpoaihj']'
+2017-03-17 14:56:16,852 - __main__ - INFO - /bin/sh: dwpoaihj: not found
+
+2017-03-17 14:56:17,077 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['']'
+2017-03-17 14:56:17,381 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['ls']'
+2017-03-17 14:56:17,434 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-17 14:56:18,341 - __main__ - INFO - COMMAND: 127.0.0.1:52380: '['cd ..']'
+2017-03-17 14:57:05,304 - __main__ - INFO - Listening for connections on port 23. CTRL-C to break.
+2017-03-17 14:57:07,532 - __main__ - INFO - Opened connection to 127.0.0.1:52382
+2017-03-17 14:57:08,453 - __main__ - INFO - 127.0.0.1:52382 logged in as ['²\x03\xa0¹\x18\xa0¹\x1f\xa0¹ \xa0¹!\xa0¹"\xa0¹\'\xa0²\x05\xa0¹#root']-['toor']
+2017-03-17 14:57:08,693 - __main__ - INFO - COMMAND: 127.0.0.1:52382: '['ls']'
+2017-03-17 14:57:08,728 - __main__ - INFO - bin
+dev
+etc
+home
+proc
+root
+sys
+tmp
+usr
+var
+
+2017-03-17 14:57:09,509 - __main__ - INFO - COMMAND: 127.0.0.1:52382: '['cd /var/']'
+2017-03-17 14:57:09,957 - __main__ - INFO - COMMAND: 127.0.0.1:52382: '['ls']'
+2017-03-17 14:57:10,009 - __main__ - INFO - spool
+www
+
+2017-03-17 14:57:12,509 - __main__ - INFO - COMMAND: 127.0.0.1:52382: '['cd spool']'
+2017-03-17 14:57:12,797 - __main__ - INFO - COMMAND: 127.0.0.1:52382: '['ls']'
+2017-03-17 14:57:12,853 - __main__ - INFO - mail
+
+2017-03-17 14:57:13,373 - __main__ - INFO - COMMAND: 127.0.0.1:52382: '['exit']'
+2017-03-17 14:57:13,373 - __main__ - INFO - Lost connection to 127.0.0.1:52382
