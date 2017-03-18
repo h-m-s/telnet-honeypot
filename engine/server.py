@@ -9,14 +9,14 @@ IDLE_TIMEOUT = 300
 
 class HoneyTelnetServer(TelnetServer):
         def __init__(self, port=7777, address='', logger=None):
-            """ Wrapper for the TelnetServer init """
-            self.SERVER_RUN = 1
-            self.logger = logger
-            super().__init__(port, address, self.on_connect,
-                             self.on_disconnect)
-            self.client_list = []
-            self.fake_files = []
-            self.setup_fake_files()
+                """ Wrapper for the TelnetServer init """
+                self.SERVER_RUN = 1
+                self.logger = logger
+                super().__init__(port, address, self.on_connect,
+                                 self.on_disconnect)
+                self.client_list = []
+                self.fake_files = []
+                self.setup_fake_files()
 
         def setup_fake_files(self):
                 for fake_file in os.listdir("./fakefiles/"):
@@ -60,7 +60,7 @@ class HoneyTelnetServer(TelnetServer):
                                                     self.timeout)
             except select.error as err:
                 # If we can't even use select(), game over man, game over
-                logging.critical("SELECT socket error '{}'".format(str(err)))
+                self.logger.critical("SELECT socket error '{}'".format(str(err)))
                 raise
 
             # Process socket file descriptors with data to recieve
@@ -95,7 +95,7 @@ class HoneyTelnetServer(TelnetServer):
                     # Call the connection's recieve method
                     try:
                         self.clients[sock_fileno].socket_recv()
-                    except ConnectionLost:
+                    except:
                         self.clients[sock_fileno].deactivate()
 
             # Process sockets with data to send
@@ -107,7 +107,7 @@ class HoneyTelnetServer(TelnetServer):
                 """ cleans up any orphan containers on the way out """
                 for client in self.client_list:
                         client.cleanup_container()
-                        self.client_list.remove(client)
+                        client.active = 0
                 self.SERVER_RUN = 0
 
         def on_connect(self, client):
@@ -119,6 +119,7 @@ class HoneyTelnetServer(TelnetServer):
                 self.logger.info("Opened connection to {}".format(
                         client.addrport()))
                 self.client_list.append(client)
+                client.send("busybox\n")
                 client.send("login: ")
 
         def on_disconnect(self, client):
@@ -173,15 +174,9 @@ class HoneyTelnetServer(TelnetServer):
                                                 client.username,
                                                 client.password))
 
-        def not_found(self, client, command):
-                """
-                not found
-                """
-                client.send("sh: {}: command not found\n".format(command))
-
         def return_prompt(self, client):
                 """
                 returns that prompt
                 """
-                prompt = "root@HMS:~# "
+                prompt = "/ # "
                 client.send(prompt)

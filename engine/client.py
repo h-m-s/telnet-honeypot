@@ -16,6 +16,7 @@ class HoneyTelnetClient(TelnetClient):
         self.password = None
         self.exit_status = 0
         self.uuid = uuid.uuid4()
+        self.ip = self.addrport().split(":")[0]
 
     def run_in_container(self, line):
         """
@@ -32,7 +33,8 @@ class HoneyTelnetClient(TelnetClient):
         final = []
         for line in result:
             if "EXIT:" in line:
-                self.exit_status = line.split(":")[:-1]
+                print("EXIT LINE: {}".format(line))
+                self.exit_status = line.split(":")[1]
             elif line != "\n":
                 final += [line]
         return("\n".join(final))

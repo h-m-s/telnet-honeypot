@@ -14,7 +14,6 @@ from engine.server import HoneyTelnetServer
 IDLE_TIMEOUT = 300
 SERVER_RUN = True
 
-
 def signal_handler(signal, frame):
     """
     Handles exit on ctrl-c.
@@ -22,15 +21,19 @@ def signal_handler(signal, frame):
     TO DO: double check clean_exit is complete
     """
     print("\nClosing out cleanly...")
+    SERVER_RUN = False
     telnet_server.clean_exit()
 
 if __name__ == '__main__':
+
     """
     Main loop.
 
     Starts up the loggers, starts up a server, and starts
     the main loop to run until SERVER_RUN is false.
     """
+    signal.signal(signal.SIGINT, signal_handler)
+
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
@@ -47,7 +50,7 @@ if __name__ == '__main__':
         )
     logger.info("Listening for connections on port {}. CTRL-C to break.".
                 format(telnet_server.port))
-    while telnet_server.SERVER_RUN:
+    while SERVER_RUN:
         telnet_server.poll()
         telnet_server.kick_idle()
         telnet_server.process_clients()
