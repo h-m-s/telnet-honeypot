@@ -13,22 +13,31 @@ from engine.server import HoneyTelnetServer
 
 IDLE_TIMEOUT = 300
 SERVER_RUN = True
-SCRIPTED = ["dd", "cd"]
-NOT_FOUND = ["nc", "shell"]
-BLACK_LIST = ["sh", "chmod", "docker"]
+
 
 def signal_handler(signal, frame):
-    """ handles exit on ctrl+c """
+    """
+    Handles exit on ctrl-c.
+
+    TO DO: double check clean_exit is complete
+    """
     print("\nClosing out cleanly...")
     telnet_server.clean_exit()
 
 if __name__ == '__main__':
+    """
+    Main loop.
+
+    Starts up the loggers, starts up a server, and starts
+    the main loop to run until SERVER_RUN is false.
+    """
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
     infohandler = logging.FileHandler("log")
     infohandler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     infohandler.setFormatter(formatter)
     logger.addHandler(infohandler)
     telnet_server = HoneyTelnetServer(
@@ -36,7 +45,8 @@ if __name__ == '__main__':
         address='',
         logger=logger
         )
-    logger.info("Listening for connections on port {}. CTRL-C to break.".format(telnet_server.port))
+    logger.info("Listening for connections on port {}. CTRL-C to break.".
+                format(telnet_server.port))
     while telnet_server.SERVER_RUN:
         telnet_server.poll()
         telnet_server.kick_idle()
