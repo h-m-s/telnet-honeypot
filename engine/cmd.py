@@ -100,6 +100,7 @@ def run_cmd(server, client):
         the simple stuff the common bots try. :)
         """
         msg = [client.get_command()]
+        server.logger.info("RECEIVED INPUT {} : {}".format(client.ip, msg[0]))
         if not client.username or not client.password:
                 server.login_screen(client, msg)
                 return
@@ -124,7 +125,7 @@ def loop_cmds(server, client, msg):
                         reg = re.findall("(.*)\|\|(.*)", line)
                         for cmd in reg:
                                 loop_cmds(server, client, [cmd[0]])
-                                if (client.exit_status != "0"):
+                                if (client.exit_status != 0):
                                         print(client.exit_status)
                                         print("Not true, continuing.")
                                         loop_cmds(server, client, [cmd[1]])
@@ -132,7 +133,7 @@ def loop_cmds(server, client, msg):
                         reg = re.findall("(.*)&&(.*)", line)
                         for cmd in reg:
                                 loop_cmds(server, client, [cmd[0]])
-                                if (client.exit_status == "0"):
+                                if (client.exit_status == 0):
                                         print("True, continuing.")
                                         loop_cmds(server, client, [cmd[1]])
                 else:
