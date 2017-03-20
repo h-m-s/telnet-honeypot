@@ -10,7 +10,7 @@ class HoneyTelnetClient(TelnetClient):
         super().__init__(sock, addr_tup)
         self.dclient = docker.from_env()
         self.container = self.dclient.containers.run(
-            "busybox", "/bin/sh", detach=True, tty=True)
+            "busybox", "/bin/sh", detach=True, tty=True, environment=["SHELL=/bin/busybox"])
         self.pwd = "/"
         self.username = None
         self.password = None

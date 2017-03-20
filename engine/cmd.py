@@ -5,7 +5,6 @@ SCRIPTED = ["dd", "rm", "exit", "cd", "cat"]
 NOT_FOUND = ["nc", "shell"]
 BLACK_LIST = ["sh", "chmod", "docker"]
 
-
 def rm_cmd(server, client, line):
         """
         Instead of deleting stuff, let's move it to tmp. Good stuff gets
