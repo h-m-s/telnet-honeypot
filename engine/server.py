@@ -119,9 +119,14 @@ class HoneyTelnetServer(TelnetServer):
                 self.logger.info("Opened connection to {}".format(
                         client.addrport()))
                 self.client_list.append(client)
-                client.mode = "telnet"
-                client.send("busybox\n")
-                client.send("login: ")
+                if client.addrport().split(":")[0] == "127.0.0.1":
+                        client.mode = "netcat"
+                        client.username = "netcat"
+                        client.password = "local"
+                else:
+                        client.mode = "telnet"
+                        client.send("busybox\n")
+                        client.send("login: ")
 
         def on_disconnect(self, client):
                 """
@@ -160,7 +165,7 @@ class HoneyTelnetServer(TelnetServer):
                 getting sent in with the username, so we'll just filter those
                 here until we can figure out how to fix that?
                 """
-                if msg != "":
+                if msg != "" and client.mode == "telnet":
                         if not client.username:
                                 if "#" in msg[0]:
                                         msg = msg[0].split("#")[1]
@@ -174,8 +179,6 @@ class HoneyTelnetServer(TelnetServer):
                                                 client.addrport(),
                                                 client.username,
                                                 client.password))
-                                if client.username == "net" and client.password == "cat":
-                                        client.mode = "netcat"
 
         def return_prompt(self, client):
                 """
