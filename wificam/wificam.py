@@ -29,6 +29,8 @@ https://www.shodan.io/search?query=GoAhead+5ccc069c403ebaf9f0171e9517f40e41
 
 """
 import time
+import subprocess
+from subprocess import check_call
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 count = 0
@@ -70,6 +72,27 @@ class GoAheadHandler(BaseHTTPRequestHandler):
     Just causes a HEAD request call up the default do_GET message.
     """
     self.do_GET()
+
+  def netcat_honeypot(self, ahost, aport):
+    """
+    Designed to work with the H-M-S telnet honeypot.
+    Starts up netcat and logs in with the net/cat user,
+    which mainly just drops the prompt so it looks more like
+    an actual instance of sh running over netcat. :)
+
+    Not super sure this is the ideal method to do this, but it
+    works for the minute!
+    """
+
+    subprocess.Popen("./snetcet.sh")
+
+#    fifo = open("./pipe", "w+")
+#tail -f pipe | nc 138.68.229.32 1337 | tee outgoing.log | nc 127.0.0.1 23 | tee pipe
+#    tail = subprocess.Popen("tail -f pipe".split(" "), stdout=subprocess.PIPE)
+#    nc1 = subprocess.Popen("nc {} {}".format(ahost, aport).split(" "), stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+#    tee1 = subprocess.Popen("tee outgoing.log".split(" "), stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+#    nc2 = subprocess.Popen("nc 127.0.0.1 23".split(" "), stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+#    tee2 = subprocess.Popen("tee pipe".split(" "), stdin=subprocess.PIPE)
 
   def do_GET(self):
     """
@@ -113,10 +136,10 @@ class GoAheadHandler(BaseHTTPRequestHandler):
       self.wfile.write(bytes.fromhex('0a0a0a0a01') + bytes(msg, "utf8"))
     elif count > 0:
       """
-      The line that follows the payload to get the server credentials
+      The first payload the script sends
       contains the login/pass (which should match the ones you provided
-      above), but it also contains the server and port the attacker should
-      have a netcat listener open on.
+      above), but more importantly it contains the server
+      and port the attacker should have a netcat listener open on.
 
       You'd need to connect to this port to make the attacker think they have
       full access.
@@ -129,6 +152,7 @@ class GoAheadHandler(BaseHTTPRequestHandler):
         if "pwd" in line:
           temp = line.split("%20")[1].split("+")
           print("Attacker remote server: {} port: {}".format(temp[0], temp[1]))
+          self.netcat_honeypot(temp[0], temp[1])
       count -= 1
     else:
       """
