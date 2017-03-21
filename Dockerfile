@@ -1,7 +1,8 @@
-FROM ubuntu:trusty
-RUN apt-get -y update
-RUN apt-get -y install python3-pip \
-    	       	       git
-RUN pip3 install docker
-RUN git clone https://github.com/H-M-S/honeypot_management_system
-CMD python3 /honeypot_management_system/console.py
+RUN apt-get -y update \
+    && apt-get -y install python3-pip \
+    wget \
+    git \
+    && pip3 install docker \
+    && git clone https://github.com/h-m-s/telnet-honeypot.git
+CMD cd telnet-honeypot
+CMD python3 ./console.py
