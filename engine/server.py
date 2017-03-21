@@ -15,13 +15,6 @@ class HoneyTelnetServer(TelnetServer):
                 super().__init__(port, address, self.on_connect,
                                  self.on_disconnect)
                 self.client_list = []
-                self.fake_files = []
-                self.setup_fake_files()
-
-        def setup_fake_files(self):
-                for fake_file in os.listdir("./fakefiles/"):
-                        self.fake_files += ["/{}".format(
-                                fake_file.replace("%", "/"))]
 
         def poll(self):
             """

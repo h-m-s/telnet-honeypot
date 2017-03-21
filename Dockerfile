@@ -1,7 +1,7 @@
+FROM ubuntu:14.04
 RUN apt-get -y update \
     && apt-get -y install python3-pip \
     git \
     && pip3 install docker \
-    && git clone https://github.com/h-m-s/telnet-honeypot.git
-CMD cd telnet-honeypot
-CMD python3 ./console.py
+    && git clone -b refactor https://github.com/h-m-s/telnet-honeypot.git
+CMD python3 /telnet-honeypot/telnet.py

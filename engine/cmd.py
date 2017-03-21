@@ -1,9 +1,9 @@
 import re
 import sys
+import os
 
 SCRIPTED = ["dd", "rm", "exit", "cd", "cat"]
-NOT_FOUND = ["nc", "shell"]
-BLACK_LIST = ["sh", "chmod", "docker"]
+BLACK_LIST = ["sh", "chmod", "docker", "nc", "shell"]
 
 def rm_cmd(server, client, line):
         """
@@ -82,7 +82,9 @@ def cat_cmd(server, client, line):
         images with files pre-replaced!
         """
         if len(line.split(' ')) > 1 and line.split(' ')[1] == "/proc/mounts":
-                with open("./fakefiles/proc%mounts", "r") as f:
+                path = os.path.dirname(os.path.realpath(__file__))
+                path = path[:-7] # shaves off /engine
+                with open("{}/fakefiles/proc%mounts".format(path), "r") as f:
                         response = f.read()
                 client.exit_status = 0
         else:
@@ -107,8 +109,11 @@ def run_cmd(server, client):
         server.return_prompt(client)
 
 def loop_cmds(server, client, msg):
-#        if re.findall("\(([^)]*)\)", msg[0]) is not None:
-#                print(re.findall("\(([^)]*)\)", msg[0]))
+        """
+        The command loop. It's kinda gross...
+        Parentheses support is a little busted right now, but this works
+        for the common bots right now.
+        """
         parentheses = 0
         for line in msg:
                 line = line.strip()
@@ -153,7 +158,7 @@ def execute_cmd(client, server, msg):
                 server.logger.info("SCRIPTED CMD {} : {}".format(client.ip, cmd))
                 method = getattr(sys.modules[__name__], "{}_cmd".format(cmd))
                 result = method(server, client, msg)
-        elif cmd not in NOT_FOUND and cmd not in BLACK_LIST:
+        elif cmd not in BLACK_LIST:
                 server.logger.info("EXECUTING CMD {} : {}".format(client.ip, cmd))
                 response = client.run_in_container(msg)
                 if "exec failed" not in response:
@@ -168,7 +173,7 @@ def execute_cmd(client, server, msg):
 
 def not_found(client, server, command):
         """
-        not found
+        Defines the response to anything in the blacklist.
         """
         server.logger.info("BLACKLIST {} : {}".format(client.ip, command))
         client.send("sh: {}: command not found\n".format(command))

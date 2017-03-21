@@ -13,6 +13,7 @@ from engine.server import HoneyTelnetServer
 
 IDLE_TIMEOUT = 300
 SERVER_RUN = True
+LOG_LOCATION = "/var/log/hms/telnet-log.txt"
 
 def signal_handler(signal, frame):
     """
@@ -37,7 +38,7 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
-    infohandler = logging.FileHandler("log")
+    infohandler = logging.FileHandler(LOG_LOCATION)
     infohandler.setLevel(logging.INFO)
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
