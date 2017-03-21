@@ -1,6 +1,5 @@
 RUN apt-get -y update \
     && apt-get -y install python3-pip \
-    wget \
     git \
     && pip3 install docker \
     && git clone https://github.com/h-m-s/telnet-honeypot.git
