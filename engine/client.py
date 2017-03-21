@@ -10,7 +10,7 @@ class HoneyTelnetClient(TelnetClient):
         super().__init__(sock, addr_tup)
         self.dclient = docker.from_env()
         self.container = self.dclient.containers.run(
-            "busybox", "/bin/sh", detach=True, tty=True)
+            "busybox", "/bin/sh", detach=True, tty=True, environment=["SHELL=/bin/sh"])
         self.pwd = "/"
         self.username = None
         self.password = None
@@ -33,7 +33,6 @@ class HoneyTelnetClient(TelnetClient):
         final = []
         for line in result:
             if "EXIT:" in line:
-                print("EXIT LINE: {}".format(line))
                 self.exit_status = int(line.split(":")[1].strip())
             elif line != "\n":
                 final += [line]
