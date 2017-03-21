@@ -33,7 +33,6 @@ class HoneyTelnetClient(TelnetClient):
         final = []
         for line in result:
             if "EXIT:" in line:
-                print("EXIT LINE: {}".format(line))
                 self.exit_status = int(line.split(":")[1].strip())
             elif line != "\n":
                 final += [line]

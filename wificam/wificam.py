@@ -29,13 +29,14 @@ https://www.shodan.io/search?query=GoAhead+5ccc069c403ebaf9f0171e9517f40e41
 
 """
 import time
+import logging
 import subprocess
 from subprocess import check_call
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 count = 0
-
 server_address = ('0', 81)
+
 """
 Set the address/port for your server here.
 '0' will bind to all addresses. Port should be changed
@@ -45,6 +46,10 @@ we're going for authenticity. ;)
 """
 
 class GoAheadHandler(BaseHTTPRequestHandler):
+  logfile = "/var/log/hms/wificam-log.txt"
+  server_version = "GoAhead-Webs"
+  sys_version = ""
+  protocol_version="HTTP/1.1"
   """
   Server to mimic a GoAhead camera web server, and appear on Shodan
   as a possible vulnerable camera, that returns the proper responses
@@ -66,10 +71,21 @@ class GoAheadHandler(BaseHTTPRequestHandler):
         hh, mm, ss, year)
       return s
 
+  def send_error(self, code, message):
+    pass
+
+  def log_message(self, format, *args):
+    with open(self.logfile, 'a') as log_file:
+      log_file.write("%s - - [%s] %s\n" %
+                          (self.client_address[0],
+                           self.log_date_time_string(),
+                           format%args))
+      log_file.write("{}".format(self.headers))
+      log_file.flush()
 
   def do_HEAD(self):
     """
-    Just causes a HEAD request call up the default do_GET message.
+    Same headers as the default GET, but minus the
     """
     self.do_GET()
 
@@ -80,29 +96,49 @@ class GoAheadHandler(BaseHTTPRequestHandler):
     which mainly just drops the prompt so it looks more like
     an actual instance of sh running over netcat. :)
 
-    Not super sure this is the ideal method to do this, but it
-    works for the minute!
+    This is a super not-ideal way to do this, but it works
+    for the minute. I'd like to at least use Python
+    instead of running a bash script, but... the pipes.
+    the pipes...
     """
 
-    subprocess.Popen("./snetcet.sh")
+    subprocess.Popen(["./snetcet.sh", ahost, aport])
 
-#    fifo = open("./pipe", "w+")
-#tail -f pipe | nc 138.68.229.32 1337 | tee outgoing.log | nc 127.0.0.1 23 | tee pipe
-#    tail = subprocess.Popen("tail -f pipe".split(" "), stdout=subprocess.PIPE)
-#    nc1 = subprocess.Popen("nc {} {}".format(ahost, aport).split(" "), stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-#    tee1 = subprocess.Popen("tee outgoing.log".split(" "), stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-#    nc2 = subprocess.Popen("nc 127.0.0.1 23".split(" "), stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-#    tee2 = subprocess.Popen("tee pipe".split(" "), stdin=subprocess.PIPE)
+  def do_POST(self):
+    msg = "<html><head><title>Document Error: Unauthorized</title></head>\n"
+    msg += "                <body><h2>Access Error: Unauthorized</h2>\n"
+    msg += "                <p>Access to this document requires a User ID</p></body></html>\n\n"
+    self.send_response(401)
+    self.send_header('Except', '100-continue')
+    self.send_header('WWW-Authenticate', 'Digest realm="GoAhead", domain=":{}",qop="auth", nonce="a32f2b51bcb55c24d003a21be5ec0345", opaque="5ccc069c403ebaf9f0171e9517f40e41",algorithm="MD5", stale="FALSE"'.format(server_address[1]))
+    self.send_header('Pragma', 'no-cache')
+    self.send_header('Cache-Control', 'no-cache')
+    self.send_header('Content-type','text/html')
+    self.end_headers()
+    self.wfile.write(bytes(msg, "utf8"))
+    self.close_connection = 1
+
+  def do_PUT(self):
+    """
+    The webcam's default response to random PUTs.
+    """
+    msg = "<html><head><title>Document Error: Page not found</title></head>\n"
+    msg += "                <body><h2>Access Error: Page not found</h2>\n"
+    msg +="                <p>Bad request type</p></body></html>\n\n"
+    self.send_response(400)
+    self.send_header('Pragma', 'no-cache')
+    self.send_header('Cache-Control', 'no-cache')
+    self.send_header('Content-type','text/html')
+    self.end_headers()
+    self.wfile.write(bytes(msg, "utf8"))
+    self.close_connection = 1
 
   def do_GET(self):
     """
     Handles all GET requests, including the attacks.
     """
     global count
-    self.server_version = "GoAhead-Webs"
-    self.sys_version = ""
     msg = "Hello world!"
-    print("Got a GET request.")
     if "/system.ini?loginuse&loginpas" in self.requestline:
       """
       This is the line the script uses to snag credentials.
@@ -124,7 +160,7 @@ class GoAheadHandler(BaseHTTPRequestHandler):
       step that grabs credentials, and never checks the response from
       the payload itself.
       """
-      print("Attacker attempting to get credentials! Sending fake creds...")
+      self.log_message("Attacker attempting to get credentials! Sending fake creds...")
       count = 1
       msg = ("b" * 137) #filler, attack script will skip this to look for uname
       msg += "minad" #username
@@ -134,6 +170,7 @@ class GoAheadHandler(BaseHTTPRequestHandler):
       self.send_header('Content-type','text/html')
       self.end_headers()
       self.wfile.write(bytes.fromhex('0a0a0a0a01') + bytes(msg, "utf8"))
+      self.close_connection = 1
     elif count > 0:
       """
       The first payload the script sends
@@ -146,14 +183,37 @@ class GoAheadHandler(BaseHTTPRequestHandler):
       """
       for line in self.requestline.split("&"):
         if "loginuse" in line:
-          print("Attacker using login: {}".format(line.split("=")[1]))
+          self.log_message("Attacker using login: {}".format(line.split("=")[1]))
         if "loginpas" in line:
-          print("Attacker using password: {}".format(line.split("=")[1]))
+          self.log_message("Attacker using password: {}".format(line.split("=")[1]))
         if "pwd" in line:
           temp = line.split("%20")[1].split("+")
-          print("Attacker remote server: {} port: {}".format(temp[0], temp[1]))
+          self.log_message("Attacker remote server: {} port: {}".format(temp[0], temp[1]))
           self.netcat_honeypot(temp[0], temp[1])
       count -= 1
+    elif self.headers['Authorization'] is not None and "username" in self.headers['Authorization']:
+      """
+      We'll just direct all username/password logins
+      to the 'wrong password' page.
+
+      Something for people who snag the correct username/pass
+      would be sweet though...
+      """
+      msg = "<html><head><title>Document Error: Unauthorized</title></head>\n"
+      msg += "        <body><h2>Access Error: Unauthorized</h2>\n"
+      msg += "        <p>Access Denied\n"
+      msg += "Wrong Password</p></body></html>\n\n"
+      self.send_response(401)
+      self.send_header('WWW-Authenticate', 'Digest realm="GoAhead", domain=":{}",qop="auth", nonce="a32f2b51bcb55c24d003a21be5ec0345", opaque="5ccc069c403ebaf9f0171e9517f40e41",algorithm="MD5", stale="FALSE"'.format(server_address[1]))
+      self.send_header('Pragma', 'no-cache')
+      self.send_header('Cache-Control', 'no-cache')
+      self.send_header('Content-type','text/html')
+      self.end_headers()
+      if self.command != "HEAD":
+        self.wfile.write(bytes(msg, "utf8"))
+      self.close_connection = 1
+      self.log_message("Attempted login!")
+
     else:
       """
       This basically just covers any old GET or HEAD request.
@@ -176,7 +236,9 @@ class GoAheadHandler(BaseHTTPRequestHandler):
       self.send_header('Cache-Control', 'no-cache')
       self.send_header('Content-type','text/html')
       self.end_headers()
-      self.wfile.write(bytes(msg, "utf8"))
+      if self.command != "HEAD":
+        self.wfile.write(bytes(msg, "utf8"))
+      self.close_connection = 1
     return
 
 def run():
@@ -186,7 +248,15 @@ def run():
   """
   print('starting server...')
   httpd = HTTPServer(server_address, GoAheadHandler)
-  print('running server...')
+  logger = logging.getLogger(__name__)
+  logger.setLevel(logging.INFO)
+  infohandler = logging.FileHandler("log")
+  infohandler.setLevel(logging.INFO)
+  formatter = logging.Formatter(
+    '%(asctime)s - %(message)s')
+  infohandler.setFormatter(formatter)
+  logger.addHandler(infohandler)
+
   httpd.serve_forever()
 
 run()
