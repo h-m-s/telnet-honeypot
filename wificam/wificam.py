@@ -29,9 +29,7 @@ https://www.shodan.io/search?query=GoAhead+5ccc069c403ebaf9f0171e9517f40e41
 
 """
 import time
-import logging
 import subprocess
-from subprocess import check_call
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 count = 0
@@ -51,8 +49,8 @@ class GoAheadHandler(BaseHTTPRequestHandler):
   sys_version = ""
   protocol_version="HTTP/1.1"
   """
-  Server to mimic a GoAhead camera web server, and appear on Shodan
-  as a possible vulnerable camera, that returns the proper responses
+  Server to mimic a GoAhead camera web server that appears on Shodan
+  as a possible vulnerable camera. Returns the proper responses
   to the '0day' script to make attackers think they actually grabbed
   credentials or created a backdoor.
   """
@@ -72,9 +70,15 @@ class GoAheadHandler(BaseHTTPRequestHandler):
       return s
 
   def send_error(self, code, message):
+    """
+    The error messages make it pretty obvious this isn't a GoAhead cam.
+    """
     pass
 
   def log_message(self, format, *args):
+    """
+    Overwritten for logging straight to a file.
+    """
     with open(self.logfile, 'a') as log_file:
       log_file.write("%s - - [%s] %s\n" %
                           (self.client_address[0],
@@ -85,16 +89,24 @@ class GoAheadHandler(BaseHTTPRequestHandler):
 
   def do_HEAD(self):
     """
-    Same headers as the default GET, but minus the
+    Just runs do_GET. do_GET checks to see if it's a
+    HEAD before sending the body of the response.
     """
     self.do_GET()
 
   def netcat_honeypot(self, ahost, aport):
     """
     Designed to work with the H-M-S telnet honeypot.
-    Starts up netcat and logs in with the net/cat user,
-    which mainly just drops the prompt so it looks more like
-    an actual instance of sh running over netcat. :)
+    Basically creates a proxy between the H-M-S telnet
+    honeypot and the attacker's netcat listener.
+
+    The telnet honeypot has been modified so that any
+    connections coming from the local host
+    aren't prompted for a password or sent the prompt.
+    More changes might be necessary, but hoping this is enough.
+
+    Right now we're just running the bash script that pops
+    open the netcat proxy deal.
 
     This is a super not-ideal way to do this, but it works
     for the minute. I'd like to at least use Python
@@ -246,17 +258,7 @@ def run():
   Loop to start the server up, bound to all addresses, on the given port.
   If you change the port, it should change the headers to reflect your new port.
   """
-  print('starting server...')
   httpd = HTTPServer(server_address, GoAheadHandler)
-  logger = logging.getLogger(__name__)
-  logger.setLevel(logging.INFO)
-  infohandler = logging.FileHandler("log")
-  infohandler.setLevel(logging.INFO)
-  formatter = logging.Formatter(
-    '%(asctime)s - %(message)s')
-  infohandler.setFormatter(formatter)
-  logger.addHandler(infohandler)
-
   httpd.serve_forever()
 
 run()
