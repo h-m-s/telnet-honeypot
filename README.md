@@ -21,11 +21,9 @@ The telnet-honeypot image runs a telnet server with a python console mediating c
 
 
 
-This image requires docker to be installed on its host. This should not be run on your local machine.
-
 Run like so:
 ~~~~
-docker run -v /var/run/docker.sock:/var/run/docker.sock -p 7777:7777 telnet-honeypot
+docker run -itd -v /var/run/docker.sock:/var/run/docker.sock -p 23:23 telnet_honeypot
 ~~~~
 
 The -v option ensures the host docker daemon is mounted as a volume to the container.
