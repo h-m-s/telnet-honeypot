@@ -35,7 +35,7 @@ def dd_cmd(server, client, line):
         """
         This dd is sorta hackish.
         Sends back the proper response... for a 32 bit ARM system.
-        Mirai and Hajime like this a lot more than a 64 bit setup.
+        Mirai and Hajime like this a lot more than a 64 bit response.
         Planning on adding more configurable choices soon.
         """
         header = "\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00\x1b\x00\x1a\x00"
@@ -101,6 +101,7 @@ def run_cmd(server, client):
         the simple stuff the common bots try. :)
         """
         msg = [client.get_command()]
+        client.input_list += msg
         server.logger.info("RECEIVED INPUT {} : {}".format(client.ip, msg[0]))
         if not client.username or not client.password:
                 server.login_screen(client, msg)
