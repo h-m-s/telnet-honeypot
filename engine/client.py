@@ -12,6 +12,7 @@ class HoneyTelnetClient(TelnetClient):
         self.container = self.dclient.containers.run(
             "busybox", "/bin/sh", detach=True, tty=True, environment=["SHELL=/bin/sh"])
         self.pwd = "/"
+        self.input_list = []
         self.username = None
         self.password = None
         self.exit_status = 0
@@ -33,7 +34,10 @@ class HoneyTelnetClient(TelnetClient):
         final = []
         for line in result:
             if "EXIT:" in line:
-                self.exit_status = int(line.split(":")[1].strip())
+                try:
+                    self.exit_status = int(line.split(":")[1].strip())
+                except:
+                    self.exit_status = 127
             elif line != "\n":
                 final += [line]
         return("\n".join(final))

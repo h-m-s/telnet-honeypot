@@ -1,6 +1,7 @@
 from miniboa.async import TelnetServer, _on_connect, _on_disconnect, select
 from engine.client import HoneyTelnetClient
 from engine.cmd import run_cmd
+from patterns.patterns import check_list
 import sys
 import os
 
@@ -128,6 +129,7 @@ class HoneyTelnetServer(TelnetServer):
                 self.logger.info("Lost connection to {}".format(
                         client.addrport()))
                 client.cleanup_container()
+                check_list(client)
                 self.client_list.remove(client)
 
         def kick_idle(self):
