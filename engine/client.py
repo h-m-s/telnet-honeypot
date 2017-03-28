@@ -3,21 +3,52 @@ import docker
 import uuid
 import time
 from miniboa.telnet import TelnetClient
-
+from threading import Thread
 
 class HoneyTelnetClient(TelnetClient):
     def __init__(self, sock, addr_tup):
         super().__init__(sock, addr_tup)
         self.dclient = docker.from_env()
         self.container = self.dclient.containers.run(
-            "busybox", "/bin/sh", detach=True, tty=True, environment=["SHELL=/bin/sh"])
+            "busybox", "/bin/sh",
+            detach=True,
+            tty=True,
+            environment=["SHELL=/bin/sh"])
         self.pwd = "/"
         self.input_list = []
+        self.active_cmds = []
         self.username = None
         self.password = None
         self.exit_status = 0
         self.uuid = uuid.uuid4()
         self.ip = self.addrport().split(":")[0]
+
+    def cleanup_container(self, server):
+        """
+        Cleans up a container.
+        Checks the difference between the base image and the container status.
+        folder for analysis.
+        """
+        if self.container.diff() is not None:
+            for difference in self.container.diff():
+                result = self.container.exec_run(
+                    '/bin/sh -c "test -d {} || echo NO"'.format(
+                        difference['Path']))
+                if "NO" in str(result):  # If echo 'NO' runs, file is not a dir
+                    md5 = self.container.exec_run("md5sum {}".format(
+                        difference['Path'])).decode("utf-8")
+                    md5 = md5.split(' ')[0]
+                    fname = "{}-{}-{}".format(str(time.strftime('%m%d%H%M')),
+                                              md5, difference['Path'].
+                                              split('/')[-1])
+                    server.logger.info(
+                        "Saving file {} with md5sum {} from {}".
+                          format(difference['Path'], md5, self.addrport()))
+                    with open("./logs/{}.tar".format(fname), "bw+") as f:
+                        strm, stat = self.container.get_archive(
+                            difference['Path'])
+                        f.write(strm.data)
+        self.container.remove(force=True)
 
     def run_in_container(self, line):
         """
@@ -28,7 +59,7 @@ class HoneyTelnetClient(TelnetClient):
         detached) but does it even need to be running since I'm doing
         it this way anyways?
         """
-        newcmd = '/bin/sh -c "cd {} && {};echo EXIT:$?"'.format(self.pwd, line)
+        newcmd = '/bin/sh -c "cd {} && {};export LAST=$?"'.format(self.pwd, line)
         result = self.container.exec_run(newcmd).decode(
             "utf-8", "replace").split('\n')
         final = []
@@ -41,30 +72,3 @@ class HoneyTelnetClient(TelnetClient):
             elif line != "\n":
                 final += [line]
         return("\n".join(final))
-
-    def cleanup_container(self):
-        """
-        Cleans up a container.
-        Checks the difference between the base image and the container status.
-        If any found, this will TAR all the changes and move them into the logs
-        folder for analysis.
-        """
-        if self.container.diff() is not None:
-            print(self.container.diff())
-            for difference in self.container.diff():
-                result = self.container.exec_run(
-                    '/bin/sh -c "test -d {} && echo YES"'.format(
-                        difference['Path']))
-                if "YES" not in str(result):
-                    md5 = self.container.exec_run("md5sum {}".format(
-                        difference['Path'])).decode("utf-8")
-                    md5 = md5.split(' ')[0]
-                    fname = "{}-{}-{}".format(str(time.strftime('%m%d%H%M')),
-                                              md5, difference['Path'].
-                                              split('/')[-1])
-                    print("Saving file {} with md5sum {} from {}".
-                          format(difference['Path'], md5, self.addrport()))
-                    with open("./logs/{}.tar".format(fname), "bw+") as f:
-                        strm, stat = self.container.get_archive(difference['Path'])
-                        f.write(strm.data)
-        self.container.remove(force=True)

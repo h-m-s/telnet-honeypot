@@ -1,21 +1,25 @@
+import threading
 from miniboa.async import TelnetServer, _on_connect, _on_disconnect, select
 from engine.client import HoneyTelnetClient
 from engine.cmd import run_cmd
 from patterns.patterns import check_list
+from engine.threads import CommandThread
+import threading
 import sys
 import os
 
-IDLE_TIMEOUT = 300
-
+IDLE_TIMEOUT = 120
 
 class HoneyTelnetServer(TelnetServer):
         def __init__(self, port=7777, address='', logger=None):
                 """ Wrapper for the TelnetServer init """
-                self.SERVER_RUN = 1
+                self.SERVER_RUN = True
                 self.logger = logger
                 super().__init__(port, address, self.on_connect,
                                  self.on_disconnect)
                 self.client_list = []
+                self.threadlock = threading.Lock()
+                self.threads = {}
 
         def poll(self):
             """
@@ -37,7 +41,6 @@ class HoneyTelnetServer(TelnetServer):
                 else:
                     self.on_disconnect(client)
                     del_list.append(client.fileno)
-
             # Delete inactive connections from the dictionary
             for client in del_list:
                 del self.clients[client]
@@ -50,11 +53,14 @@ class HoneyTelnetServer(TelnetServer):
 
             # Get active socket file descriptors from select.select()
             try:
-                rlist, slist, elist = select.select(recv_list, send_list, [],
-                                                    self.timeout)
+                rlist, slist, elist = select.select(
+                        recv_list, send_list, [], self.timeout)
+            except InterruptedError as err:
+                    return
             except select.error as err:
                 # If we can't even use select(), game over man, game over
-                self.logger.critical("SELECT socket error '{}'".format(str(err)))
+                self.logger.critical(
+                        "SELECT socket error '{}'".format(str(err)))
                 raise
 
             # Process socket file descriptors with data to recieve
@@ -67,13 +73,13 @@ class HoneyTelnetServer(TelnetServer):
                     try:
                         sock, addr_tup = self.server_socket.accept()
                     except socket.error as err:
-                        logging.error("ACCEPT socket error '{}:{}'.".format(
+                        self.logger.error("ACCEPT socket error '{}:{}'.".format(
                                 err[0], err[1]))
                         continue
 
                     # Check for maximum connections
                     if self.client_count() >= self.max_connections:
-                        logging.warning("Refusing new connection, \
+                        self.logger.warning("Refusing new connection, \
                                          maximum already in use.")
                         sock.close()
                         continue
@@ -100,7 +106,7 @@ class HoneyTelnetServer(TelnetServer):
         def clean_exit(self):
                 """ cleans up any orphan containers on the way out """
                 for client in self.client_list:
-                        client.cleanup_container()
+                        client.cleanup_container(self)
                         client.active = 0
                 self.SERVER_RUN = 0
 
@@ -128,7 +134,7 @@ class HoneyTelnetServer(TelnetServer):
                 """
                 self.logger.info("Lost connection to {}".format(
                         client.addrport()))
-                client.cleanup_container()
+                client.cleanup_container(self)
                 check_list(client)
                 self.client_list.remove(client)
 
@@ -147,8 +153,26 @@ class HoneyTelnetServer(TelnetServer):
                 if client has a cmd ready, let's run it
                 """
                 for client in self.client_list:
-                        if client.active and client.cmd_ready:
-                                run_cmd(self, client)
+                        if (client.active and
+                            client.cmd_ready):
+                                self.threadlock.acquire()
+                                if (client.ip not in self.threads or
+                                    self.threads[str(client.ip)] is None):
+                                        self.logger.debug(
+                                                "Spawning up a new thread.")
+                                        client.active_cmds += [
+                                                client.get_command()]
+                                        self.threadlock.release()
+                                        self.threads[client.ip] = CommandThread(
+                                                client, self, name="thread")
+                                        self.threads[client.ip].start()
+                                else:
+                                        self.logger.debug(
+                                                "Running in existing thread.")
+                                        client.active_cmds += [
+                                            client.get_command()]
+                                        self.threadlock.release()
+
 
         def login_screen(self, client, msg):
                 """

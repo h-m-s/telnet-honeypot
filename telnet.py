@@ -1,29 +1,36 @@
 #!/usr/bin/env python3
 import logging
-import docker
-import uuid
-from miniboa import TelnetServer
-import os
-import io
 import signal
-import sys
-import time
-from engine.client import HoneyTelnetClient
 from engine.server import HoneyTelnetServer
+import os
 
 IDLE_TIMEOUT = 300
 SERVER_RUN = True
+
 LOG_LOCATION = "/var/log/hms/telnet-log.txt"
 
 def signal_handler(signal, frame):
     """
     Handles exit on ctrl-c.
-
-    TO DO: double check clean_exit is complete
     """
     print("\nClosing out cleanly...")
-    SERVER_RUN = False
     telnet_server.clean_exit()
+    telnet_server.SERVER_RUN = False
+
+def define_logger():
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)
+    try:
+        infohandler = logging.FileHandler(LOG_LOCATION)
+    except:
+        infohandler = logging.FileHandler("telnet-log.txt")
+    infohandler.setLevel(logging.INFO)
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    infohandler.setFormatter(formatter)
+    logger.addHandler(infohandler)
+    return (logger)
 
 if __name__ == '__main__':
 
@@ -35,15 +42,7 @@ if __name__ == '__main__':
     """
     signal.signal(signal.SIGINT, signal_handler)
 
-    logging.basicConfig(level=logging.INFO)
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    infohandler = logging.FileHandler(LOG_LOCATION)
-    infohandler.setLevel(logging.INFO)
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    infohandler.setFormatter(formatter)
-    logger.addHandler(infohandler)
+    logger = define_logger()
     telnet_server = HoneyTelnetServer(
         port=23,
         address='',
@@ -51,7 +50,7 @@ if __name__ == '__main__':
         )
     logger.info("Listening for connections on port {}. CTRL-C to break.".
                 format(telnet_server.port))
-    while SERVER_RUN:
+    while telnet_server.SERVER_RUN is True:
         telnet_server.poll()
         telnet_server.kick_idle()
         telnet_server.process_clients()
