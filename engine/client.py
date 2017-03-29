@@ -4,6 +4,7 @@ import uuid
 import time
 from miniboa.telnet import TelnetClient
 from threading import Thread
+import os
 
 class HoneyTelnetClient(TelnetClient):
     def __init__(self, sock, addr_tup):
@@ -38,12 +39,20 @@ class HoneyTelnetClient(TelnetClient):
                     md5 = self.container.exec_run("md5sum {}".format(
                         difference['Path'])).decode("utf-8")
                     md5 = md5.split(' ')[0]
-                    fname = "{}-{}-{}".format(str(time.strftime('%m%d%H%M')),
-                                              md5, difference['Path'].
-                                              split('/')[-1])
+                    fname = "{}-{}".format(md5, difference['Path'].split('/')[-1])
+                    if md5 == "d41d8cd98f00b204e9800998ecf8427e":
+                        server.logger.info(
+                            "Not saving empty file {} from {}.".
+                            format(difference['Path'], self.ip))
+                        continue
+                    if os.path.isfile("./logs/{}.tar".format(fname)):
+                        server.logger.info(
+                            "Not saving duplicate file {} from {}.".
+                            format(difference['Path'], self.ip))
+                        continue
                     server.logger.info(
                         "Saving file {} with md5sum {} from {}".
-                          format(difference['Path'], md5, self.addrport()))
+                          format(difference['Path'], md5, self.ip))
                     with open("./logs/{}.tar".format(fname), "bw+") as f:
                         strm, stat = self.container.get_archive(
                             difference['Path'])

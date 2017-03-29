@@ -135,7 +135,7 @@ class HoneyTelnetServer(TelnetServer):
                 self.logger.info("Lost connection to {}".format(
                         client.addrport()))
                 client.cleanup_container(self)
-                check_list(client)
+                check_list(client, self)
                 self.client_list.remove(client)
 
         def kick_idle(self):

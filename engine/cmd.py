@@ -4,7 +4,7 @@ import os
 import threading
 from threading import Thread
 
-SCRIPTED = ["dd", "rm", "exit", "cd", "cat"]
+SCRIPTED = ["dd", "rm", "exit", "cd", "cat", "echo"]
 BLACK_LIST = ["sh", "chmod", "docker", "nc", "shell"]
 
 def rm_cmd(server, client, line):
@@ -31,6 +31,31 @@ def rm_cmd(server, client, line):
                                           .format(client.pwd, target))
                 client.container.exec_run("/bin/sh -c cd {} && rm {}"
                                           .format(client.pwd, target))
+
+
+def echo_cmd(server, client, line):
+        """
+        If we wanna masquerade as Busybox properly, our echo escapes
+        need to be fixed. This is a quick fix for scripts that use
+        the LizardSquad method of detecting if they're in a real Busybox
+        machine or not, echoing \\147\\141\\171\\146\\147\\164. Busybox
+        will translate it to ASCII, sh/etc will just escape one backslash.
+        """
+        if line.split(' ')[1] == '-e':
+                line = line.replace('//', '/')
+        server.logger.info(
+            "EXECUTING CMD {} : {}".format(
+                client.ip, line.split(' ')[0]))
+        response = client.run_in_container(line)
+        if "exec failed" not in response:
+            if response == "\n":
+                return
+            server.logger.debug(
+            "RESPONSE {}: {}".format(
+                client.ip, response[:-1]))
+            client.send(response)
+            server.logger.debug(
+                client.exit_status)
 
 
 def dd_cmd(server, client, line):
@@ -111,6 +136,7 @@ def run_cmd(server, client, msg):
         loop_cmds(server, client, msg[0].split(';'))
         server.return_prompt(client)
 
+
 def loop_cmds(server, client, msg):
         """
         The command loop. It's kinda gross...
@@ -146,6 +172,7 @@ def loop_cmds(server, client, msg):
                                         loop_cmds(server, client, [cmd[1]])
                 else:
                         execute_cmd(client, server, line)
+
 
 def execute_cmd(client, server, msg):
         """

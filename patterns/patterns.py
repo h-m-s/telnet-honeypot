@@ -20,7 +20,7 @@ def dump_list(list):
     with open("patterns.json", "w") as list_file:
         json.dump(list, list_file)
 
-def check_list(client):
+def check_list(client, server):
     md5 = 0
     master_list = build_list()
     client_list = []
@@ -42,15 +42,16 @@ def check_list(client):
         client_list += [line]
         md5 += int(hashlib.md5(line.encode("utf8")).hexdigest(), 16)
     if str(md5) not in master_list.keys():
-        print("New attack pattern found.")
+        server.logger.info("{}: New attack pattern found.".format(client.ip))
         new_pattern = {'input': client_list, 'name': '', 'downloads': addresses, 'attackers': [client.ip] }
         master_list[str(md5)] = new_pattern
         dump_list(master_list)
     else:
         if master_list[str(md5)]['name'] != '':
-            print("Attack pattern recognized as {}".format(master_list[str(md5)]['name']))
+            server.logger.info("{}: Attack pattern recognized as {}".format(
+                client.ip, master_list[str(md5)]['name']))
         else:
-            print("Attack pattern recognized.")
+            server.logger.info("{}: Attack pattern recognized.".format(client.ip))
         master_list[str(md5)]['attackers'] += [client.ip]
         master_list[str(md5)]['downloads'] += addresses
         dump_list(master_list)
