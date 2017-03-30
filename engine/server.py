@@ -20,6 +20,7 @@ class HoneyTelnetServer(TelnetServer):
                 self.client_list = []
                 self.threadlock = threading.Lock()
                 self.threads = {}
+                self.prompt = "/ # "
 
         def poll(self):
             """
@@ -204,5 +205,4 @@ class HoneyTelnetServer(TelnetServer):
                 returns that prompt
                 """
                 if client.mode == "telnet":
-                        prompt = "/ # "
-                        client.send(prompt)
+                        client.send(self.prompt)

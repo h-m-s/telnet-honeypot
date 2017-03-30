@@ -21,31 +21,16 @@ class Basic_Client_Testing(unittest.TestCase):
     def setUp(self):
         self.server = DummyTelnetServer()
         self.client = DummyTelnetClient()
+        """
+        This next line keeps unittest from displaying ResourceWarning
+        due to the Docker module not properly closing out a socket.
+        """
+        warnings.simplefilter("ignore", ResourceWarning)
 
     def tearDown(self):
         self.client.cleanup()
 
 
-    def run_it(self, msg):
-        with captured_output() as (out, err):
-            run_cmd(self.server, self.client, msg)
-        output = out.getvalue().strip()
-        output = output.split('\n')
-        return (output)
-
-
-    def test_echo(self):
-        msg = ["echo hello there"]
-        arguments = ' '.join(msg[0].split(' ')[1:])
-        output = self.run_it(msg)
-        self.assertEqual(output[0], arguments)
-
-
-    def test_echo_e(self):
-        msg = ["echo -e '\\164\\147\\146\\171\\141\\147'"]
-        arguments = ' '.join(msg[0].split(' ')[1:])
-        output = self.run_it(msg)
-        self.assertEqual(output[0], "tgfyag")
 
 """
 server = DummyTelnetServer()

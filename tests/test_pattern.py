@@ -6,6 +6,7 @@ import io
 import unittest
 import os
 from patterns.patterns import build_list, dump_list, check_list
+import warnings
 
 @contextmanager
 def captured_output():
@@ -29,6 +30,11 @@ class Pattern_Testing(unittest.TestCase):
             os.remove(self.patternfile)
         self.server = DummyTelnetServer()
         self.client = DummyTelnetClient()
+        """
+        This next line keeps unittest from displaying ResourceWarning
+        due to the Docker module not properly closing out a socket.
+        """
+        warnings.simplefilter("ignore", ResourceWarning)
 
     def tearDown(self):
        """

@@ -9,6 +9,7 @@ class DummyTelnetServer(HoneyTelnetServer):
     def __init__(self):
         self.client_list = []
         self.logger = logging.getLogger('TEST')
+        self.prompt = "/ # "
 
 
 class DummyTelnetClient(HoneyTelnetClient):
