@@ -1,8 +1,10 @@
 import re
 import sys
 import os
+import threading
+from threading import Thread
 
-SCRIPTED = ["dd", "rm", "exit", "cd", "cat"]
+SCRIPTED = ["dd", "rm", "exit", "cd", "cat", "echo"]
 BLACK_LIST = ["sh", "chmod", "docker", "nc", "shell"]
 
 def rm_cmd(server, client, line):
@@ -31,6 +33,31 @@ def rm_cmd(server, client, line):
                                           .format(client.pwd, target))
 
 
+def echo_cmd(server, client, line):
+        """
+        If we wanna masquerade as Busybox properly, our echo escapes
+        need to be fixed. This is a quick fix for scripts that use
+        the LizardSquad method of detecting if they're in a real Busybox
+        machine or not, echoing \\147\\141\\171\\146\\147\\164. Busybox
+        will translate it to ASCII, sh/etc will just escape one backslash.
+        """
+        if line.split(' ')[1] == '-e':
+                line = line.replace('//', '/')
+        server.logger.info(
+            "EXECUTING CMD {} : {}".format(
+                client.ip, line.split(' ')[0]))
+        response = client.run_in_container(line)
+        if "exec failed" not in response:
+            if response == "\n":
+                return
+            server.logger.debug(
+            "RESPONSE {}: {}".format(
+                client.ip, response[:-1]))
+            client.send(response)
+            server.logger.debug(
+                client.exit_status)
+
+
 def dd_cmd(server, client, line):
         """
         This dd is sorta hackish.
@@ -57,22 +84,24 @@ def cd_cmd(server, client, line):
     track of the client's PWD.
     """
     if len(line.split(' ')) < 2:
-            client.pwd = client.container.exec_run(
-                    "/bin/sh -c 'echo $HOME'").decode("utf-8")[:-1]
-            return
+        client.pwd = client.container.exec_run(
+            "/bin/sh -c 'echo $HOME'").decode("utf-8")[:-1]
+        return
     dir = line.split(' ')[1]
     response = client.container.exec_run(
-            '/bin/sh -c "cd ' + client.pwd + ';cd ' + dir + ';pwd' '"').decode(
-                    "utf-8")
+        '/bin/sh -c "cd ' + client.pwd + ';cd ' + dir + ';pwd' '"').decode(
+            "utf-8")
     if "can't cd" in response:
-            client.send("sh: cd: can't cd to {}\n".format(dir))
-            server.logger.info("sh: cd: can't cd to {}\n".format(dir))
-            client.exit_status = -1
+        message = "sh: cd: can't cd to {}\n".format(dir)
+        client.send(message)
+        server.logger.debug(message)
+        client.exit_status = -1
+
     else:
-            client.exit_status = 0
-            client.pwd = response[:-1]
-            if (len(client.pwd) > 2) and client.pwd[-1] == '/':
-                    client.pwd = client.pwd[:-1]
+        client.exit_status = 0
+        client.pwd = response[:-1]
+        if (len(client.pwd) > 2) and client.pwd[-1] == '/':
+            client.pwd = client.pwd[:-1]
 
 
 def cat_cmd(server, client, line):
@@ -91,8 +120,7 @@ def cat_cmd(server, client, line):
                 response = client.run_in_container(line)
         client.send(response)
 
-
-def run_cmd(server, client):
+def run_cmd(server, client, msg):
         """
         Evaluates commands! First splits off logical operators.
 
@@ -100,14 +128,14 @@ def run_cmd(server, client):
         iffy, but work enough for
         the simple stuff the common bots try. :)
         """
-        msg = [client.get_command()]
         client.input_list += msg
-        server.logger.info("RECEIVED INPUT {} : {}".format(client.ip, msg[0]))
+        server.logger.info("RECEIVED INPUT {} : {}".format(client.ip, msg))
         if not client.username or not client.password:
                 server.login_screen(client, msg)
                 return
         loop_cmds(server, client, msg[0].split(';'))
         server.return_prompt(client)
+
 
 def loop_cmds(server, client, msg):
         """
@@ -131,18 +159,20 @@ def loop_cmds(server, client, msg):
                         for cmd in reg:
                                 loop_cmds(server, client, [cmd[0]])
                                 if (client.exit_status != 0):
-                                        print(client.exit_status)
-                                        print("Not true, continuing.")
+                                        server.logger.debug(
+                                                "EXIT NOT ZERO")
                                         loop_cmds(server, client, [cmd[1]])
                 elif len(re.findall("(.*)&&(.*)", line)) > 0:
                         reg = re.findall("(.*)&&(.*)", line)
                         for cmd in reg:
                                 loop_cmds(server, client, [cmd[0]])
                                 if (client.exit_status == 0):
-                                        print("True, continuing.")
+                                        server.logger.debug(
+                                                "True, continuing.")
                                         loop_cmds(server, client, [cmd[1]])
                 else:
                         execute_cmd(client, server, line)
+
 
 def execute_cmd(client, server, msg):
         """
@@ -152,23 +182,31 @@ def execute_cmd(client, server, msg):
         """
         cmd = msg.strip().split(' ')[0]
         if cmd[0] == ".":
-                server.logger.info("BLACKLIST {} : {}".format(client.ip, cmd))
+
                 client.exit_status = 0
                 return
         if cmd in SCRIPTED:
-                server.logger.info("SCRIPTED CMD {} : {}".format(client.ip, cmd))
-                method = getattr(sys.modules[__name__], "{}_cmd".format(cmd))
+                server.logger.info(
+                        "SCRIPTED CMD {} : {}".format(
+                                client.ip, cmd))
+                method = getattr(sys.modules[__name__],
+                                 "{}_cmd".format(
+                                         cmd))
                 result = method(server, client, msg)
         elif cmd not in BLACK_LIST:
-                server.logger.info("EXECUTING CMD {} : {}".format(client.ip, cmd))
+                server.logger.info(
+                        "EXECUTING CMD {} : {}".format(
+                                client.ip, cmd))
                 response = client.run_in_container(msg)
                 if "exec failed" not in response:
                         if response == "\n":
                                 return
-                        server.logger.info(
-                                "RESPONSE {}: {}".format(client.ip, response[:-1]))
+                        server.logger.debug(
+                                "RESPONSE {}: {}".format(
+                                        client.ip, response[:-1]))
                         client.send(response)
-                        print(client.exit_status)
+                        server.logger.debug(
+                                client.exit_status)
         else:
                 not_found(client, server, cmd)
 
