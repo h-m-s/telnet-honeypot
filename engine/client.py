@@ -11,7 +11,7 @@ class HoneyTelnetClient(TelnetClient):
         super().__init__(sock, addr_tup)
         self.dclient = docker.from_env()
         self.container = self.dclient.containers.run(
-            "busybox", "/bin/sh",
+            "honeybox", "/bin/sh",
             detach=True,
             tty=True,
             environment=["SHELL=/bin/sh"])
@@ -22,6 +22,7 @@ class HoneyTelnetClient(TelnetClient):
         self.password = None
         self.exit_status = 0
         self.uuid = uuid.uuid4()
+        self.passwd_flag = None
         self.ip = self.addrport().split(":")[0]
 
     def cleanup_container(self, server):
@@ -30,34 +31,37 @@ class HoneyTelnetClient(TelnetClient):
         Checks the difference between the base image and the container status.
         folder for analysis.
         """
+        self.check_changes(server)
+        self.container.remove(force=True)
+
+    def check_changes(self, server):
         if self.container.diff() is not None:
             for difference in self.container.diff():
                 result = self.container.exec_run(
                     '/bin/sh -c "test -d {} || echo NO"'.format(
                         difference['Path']))
                 if "NO" in str(result):  # If echo 'NO' runs, file is not a dir
-                    md5 = self.container.exec_run("md5sum {}".format(
-                        difference['Path'])).decode("utf-8")
-                    md5 = md5.split(' ')[0]
-                    fname = "{}-{}".format(md5, difference['Path'].split('/')[-1])
-                    if md5 == "d41d8cd98f00b204e9800998ecf8427e":
-                        server.logger.info(
-                            "Not saving empty file {} from {}.".
-                            format(difference['Path'], self.ip))
-                        continue
-                    if os.path.isfile("./logs/{}.tar".format(fname)):
-                        server.logger.info(
-                            "Not saving duplicate file {} from {}.".
-                            format(difference['Path'], self.ip))
-                        continue
-                    server.logger.info(
-                        "Saving file {} with md5sum {} from {}".
-                          format(difference['Path'], md5, self.ip))
-                    with open("./logs/{}.tar".format(fname), "bw+") as f:
-                        strm, stat = self.container.get_archive(
-                            difference['Path'])
-                        f.write(strm.data)
-        self.container.remove(force=True)
+                    self.save_file(server, difference['Path'])
+
+
+    def save_file(self, server, filepath):
+        md5 = self.container.exec_run("md5sum {}".format(
+            filepath)).decode("utf-8")
+        md5 = md5.split(' ')[0]
+        fname = "{}-{}".format(md5, filepath.split('/')[-1])
+        if os.path.isfile("./logs/{}.tar".format(fname)):
+            server.logger.info(
+                "Not saving duplicate file {} from {}.".
+                format(fname, self.ip))
+            return
+        server.logger.info(
+            "Saving file {} from {}".
+            format(fname, self.ip))
+        with open("./logs/{}.tar".format(fname), "bw+") as f:
+            strm, stat = self.container.get_archive(
+            filepath)
+            f.write(strm.data)
+
 
     def run_in_container(self, line):
         """

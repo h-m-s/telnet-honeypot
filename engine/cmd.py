@@ -1,11 +1,38 @@
 import re
+import time
 import sys
 import os
 import threading
 from threading import Thread
 
-SCRIPTED = ["dd", "rm", "exit", "cd", "cat", "echo"]
-BLACK_LIST = ["sh", "chmod", "docker", "nc", "shell"]
+SCRIPTED = ["dd", "rm", "exit", "cd", "cat", "echo", "reboot", "passwd"]
+BLACK_LIST = ["docker", "nc"]
+IGNORE = ["sh", "chmod", "shell", "sleep"]
+
+def passwd_cmd(server, client, line):
+        """
+        There's a few issues with the output with passwd
+        (because we're not streaming the output from the container,
+        just grabbing the result) so this is a temporary fix
+        until I sort out the input stream.
+        """
+        if not client.passwd_flag:
+                client.passwd_flag = 1
+        if client.passwd_flag == 1:
+                response = "Changing password for root.\n(current) UNIX password: "
+        elif client.passwd_flag == 2:
+                response = "New password: "
+        elif client.passwd_flag == 3:
+                response = "Retype password: "
+        elif client.passwd_flag == 4:
+                if client.input_list[-1] == client.input_list[-2]:
+                        response = "passwd: password for root changed by root\n"
+                else:
+                        response = "Passwords don't match\npasswd: password for root is unchanged\n"
+                client.passwd_flag = None
+        client.send(response)
+        if client.passwd_flag:
+                client.passwd_flag += 1
 
 def rm_cmd(server, client, line):
         """
@@ -19,19 +46,15 @@ def rm_cmd(server, client, line):
                 client.send(client.container.exec_run("/bin/sh -c rm")
                             .decode("utf-8"))
                 return
-        response = client.container.exec_run(
-                "/bin/sh -c cd {} && test -f {} && echo 0"
-                .format(client.pwd, target)).decode("utf-8").strip()
-        if response != "0":
-                response = client.container.exec_run(
-                        "/bin/sh -c cd {} && rm {}".format(client.pwd, target))
+        client.run_in_container("test -f {}")
+        if client.exit_status != "0":
+                response = client.run_in_container(line)
                 client.send(response)
+                server.logger.debug(response)
         else:
-                client.container.exec_run("/bin/sh -c cd {} && cp {} /tmp/"
+                client.container.exec_run("/bin/sh -c 'cd {} && cp {} /tmp/'"
                                           .format(client.pwd, target))
-                client.container.exec_run("/bin/sh -c cd {} && rm {}"
-                                          .format(client.pwd, target))
-
+                client.run_in_container(line)
 
 def echo_cmd(server, client, line):
         """
@@ -70,6 +93,11 @@ def dd_cmd(server, client, line):
         client.send("+10 records in\r\n1+0 records out\n")
         server.logger.info("Sent fake DD to {}".format(client.ip))
         client.exit_status = 0
+
+def reboot_cmd(server, client, line):
+        client.send("The system is going down for reboot NOW!\n")
+        time.sleep(2)
+        client.active = False
 
 def exit_cmd(server, client, line):
         """
@@ -119,7 +147,16 @@ def cat_cmd(server, client, line):
         else:
                 response = client.run_in_container(line)
         client.send(response)
-
+"""
+def fgrep_cmd(server, client, msg):
+    Temporary stopgap to give proper response to specific bot
+    if msg == "fgrep XDVR dep2.sh":
+        response = "cd /mnt/mtd && ./XDVRStart.hisi ./td3520 &" + '\n'
+        client.exit_status = 0
+    else:
+        response = client.run_in_container(line)
+    client.send(response)
+"""
 def run_cmd(server, client, msg):
         """
         Evaluates commands! First splits off logical operators.
@@ -134,6 +171,7 @@ def run_cmd(server, client, msg):
                 server.login_screen(client, msg)
                 return
         loop_cmds(server, client, msg[0].split(';'))
+        client.check_changes(server)
         server.return_prompt(client)
 
 
@@ -173,7 +211,13 @@ def loop_cmds(server, client, msg):
                 else:
                         execute_cmd(client, server, line)
 
+"""
+def wget_cmd(server, client, msg):
+    response = client.run_in_container(msg)
+    if client.exit_status == 0:
 
+    client.send(response)
+"""
 def execute_cmd(client, server, msg):
         """
         This is an attempt to split run_cmd up a little.
@@ -181,10 +225,16 @@ def execute_cmd(client, server, msg):
         just be used to handle a single command and its arguments.
         """
         cmd = msg.strip().split(' ')[0]
-        if cmd[0] == ".":
-
-                client.exit_status = 0
-                return
+        if cmd[0] == "." or cmd in IGNORE:
+            server.logger.info("IGNORING {} : {}".format(client.ip, cmd))
+            return
+        if 'busybox' in cmd:
+            server.logger.info("SCRIPTED CMD busybox : {}".format(client.ip, cmd))
+            busybox(server, client, msg)
+            return
+        if client.passwd_flag is not None:
+            passwd_cmd(server, client, msg)
+            return
         if cmd in SCRIPTED:
                 server.logger.info(
                         "SCRIPTED CMD {} : {}".format(
@@ -193,7 +243,7 @@ def execute_cmd(client, server, msg):
                                  "{}_cmd".format(
                                          cmd))
                 result = method(server, client, msg)
-        elif cmd not in BLACK_LIST:
+        elif cmd not in BLACK_LIST and cmd not in IGNORE:
                 server.logger.info(
                         "EXECUTING CMD {} : {}".format(
                                 client.ip, cmd))
@@ -217,3 +267,23 @@ def not_found(client, server, command):
         server.logger.info("BLACKLIST {} : {}".format(client.ip, command))
         client.send("sh: {}: command not found\n".format(command))
         client.exit_status = 127
+
+
+def busybox(server, client, command):
+    accepted = ['echo', 'tftp', 'wget']
+    if re.search(r'busybox ([A-Z]*)$', command, re.MULTILINE) or len(command.split(' ')) == 1:
+        response = client.run_in_container(command)
+    else:
+        try:
+            newcommand = command.split(' ')[1:]
+        except:
+            response = client.run_in_container(command)
+            client.send(response)
+            return
+        if newcommand[0] in accepted:
+            response = client.run_in_container(command)
+        else:
+            execute_cmd(client, server, ' '.join(newcommand))
+            return
+    server.logger.debug(response)
+    client.send(response)

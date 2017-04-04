@@ -7,6 +7,7 @@ from engine.threads import CommandThread
 import threading
 import sys
 import os
+import re
 
 IDLE_TIMEOUT = 120
 
@@ -126,7 +127,7 @@ class HoneyTelnetServer(TelnetServer):
                         client.password = "local"
                 else:
                         client.mode = "telnet"
-                        client.send("busybox\n")
+                        client.request_terminal_type()
                         client.send("login: ")
 
         def on_disconnect(self, client):
@@ -156,13 +157,14 @@ class HoneyTelnetServer(TelnetServer):
                 for client in self.client_list:
                         if (client.active and
                             client.cmd_ready):
+                                command = re.sub(r'(\x00)$', '', client.get_command())
                                 self.threadlock.acquire()
                                 if (client.ip not in self.threads or
                                     self.threads[str(client.ip)] is None):
                                         self.logger.debug(
                                                 "Spawning up a new thread.")
                                         client.active_cmds += [
-                                                client.get_command()]
+                                                command]
                                         self.threadlock.release()
                                         self.threads[client.ip] = CommandThread(
                                                 client, self, name="thread")
@@ -171,7 +173,7 @@ class HoneyTelnetServer(TelnetServer):
                                         self.logger.debug(
                                                 "Running in existing thread.")
                                         client.active_cmds += [
-                                            client.get_command()]
+                                            command]
                                         self.threadlock.release()
 
 
@@ -204,5 +206,5 @@ class HoneyTelnetServer(TelnetServer):
                 """
                 returns that prompt
                 """
-                if client.mode == "telnet":
+                if client.mode == "telnet" and client.passwd_flag is None:
                         client.send(self.prompt)

@@ -115,7 +115,7 @@ class TelnetClient(object):
         self.fileno = sock.fileno() # The socket's file descriptor
         self.address = addr_tup[0]  # The client's remote TCP/IP address
         self.port = addr_tup[1]     # The client's remote port
-        self.terminal_type = 'ANSI' # set via request_terminal_type()
+        self.terminal_type = 'ansi'  # set via request_terminal_type()
         self.use_ansi = True
         self.columns = 80
         self.rows = 24
@@ -259,9 +259,7 @@ class TelnetClient(object):
         """
         if len(self.send_buffer):
             try:
-                #convert to ansi before sending
-#                sent = self.sock.send(bytes(self.send_buffer, "utf-8"))
-                sent = self.sock.send(bytes(self.send_buffer, "cp850", "replace"))
+                sent = self.sock.send(bytes(self.send_buffer, "cp1252", "replace"))
             except socket.error as err:
                 logging.error("SEND error '{}' from {}".format(err, self.addrport()))
                 self.active = False
@@ -277,7 +275,7 @@ class TelnetClient(object):
         """
         try:
             #Encode recieved bytes in ansi
-            data = str(self.sock.recv(2048), "cp850")
+            data = str(self.sock.recv(2048), "cp1252")
         except socket.error as err:
             logging.error("RECIEVE socket error '{}' from {}".format(err, self.addrport()))
             raise ConnectionLost()
@@ -298,6 +296,7 @@ class TelnetClient(object):
 
         # Look for newline characters to get whole lines from the buffer
         while True:
+            self.recv_buffer = self.recv_buffer.replace('\0', '\n')
             mark = self.recv_buffer.find('\n')
             if mark == -1:
                 break
@@ -321,7 +320,7 @@ class TelnetClient(object):
         """
         Echo a character back to the client and convert LF into CR\LF.
         """
-        if byte == '\n':
+        if byte == '\n' or byte == '\0':
             self.send_buffer += '\r'
         if self.telnet_echo_password:
             self.send_buffer += '*'
