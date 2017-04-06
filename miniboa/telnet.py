@@ -115,7 +115,7 @@ class TelnetClient(object):
         self.fileno = sock.fileno() # The socket's file descriptor
         self.address = addr_tup[0]  # The client's remote TCP/IP address
         self.port = addr_tup[1]     # The client's remote port
-        self.terminal_type = 'ansi'  # set via request_terminal_type()
+        self.terminal_type = 'ANSI'  # set via request_terminal_type()
         self.use_ansi = True
         self.columns = 80
         self.rows = 24

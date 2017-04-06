@@ -22,6 +22,8 @@ class HoneyTelnetServer(TelnetServer):
                 self.threadlock = threading.Lock()
                 self.threads = {}
                 self.prompt = "/ # "
+                self.username = None
+                self.password = None
 
         def poll(self):
             """
@@ -192,9 +194,16 @@ class HoneyTelnetServer(TelnetServer):
                                 if "#" in msg[0]:
                                         msg = msg[0].split("#")[1]
                                 client.username = msg[0]
-                                client.send("password: ")
+                                client.send("Password: ")
                         else:
                                 client.password = msg[0]
+                                if self.username is not None:
+                                    if self.username != client.username or self.password != client.password:
+                                        client.send("Login incorrect\n\n")
+                                        client.username = None
+                                        client.password = None
+                                        client.send("login: ")
+                                        return
                                 self.return_prompt(client)
                                 self.logger.info(
                                         "{} logged in as {}-{}".format(

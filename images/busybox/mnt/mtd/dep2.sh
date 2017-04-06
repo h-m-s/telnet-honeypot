@@ -45,4 +45,4 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 mkdir /mnt/backup
 mount -t yaffs2 /dev/mtdblock4 /mnt/backup
                                         
-cd /mnt/mtd && ./XDVRStart.hisi ./td3520 &
+cd /mnt/mtd && ./XDVRStart.hisi ./td3520a &

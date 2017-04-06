@@ -10,6 +10,7 @@ class HoneyTelnetClient(TelnetClient):
     def __init__(self, sock, addr_tup):
         super().__init__(sock, addr_tup)
         self.dclient = docker.from_env()
+        self.APIClient = docker.APIClient(base_url='unix://var/run/docker.sock')
         self.container = self.dclient.containers.run(
             "honeybox", "/bin/sh",
             detach=True,
@@ -72,16 +73,9 @@ class HoneyTelnetClient(TelnetClient):
         detached) but does it even need to be running since I'm doing
         it this way anyways?
         """
-        newcmd = '/bin/sh -c "cd {} && {};export LAST=$?"'.format(self.pwd, line)
-        result = self.container.exec_run(newcmd).decode(
-            "utf-8", "replace").split('\n')
-        final = []
-        for line in result:
-            if "EXIT:" in line:
-                try:
-                    self.exit_status = int(line.split(":")[1].strip())
-                except:
-                    self.exit_status = 127
-            elif line != "\n":
-                final += [line]
-        return("\n".join(final))
+        newcmd = '/bin/sh -c "cd {} && {};exit $?"'.format(self.pwd, line)
+        self.exec = self.APIClient.exec_create(self.container.id, newcmd)
+        result = self.APIClient.exec_start(self.exec['Id']).decode(
+          "utf-8", "replace")
+        self.exit_status = self.APIClient.exec_inspect(self.exec['Id'])['ExitCode']
+        return(result)

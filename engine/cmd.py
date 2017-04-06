@@ -21,12 +21,21 @@ def passwd_cmd(server, client, line):
         if client.passwd_flag == 1:
                 response = "Changing password for root.\n(current) UNIX password: "
         elif client.passwd_flag == 2:
-                response = "New password: "
+                if client.input_list[-1] == client.password:
+	                response = "New password: "
+                else:
+                        response = "passwd: Authentication token manipulation error\npasswd: password unchanged\n"
+                        client.passwd_flag = None
+                        client.send(response)
+                        return
+
         elif client.passwd_flag == 3:
                 response = "Retype password: "
         elif client.passwd_flag == 4:
                 if client.input_list[-1] == client.input_list[-2]:
                         response = "passwd: password for root changed by root\n"
+                        server.username = client.username
+                        server.password = client.input_list[-1]
                 else:
                         response = "Passwords don't match\npasswd: password for root is unchanged\n"
                 client.passwd_flag = None
@@ -64,8 +73,9 @@ def echo_cmd(server, client, line):
         machine or not, echoing \\147\\141\\171\\146\\147\\164. Busybox
         will translate it to ASCII, sh/etc will just escape one backslash.
         """
-        if line.split(' ')[1] == '-e':
+        if line.split(' ')[1] == '-e' or line.split(' ')[1] == '-ne':
                 line = line.replace('//', '/')
+                line = line.replace('"', "'")
         server.logger.info(
             "EXECUTING CMD {} : {}".format(
                 client.ip, line.split(' ')[0]))
@@ -138,14 +148,27 @@ def cat_cmd(server, client, line):
         ultimately would like to create a command for making custom Docker
         images with files pre-replaced!
         """
+        print("CAT: {}".format (line))
         if len(line.split(' ')) > 1 and line.split(' ')[1] == "/proc/mounts":
                 path = os.path.dirname(os.path.realpath(__file__))
                 path = path[:-7] # shaves off /engine
                 with open("{}/fakefiles/proc%mounts".format(path), "r") as f:
                         response = f.read()
                 client.exit_status = 0
+        elif len(line.split(' ')) > 1 and line.split(' ')[1] == "/proc/cpuinfo":
+                path = os.path.dirname(os.path.realpath(__file__))
+                path = path[:-7] # shaves off /engine
+                with open("{}/fakefiles/proc%cpuinfo".format(path), "r") as f:
+                        response = f.read()
+                client.exit_status = 0
+        elif len(line.split(' ')) > 1 and (line.split(' ')[1] == "/bin/busybox" or
+					   line.split(' ')[1] == "$SHELL" or
+                                           line.split(' ')[1] == "/bin/echo"):
+                response = "\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00\x1b\x00\x1a\x00"
+                print("Sending fake header.")
         else:
                 response = client.run_in_container(line)
+                print(client.exit_status)
         client.send(response)
 """
 def fgrep_cmd(server, client, msg):
@@ -167,6 +190,9 @@ def run_cmd(server, client, msg):
         """
         client.input_list += msg
         server.logger.info("RECEIVED INPUT {} : {}".format(client.ip, msg))
+        if msg == [""]:
+                server.logger.info("Ignoring empty input from {}".format(client.ip))
+                return
         if not client.username or not client.password:
                 server.login_screen(client, msg)
                 return
@@ -199,7 +225,11 @@ def loop_cmds(server, client, msg):
                                 if (client.exit_status != 0):
                                         server.logger.debug(
                                                 "EXIT NOT ZERO")
+                                        print(cmd[1])
                                         loop_cmds(server, client, [cmd[1]])
+                                else:
+                                        print("Exit zero, breaking")
+                                        return
                 elif len(re.findall("(.*)&&(.*)", line)) > 0:
                         reg = re.findall("(.*)&&(.*)", line)
                         for cmd in reg:
@@ -208,6 +238,8 @@ def loop_cmds(server, client, msg):
                                         server.logger.debug(
                                                 "True, continuing.")
                                         loop_cmds(server, client, [cmd[1]])
+                                else:
+                                        continue
                 else:
                         execute_cmd(client, server, line)
 
@@ -271,6 +303,7 @@ def not_found(client, server, command):
 
 def busybox(server, client, command):
     accepted = ['echo', 'tftp', 'wget']
+    print("Entered busybox {}".format(command))
     if re.search(r'busybox ([A-Z]*)$', command, re.MULTILINE) or len(command.split(' ')) == 1:
         response = client.run_in_container(command)
     else:
@@ -278,12 +311,16 @@ def busybox(server, client, command):
             newcommand = command.split(' ')[1:]
         except:
             response = client.run_in_container(command)
+            print(command)
             client.send(response)
             return
         if newcommand[0] in accepted:
+            print("Accepted, ran as {}".format(command))
             response = client.run_in_container(command)
         else:
+            print(newcommand)
             execute_cmd(client, server, ' '.join(newcommand))
             return
     server.logger.debug(response)
+    print(response)
     client.send(response)
