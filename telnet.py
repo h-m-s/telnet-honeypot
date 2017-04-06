@@ -3,6 +3,7 @@ import logging
 import signal
 from engine.server import HoneyTelnetServer
 import os
+import configparser
 
 IDLE_TIMEOUT = 300
 SERVER_RUN = True
@@ -31,6 +32,29 @@ def define_logger():
     logger.addHandler(infohandler)
     return (logger)
 
+def parse_config():
+    port = 23
+    image = "honeybox"
+    passwordmode = False
+
+    config = configparser.ConfigParser()
+
+    try:
+        config.read("telnet.cfg")
+    except Exception as e:
+        print("failed to read")
+        print(e)
+        return port, image, passwordmode
+
+    try:
+        port = config.getint('Telnet', 'port')
+        image = config.get('Telnet', 'image')
+        passwordmode = config.getboolean('Telnet', 'password-mode')
+    except:
+        print("failed to parse")
+        pass
+    return port, image, passwordmode
+
 if __name__ == '__main__':
 
     """
@@ -42,10 +66,15 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_handler)
 
     logger = define_logger()
+
+    port, image, passwordmode = parse_config()
+
     telnet_server = HoneyTelnetServer(
-        port=23,
+        port=port,
+        image=image,
         address='',
-        logger=logger
+        logger=logger,
+        passwordmode=passwordmode
         )
     logger.info("Listening for connections on port {}. CTRL-C to break.".
                 format(telnet_server.port))

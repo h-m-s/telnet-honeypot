@@ -13,7 +13,8 @@ import time
 IDLE_TIMEOUT = 120
 
 class HoneyTelnetServer(TelnetServer):
-        def __init__(self, port=7777, address='', logger=None):
+        def __init__(self, port=7777, address='', image="honeybox",
+                     passwordmode=False, logger=None):
                 """ Wrapper for the TelnetServer init """
                 self.SERVER_RUN = True
                 self.logger = logger
@@ -25,6 +26,8 @@ class HoneyTelnetServer(TelnetServer):
                 self.prompt = "/ # "
                 self.username = None
                 self.password = None
+                self.passwordmode = passwordmode
+                self.image = image
 
         def poll(self):
             """
@@ -195,22 +198,24 @@ class HoneyTelnetServer(TelnetServer):
                                         msg = msg[0].split("#")[1]
                                 client.username = msg[0]
                                 client.send("Password: ")
-                        else:
+                        elif not client.password:
                                 client.password = msg[0]
-                                if (self.username is not None and
-                                    self.username != client.username or
-                                    self.password != client.password):
-                                        client.send("Login incorrect\n\n")
-                                        client.username = None
-                                        client.password = None
-                                        client.send("login: ")
-                                        return
+                                if self.passwordmode is True:
+                                        print("TRUE")
+                                        if (self.username is not None and
+                                        (self.username != client.username or
+                                        self.password != client.password)):
+                                                client.send("Login incorrect\n\n")
+                                                client.username = None
+                                                client.password = None
+                                                client.send("login: ")
+                                                return
                                 self.return_prompt(client)
                                 self.logger.info(
-                                        "{} logged in as {}-{}".format(
-                                                client.addrport(),
-                                                client.username,
-                                                client.password))
+                                "{} logged in as {}-{}".format(
+                                client.addrport(),
+                                client.username,
+                                client.password))
 
         def return_prompt(self, client):
                 """
