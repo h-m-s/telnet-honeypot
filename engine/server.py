@@ -8,6 +8,7 @@ import threading
 import sys
 import os
 import re
+import time
 
 IDLE_TIMEOUT = 120
 
@@ -76,9 +77,8 @@ class HoneyTelnetServer(TelnetServer):
 
                     try:
                         sock, addr_tup = self.server_socket.accept()
-                    except socket.error as err:
-                        self.logger.error("ACCEPT socket error '{}:{}'.".format(
-                                err[0], err[1]))
+                    except Exception as err:
+                        self.logger.error("ACCEPT socket error")
                         continue
 
                     # Check for maximum connections
@@ -112,7 +112,7 @@ class HoneyTelnetServer(TelnetServer):
                 for client in self.client_list:
                         client.cleanup_container(self)
                         client.active = 0
-                self.SERVER_RUN = 0
+                self.SERVER_RUN = False
 
         def on_connect(self, client):
                 """
@@ -197,8 +197,9 @@ class HoneyTelnetServer(TelnetServer):
                                 client.send("Password: ")
                         else:
                                 client.password = msg[0]
-                                if self.username is not None:
-                                    if self.username != client.username or self.password != client.password:
+                                if (self.username is not None and
+                                    self.username != client.username or
+                                    self.password != client.password):
                                         client.send("Login incorrect\n\n")
                                         client.username = None
                                         client.password = None

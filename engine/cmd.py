@@ -9,6 +9,7 @@ SCRIPTED = ["dd", "rm", "exit", "cd", "cat", "echo", "reboot", "passwd"]
 BLACK_LIST = ["docker", "nc"]
 IGNORE = ["sh", "chmod", "shell", "sleep"]
 
+
 def passwd_cmd(server, client, line):
         """
         There's a few issues with the output with passwd
@@ -19,12 +20,14 @@ def passwd_cmd(server, client, line):
         if not client.passwd_flag:
                 client.passwd_flag = 1
         if client.passwd_flag == 1:
-                response = "Changing password for root.\n(current) UNIX password: "
+                response = ("Changing password for root.\n"
+                            "(current) UNIX password: ")
         elif client.passwd_flag == 2:
                 if client.input_list[-1] == client.password:
-	                response = "New password: "
+                        response = "New password: "
                 else:
-                        response = "passwd: Authentication token manipulation error\npasswd: password unchanged\n"
+                        response = ("passwd: Authentication token manipulation"
+                                    " error\npasswd: password unchanged\n")
                         client.passwd_flag = None
                         client.send(response)
                         return
@@ -33,15 +36,18 @@ def passwd_cmd(server, client, line):
                 response = "Retype password: "
         elif client.passwd_flag == 4:
                 if client.input_list[-1] == client.input_list[-2]:
-                        response = "passwd: password for root changed by root\n"
+                        response = ("passwd: password for root changed by root"
+                                    "\n")
                         server.username = client.username
                         server.password = client.input_list[-1]
                 else:
-                        response = "Passwords don't match\npasswd: password for root is unchanged\n"
+                        response = ("Passwords don't match\n"
+                                    "passwd: password for root is unchanged\n")
                 client.passwd_flag = None
         client.send(response)
         if client.passwd_flag:
                 client.passwd_flag += 1
+
 
 def rm_cmd(server, client, line):
         """
@@ -65,6 +71,7 @@ def rm_cmd(server, client, line):
                                           .format(client.pwd, target))
                 client.run_in_container(line)
 
+
 def echo_cmd(server, client, line):
         """
         If we wanna masquerade as Busybox properly, our echo escapes
@@ -84,8 +91,7 @@ def echo_cmd(server, client, line):
             if response == "\n":
                 return
             server.logger.debug(
-            "RESPONSE {}: {}".format(
-                client.ip, response[:-1]))
+                    "RESPONSE {}: {}".format(client.ip, response[:-1]))
             client.send(response)
             server.logger.debug(
                 client.exit_status)
@@ -98,16 +104,22 @@ def dd_cmd(server, client, line):
         Mirai and Hajime like this a lot more than a 64 bit response.
         Planning on adding more configurable choices soon.
         """
-        header = "\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00\x1b\x00\x1a\x00"
+        header = ("\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00"
+                  "\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00"
+                  "\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54"
+                  "\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00"
+                  "\x09\x00\x28\x00\x1b\x00\x1a\x00")
         client.send(header)
         client.send("+10 records in\r\n1+0 records out\n")
         server.logger.info("Sent fake DD to {}".format(client.ip))
         client.exit_status = 0
 
+
 def reboot_cmd(server, client, line):
         client.send("The system is going down for reboot NOW!\n")
         time.sleep(2)
         client.active = False
+
 
 def exit_cmd(server, client, line):
         """
@@ -115,6 +127,7 @@ def exit_cmd(server, client, line):
         during the server master loop.
         """
         client.active = False
+
 
 def cd_cmd(server, client, line):
     """
@@ -148,38 +161,38 @@ def cat_cmd(server, client, line):
         ultimately would like to create a command for making custom Docker
         images with files pre-replaced!
         """
-        print("CAT: {}".format (line))
-        if len(line.split(' ')) > 1 and line.split(' ')[1] == "/proc/mounts":
+        print("CAT: {}".format(line))
+        try:
+                target = line.split(' ')[1]
+        except:
+                response = client.run_in_container(line)
+                return client.send(response)
+        if target == "/proc/mounts":
                 path = os.path.dirname(os.path.realpath(__file__))
-                path = path[:-7] # shaves off /engine
+                path = path[:-7]  # shaves off /engine
                 with open("{}/fakefiles/proc%mounts".format(path), "r") as f:
                         response = f.read()
                 client.exit_status = 0
-        elif len(line.split(' ')) > 1 and line.split(' ')[1] == "/proc/cpuinfo":
+        elif target == "/proc/cpuinfo":
                 path = os.path.dirname(os.path.realpath(__file__))
-                path = path[:-7] # shaves off /engine
+                path = path[:-7]  # shaves off /engine
                 with open("{}/fakefiles/proc%cpuinfo".format(path), "r") as f:
                         response = f.read()
                 client.exit_status = 0
-        elif len(line.split(' ')) > 1 and (line.split(' ')[1] == "/bin/busybox" or
-					   line.split(' ')[1] == "$SHELL" or
-                                           line.split(' ')[1] == "/bin/echo"):
-                response = "\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00\x1b\x00\x1a\x00"
+        elif (target == "/bin/busybox" or target == "$SHELL" or
+              target == "/bin/echo"):
+                response = ("\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00"
+                            "\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00"
+                            "\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54"
+                            "\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00"
+                            "\x09\x00\x28\x00\x1b\x00\x1a\x00")
                 print("Sending fake header.")
         else:
                 response = client.run_in_container(line)
                 print(client.exit_status)
         client.send(response)
-"""
-def fgrep_cmd(server, client, msg):
-    Temporary stopgap to give proper response to specific bot
-    if msg == "fgrep XDVR dep2.sh":
-        response = "cd /mnt/mtd && ./XDVRStart.hisi ./td3520 &" + '\n'
-        client.exit_status = 0
-    else:
-        response = client.run_in_container(line)
-    client.send(response)
-"""
+
+
 def run_cmd(server, client, msg):
         """
         Evaluates commands! First splits off logical operators.
@@ -191,7 +204,8 @@ def run_cmd(server, client, msg):
         client.input_list += msg
         server.logger.info("RECEIVED INPUT {} : {}".format(client.ip, msg))
         if msg == [""]:
-                server.logger.info("Ignoring empty input from {}".format(client.ip))
+                server.logger.info("Ignoring empty input from {}".format(
+                        client.ip))
                 return
         if not client.username or not client.password:
                 server.login_screen(client, msg)
@@ -243,13 +257,7 @@ def loop_cmds(server, client, msg):
                 else:
                         execute_cmd(client, server, line)
 
-"""
-def wget_cmd(server, client, msg):
-    response = client.run_in_container(msg)
-    if client.exit_status == 0:
 
-    client.send(response)
-"""
 def execute_cmd(client, server, msg):
         """
         This is an attempt to split run_cmd up a little.
@@ -258,22 +266,22 @@ def execute_cmd(client, server, msg):
         """
         cmd = msg.strip().split(' ')[0]
         if cmd[0] == "." or cmd in IGNORE:
-            server.logger.info("IGNORING {} : {}".format(client.ip, cmd))
-            return
+                server.logger.info("IGNORING {} : {}".format(client.ip, cmd))
+                return
         if 'busybox' in cmd:
-            server.logger.info("SCRIPTED CMD busybox : {}".format(client.ip, cmd))
-            busybox(server, client, msg)
-            return
+                server.logger.info("SCRIPTED CMD busybox : {}".format(
+                        client.ip, cmd))
+                busybox(server, client, msg)
+                return
         if client.passwd_flag is not None:
-            passwd_cmd(server, client, msg)
-            return
+                passwd_cmd(server, client, msg)
+                return
         if cmd in SCRIPTED:
                 server.logger.info(
                         "SCRIPTED CMD {} : {}".format(
                                 client.ip, cmd))
                 method = getattr(sys.modules[__name__],
-                                 "{}_cmd".format(
-                                         cmd))
+                                 "{}_cmd".format(cmd))
                 result = method(server, client, msg)
         elif cmd not in BLACK_LIST and cmd not in IGNORE:
                 server.logger.info(
@@ -287,10 +295,10 @@ def execute_cmd(client, server, msg):
                                 "RESPONSE {}: {}".format(
                                         client.ip, response[:-1]))
                         client.send(response)
-                        server.logger.debug(
-                                client.exit_status)
+                        server.logger.debug(client.exit_status)
         else:
                 not_found(client, server, cmd)
+
 
 def not_found(client, server, command):
         """
@@ -302,25 +310,28 @@ def not_found(client, server, command):
 
 
 def busybox(server, client, command):
-    accepted = ['echo', 'tftp', 'wget']
-    print("Entered busybox {}".format(command))
-    if re.search(r'busybox ([A-Z]*)$', command, re.MULTILINE) or len(command.split(' ')) == 1:
-        response = client.run_in_container(command)
-    else:
-        try:
-            newcommand = command.split(' ')[1:]
-        except:
-            response = client.run_in_container(command)
-            print(command)
-            client.send(response)
-            return
-        if newcommand[0] in accepted:
-            print("Accepted, ran as {}".format(command))
-            response = client.run_in_container(command)
+        """
+        Wrapper for /bin/busybox so we can decide
+        which commands run through /bin/busybox and which
+        we script out.
+        """
+        accepted = ['echo', 'tftp', 'wget']
+        print("Entered busybox {}".format(command))
+        if re.search(r'busybox ([A-Z]*)$', command, re.MULTILINE) or len(
+                        command.split(' ')) == 1:
+                response = client.run_in_container(command)
         else:
-            print(newcommand)
-            execute_cmd(client, server, ' '.join(newcommand))
-            return
-    server.logger.debug(response)
-    print(response)
-    client.send(response)
+                try:
+                        newcommand = command.split(' ')[1:]
+                except:
+                        response = client.run_in_container(command)
+                        client.send(response)
+                        return
+                if newcommand[0] in accepted:
+                        print("Accepted, ran as {}".format(command))
+                        response = client.run_in_container(command)
+                else:
+                        execute_cmd(client, server, ' '.join(newcommand))
+                        return
+        server.logger.debug(response)
+        client.send(response)

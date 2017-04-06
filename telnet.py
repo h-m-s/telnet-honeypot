@@ -14,7 +14,6 @@ def signal_handler(signal, frame):
     Handles exit on ctrl-c.
     """
     print("\nClosing out cleanly...")
-    telnet_server.clean_exit()
     telnet_server.SERVER_RUN = False
 
 def define_logger():
@@ -54,3 +53,5 @@ if __name__ == '__main__':
         telnet_server.poll()
         telnet_server.kick_idle()
         telnet_server.process_clients()
+
+    telnet_server.clean_exit()

@@ -29,13 +29,16 @@ class HoneyTelnetClient(TelnetClient):
     def cleanup_container(self, server):
         """
         Cleans up a container.
-        Checks the difference between the base image and the container status.
-        folder for analysis.
         """
         self.check_changes(server)
         self.container.remove(force=True)
 
     def check_changes(self, server):
+        """
+        Checks for the difference between the container's base image and the
+        current state of the container and sends any new/changed files off to
+        save_file.
+        """
         if self.container.diff() is not None:
             for difference in self.container.diff():
                 result = self.container.exec_run(
@@ -46,6 +49,9 @@ class HoneyTelnetClient(TelnetClient):
 
 
     def save_file(self, server, filepath):
+        """
+        Grabs an MD5 of a file and decides if we're going to save it or not.
+        """
         md5 = self.container.exec_run("md5sum {}".format(
             filepath)).decode("utf-8")
         md5 = md5.split(' ')[0]
@@ -67,11 +73,9 @@ class HoneyTelnetClient(TelnetClient):
     def run_in_container(self, line):
         """
         Takes in a command (pre-parsed/sanitized) and runs it in the client's
-        container. Sorta hacky way to get the exit code, and I'm super open
-        to suggestions on how else this could be done. The container doesn't
-        actually exit (it's running the whole time the client is,
-        detached) but does it even need to be running since I'm doing
-        it this way anyways?
+        container.
+
+        Needs to use the low level APIClient in order to snag the exit code.
         """
         newcmd = '/bin/sh -c "cd {} && {};exit $?"'.format(self.pwd, line)
         self.exec = self.APIClient.exec_create(self.container.id, newcmd)
