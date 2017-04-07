@@ -1,1 +1,5 @@
-tmpfs /run tmpfs rw,nosuid,noexec,relatime,size=3231524k,mode=755 0 0
+rootfs / rootfs rw 0 0
+tmpfs /var tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,relatime,size=289396k,nr_inodes=72349,mode=755 0 0
