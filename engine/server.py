@@ -133,7 +133,7 @@ class HoneyTelnetServer(TelnetServer):
                 else:
                         client.mode = "telnet"
                         client.request_terminal_type()
-                        client.send("login: ")
+                        client.send("cam5 login: ")
 
         def on_disconnect(self, client):
                 """
@@ -205,10 +205,10 @@ class HoneyTelnetServer(TelnetServer):
                                         if (self.username is not None and
                                         (self.username != client.username or
                                         self.password != client.password)):
-                                                client.send("Login incorrect\n\n")
+                                                client.send("Login incorrect\n")
                                                 client.username = None
                                                 client.password = None
-                                                client.send("login: ")
+                                                client.send("cam5 login: ")
                                                 return
                                 self.return_prompt(client)
                                 self.logger.info(
