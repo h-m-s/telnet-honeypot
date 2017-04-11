@@ -29,6 +29,8 @@ class DummyTelnetClient(HoneyTelnetClient):
         self.uuid = uuid.uuid4()
         self.ip = "127.0.0.1"
         self.mode = "telnet"
+        self.APIClient = docker.APIClient(base_url='unix://var/run/docker.sock')
+        self.passwd_flag = None
 
     def send(self, line):
         print(line)

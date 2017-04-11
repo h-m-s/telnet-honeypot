@@ -1,0 +1,19 @@
+system type		: Broadcom BCM5356 chip rev 1
+processor		: 0
+cpu model		:  V4.9
+BogoMIPS		: 166.29
+wait instruction	: no
+microsecond timers	: yes
+tlb_entries		: 64
+extra interrupt vector	: no
+hardware watchpoint	: yes
+VCED exceptions		: not available
+VCEI exceptions		: not available
+unaligned_instructions	: 24480
+System clocks
+	(cpu/mem/si/xtal)	: 333/166/83/25 Mhz.
+dcache hits		: 2147483648
+dcache misses		: 1065343998
+icache hits		: 2147483648
+icache misses		: 3755867452
+instructions		: 2147483648

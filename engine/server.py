@@ -7,11 +7,14 @@ from engine.threads import CommandThread
 import threading
 import sys
 import os
+import re
+import time
 
 IDLE_TIMEOUT = 120
 
 class HoneyTelnetServer(TelnetServer):
-        def __init__(self, port=7777, address='', logger=None):
+        def __init__(self, port=7777, address='', image="honeybox",
+                     passwordmode=False, logger=None):
                 """ Wrapper for the TelnetServer init """
                 self.SERVER_RUN = True
                 self.logger = logger
@@ -21,6 +24,10 @@ class HoneyTelnetServer(TelnetServer):
                 self.threadlock = threading.Lock()
                 self.threads = {}
                 self.prompt = "/ # "
+                self.username = None
+                self.password = None
+                self.passwordmode = passwordmode
+                self.image = image
 
         def poll(self):
             """
@@ -73,9 +80,8 @@ class HoneyTelnetServer(TelnetServer):
 
                     try:
                         sock, addr_tup = self.server_socket.accept()
-                    except socket.error as err:
-                        self.logger.error("ACCEPT socket error '{}:{}'.".format(
-                                err[0], err[1]))
+                    except Exception as err:
+                        self.logger.error("ACCEPT socket error")
                         continue
 
                     # Check for maximum connections
@@ -109,7 +115,7 @@ class HoneyTelnetServer(TelnetServer):
                 for client in self.client_list:
                         client.cleanup_container(self)
                         client.active = 0
-                self.SERVER_RUN = 0
+                self.SERVER_RUN = False
 
         def on_connect(self, client):
                 """
@@ -126,8 +132,8 @@ class HoneyTelnetServer(TelnetServer):
                         client.password = "local"
                 else:
                         client.mode = "telnet"
-                        client.send("busybox\n")
-                        client.send("login: ")
+                        client.request_terminal_type()
+                        client.send("cam5 login: ")
 
         def on_disconnect(self, client):
                 """
@@ -156,13 +162,14 @@ class HoneyTelnetServer(TelnetServer):
                 for client in self.client_list:
                         if (client.active and
                             client.cmd_ready):
+                                command = re.sub(r'(\x00)$', '', client.get_command())
                                 self.threadlock.acquire()
                                 if (client.ip not in self.threads or
                                     self.threads[str(client.ip)] is None):
                                         self.logger.debug(
                                                 "Spawning up a new thread.")
                                         client.active_cmds += [
-                                                client.get_command()]
+                                                command]
                                         self.threadlock.release()
                                         self.threads[client.ip] = CommandThread(
                                                 client, self, name="thread")
@@ -171,7 +178,7 @@ class HoneyTelnetServer(TelnetServer):
                                         self.logger.debug(
                                                 "Running in existing thread.")
                                         client.active_cmds += [
-                                            client.get_command()]
+                                            command]
                                         self.threadlock.release()
 
 
@@ -190,19 +197,29 @@ class HoneyTelnetServer(TelnetServer):
                                 if "#" in msg[0]:
                                         msg = msg[0].split("#")[1]
                                 client.username = msg[0]
-                                client.send("password: ")
-                        else:
+                                client.send("Password: ")
+                        elif not client.password:
                                 client.password = msg[0]
+                                if self.passwordmode is True:
+                                        print("TRUE")
+                                        if (self.username is not None and
+                                        (self.username != client.username or
+                                        self.password != client.password)):
+                                                client.send("Login incorrect\n")
+                                                client.username = None
+                                                client.password = None
+                                                client.send("cam5 login: ")
+                                                return
                                 self.return_prompt(client)
                                 self.logger.info(
-                                        "{} logged in as {}-{}".format(
-                                                client.addrport(),
-                                                client.username,
-                                                client.password))
+                                "{} logged in as {}-{}".format(
+                                client.addrport(),
+                                client.username,
+                                client.password))
 
         def return_prompt(self, client):
                 """
                 returns that prompt
                 """
-                if client.mode == "telnet":
+                if client.mode == "telnet" and client.passwd_flag is None:
                         client.send(self.prompt)
