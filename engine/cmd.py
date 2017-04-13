@@ -116,6 +116,9 @@ def dd_cmd(server, client, line):
 
 
 def reboot_cmd(server, client, line):
+        """
+        Quick little reboot that waits a second and boots the client.
+        """
         client.send("The system is going down for reboot NOW!\n")
         time.sleep(2)
         client.active = False
@@ -189,7 +192,6 @@ def cat_cmd(server, client, line):
                 print("Sending fake header.")
         else:
                 response = client.run_in_container(line)
-                print(client.exit_status)
         client.send(response)
 
 

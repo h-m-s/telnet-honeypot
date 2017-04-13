@@ -4,6 +4,7 @@ from engine.client import HoneyTelnetClient
 from engine.cmd import run_cmd
 from patterns.patterns import check_list
 from engine.threads import CommandThread
+import logging
 import threading
 import sys
 import os
@@ -13,11 +14,12 @@ import time
 IDLE_TIMEOUT = 120
 
 class HoneyTelnetServer(TelnetServer):
-        def __init__(self, port=7777, address='', image="honeybox",
-                     passwordmode=False, logger=None):
+        def __init__(self, hostname, port=7777, address='', image="honeybox",
+                     passwordmode=False):
                 """ Wrapper for the TelnetServer init """
                 self.SERVER_RUN = True
-                self.logger = logger
+                self.hostname = hostname
+                self.logger = logging.getLogger(hostname)
                 super().__init__(port, address, self.on_connect,
                                  self.on_disconnect)
                 self.client_list = []
@@ -26,8 +28,9 @@ class HoneyTelnetServer(TelnetServer):
                 self.prompt = "/ # "
                 self.username = None
                 self.password = None
-                self.passwordmode = passwordmode
+                self.passwordmode = False
                 self.image = image
+                self.hostname = hostname
 
         def poll(self):
             """
@@ -116,7 +119,7 @@ class HoneyTelnetServer(TelnetServer):
                         client.cleanup_container(self)
                         client.active = 0
                 self.SERVER_RUN = False
-                self.server.stop()
+                self.stop()
 
         def on_connect(self, client):
                 """
@@ -134,7 +137,7 @@ class HoneyTelnetServer(TelnetServer):
                 else:
                         client.mode = "telnet"
                         client.request_terminal_type()
-                        client.send("cam5 login: ")
+                        client.send("{} login: ".format(self.hostname))
 
         def on_disconnect(self, client):
                 """

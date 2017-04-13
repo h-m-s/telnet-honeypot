@@ -31,7 +31,7 @@ class HoneyTelnetClient(TelnetClient):
         Cleans up a container.
         """
         self.check_changes(server)
-        self.container.remove(force=True)
+        self.APIClient.remove_container(self.container.id, force=True)
 
     def check_changes(self, server):
         """
@@ -65,8 +65,7 @@ class HoneyTelnetClient(TelnetClient):
             "Saving file {} from {}".
             format(fname, self.ip))
         with open("./logs/{}.tar".format(fname), "bw+") as f:
-            strm, stat = self.container.get_archive(
-            filepath)
+            strm, stat = self.container.get_archive(filepath)
             f.write(strm.data)
 
 

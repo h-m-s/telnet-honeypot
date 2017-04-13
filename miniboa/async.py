@@ -89,7 +89,7 @@ class TelnetServer(object):
         """
         Disconnects the clients and shuts down the server
         """
-        for clients in self.client_list():
+        for clients in self.client_list:
             clients.sock.close()
         self.server_socket.close()
 
