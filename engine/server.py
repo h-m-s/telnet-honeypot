@@ -116,6 +116,7 @@ class HoneyTelnetServer(TelnetServer):
                         client.cleanup_container(self)
                         client.active = 0
                 self.SERVER_RUN = False
+                self.server.stop()
 
         def on_connect(self, client):
                 """
@@ -142,6 +143,7 @@ class HoneyTelnetServer(TelnetServer):
                 self.logger.info("Lost connection to {}".format(
                         client.addrport()))
                 client.cleanup_container(self)
+                client.sock.close()
                 check_list(client, self)
                 self.client_list.remove(client)
 

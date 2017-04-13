@@ -102,4 +102,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
-Contact GitHub API Training Shop Blog About
+
+######################################
+# Specific stuff for telnet-honeypot #
+######################################
+patterns.json
