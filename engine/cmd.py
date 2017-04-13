@@ -12,10 +12,25 @@ IGNORE = ["sh", "chmod", "shell", "sleep"]
 
 def passwd_cmd(server, client, line):
         """
-        There's a few issues with the output with passwd
-        (because we're not streaming the output from the container,
-        just grabbing the result) so this is a temporary fix
-        until I sort out the input stream.
+        Passwd command! Since we're not streaming output from the Docker
+        containers (yet?), this is what we'll serve up for the passwd command.
+        It does /not/ accept any passwd thrown in, and requires the same
+        username/password used to login to the server.
+
+        If password mode isn't set to True in the config file, this really
+        doesn't do much, except allow us to capture the intended password.
+       
+        If password mode IS set to True, until this is ran, the server
+        will accept any username/password given. Once a successful
+        password change is made, the server will only allow logins
+        from that specific username/password combo!
+
+        This functionality is a response to a bot that has been found
+        changing passwords to randomly generated ones, 
+        in an effort to see if it'll actually return to use the same passwd.
+        We want to make it look like the password change is successful
+        just in case it tries to run the original login (or a different one)
+        to verify that it successfully changed the password.
         """
         if not client.passwd_flag:
                 client.passwd_flag = 1
@@ -51,9 +66,9 @@ def passwd_cmd(server, client, line):
 
 def rm_cmd(server, client, line):
         """
-        Instead of deleting stuff, let's move it to tmp. Good stuff gets
-        deleted sometimes! Would like to change this soon to just
-        immediately copy it out of the container.
+        This moves anything removed to /tmp/ before actually removing it.
+        Right now we're overactively grabbing ANY changed files, on every
+        line if input, so this might be overkill.
         """
         try:
                 target = line.split(' ')[1].strip()
@@ -77,7 +92,7 @@ def echo_cmd(server, client, line):
         If we wanna masquerade as Busybox properly, our echo escapes
         need to be fixed. This is a quick fix for scripts that use
         the LizardSquad method of detecting if they're in a real Busybox
-        machine or not, echoing \\147\\141\\171\\146\\147\\164. Busybox
+        machine or not, by echoing \\147\\141\\171\\146\\147\\164. Busybox
         will translate it to ASCII, sh/etc will just escape one backslash.
         """
         if line.split(' ')[1] == '-e' or line.split(' ')[1] == '-ne':
@@ -99,8 +114,10 @@ def echo_cmd(server, client, line):
 
 def dd_cmd(server, client, line):
         """
-        This dd is sorta hackish.
-        Sends back the proper response... for a 32 bit ARM system.
+        This command is tailored to Hajime, which uses dd to
+        grab the ELF header of a file and snag arch info.
+
+        Sends back the proper response for a 32 bit ARM system.
         Mirai and Hajime like this a lot more than a 64 bit response.
         Planning on adding more configurable choices soon.
         """
@@ -134,8 +151,8 @@ def exit_cmd(server, client, line):
 
 def cd_cmd(server, client, line):
     """
-    Sorta hackish cd command. Keeps track of where we're cding to, to keep
-    track of the client's PWD.
+    Since we're not running a single exec, we need to keep track of where
+    we want to CD off to.
     """
     if len(line.split(' ')) < 2:
         client.pwd = client.container.exec_run(
@@ -160,9 +177,17 @@ def cd_cmd(server, client, line):
 
 def cat_cmd(server, client, line):
         """
-        Super hacky workaround for /proc/mounts. Need a real solution here,
-        ultimately would like to create a command for making custom Docker
-        images with files pre-replaced!
+        Cat workaround. Most files can be directly replaced in the Docker image,
+        however there's some things this won't work for. Such as:
+
+        echo/binaries: Obviously we could replace /bin/echo with an ARM32
+        /bin/echo (not too many bots expecting a x64 binary), but unless
+        this honeypot is built on an ARM32 system, that might run into some issues.
+        Instead we'll just return a fake header. Originally I was storing a fake binary
+        and returning the real cat output, but this actually works better!
+
+        proc stuff: Obviously we can't overwrite /proc/mounts or cpuinfo,
+        both super common targets for bots.
         """
         print("CAT: {}".format(line))
         try:
@@ -197,11 +222,15 @@ def cat_cmd(server, client, line):
 
 def run_cmd(server, client, msg):
         """
-        Evaluates commands! First splits off logical operators.
-
-        Parentheses and logical operators are still kinda
-        iffy, but work enough for
-        the simple stuff the common bots try. :)
+        Run_cmd is where input should start.
+        
+        Adds the commands ran, before being parsed, to the master input list
+        (this is the list used to break activity down into patterns).
+        
+        Then, ensure they're 'logged in'.
+        
+        Then it'll start loop_cmds, which breaks off logical operators,
+        and finally it'll check the container for changes and return the prompt.
         """
         client.input_list += msg
         server.logger.info("RECEIVED INPUT {} : {}".format(client.ip, msg))
@@ -219,9 +248,12 @@ def run_cmd(server, client, msg):
 
 def loop_cmds(server, client, msg):
         """
-        The command loop. It's kinda gross...
-        Parentheses support is a little busted right now, but this works
-        for the common bots right now.
+        Loop cmd uses re to try to break off logical operators.
+
+        Parentheses aren't fully supported right now, but it's been enough
+        to handle the common bot traffic.
+
+        Logical operators (or/and) should work just fine, however.
         """
         parentheses = 0
         for line in msg:
@@ -262,9 +294,23 @@ def loop_cmds(server, client, msg):
 
 def execute_cmd(client, server, msg):
         """
-        This is an attempt to split run_cmd up a little.
-        Commands should already be parsed before getting here, and this
-        just be used to handle a single command and its arguments.
+        Last stop in the command loop.
+
+        Decides what to do with the parsed command.
+
+        Scripted commands will have the appropriate command ran,
+        black listed commands will return 'not found',
+        and ignored commands will simply return.
+
+        Blacklisted commands are good for things like netcat,
+        which may be installed by default, but security wise it's a bit easier
+        just to deny access.
+
+        Ignored commands are good for things like 'sh', where
+        you want to prevent a new shell from actually opening, but if you just return
+        the prompt it looks exactly like a new shell.
+
+        If it's not in any of these, we'll run the client's run_in_container method.
         """
         cmd = msg.strip().split(' ')[0]
         if cmd[0] == "." or cmd in IGNORE:

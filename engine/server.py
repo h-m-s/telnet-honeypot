@@ -114,7 +114,9 @@ class HoneyTelnetServer(TelnetServer):
                 self.clients[sock_fileno].socket_send()
 
         def clean_exit(self):
-                """ cleans up any orphan containers on the way out """
+                """
+                Takes care of exitting out cleanly.
+                """
                 for client in self.client_list:
                         client.cleanup_container(self)
                         client.active = 0
@@ -141,7 +143,10 @@ class HoneyTelnetServer(TelnetServer):
 
         def on_disconnect(self, client):
                 """
-                for disconnections
+                On disconnect, we need to handle a couple things.
+
+                Cleanup ensure the container has no goodies we haven't already copied,
+                and then we close us the socket and check the client's input list for patterns.
                 """
                 self.logger.info("Lost connection to {}".format(
                         client.addrport()))
@@ -152,7 +157,7 @@ class HoneyTelnetServer(TelnetServer):
 
         def kick_idle(self):
                 """
-                kicks idle client
+                Kicks idle clients.
                 """
                 for client in self.client_list:
                         if client.idle() > IDLE_TIMEOUT:
@@ -162,23 +167,26 @@ class HoneyTelnetServer(TelnetServer):
 
         def process_clients(self):
                 """
-                if client has a cmd ready, let's run it
+                Processes a client that is active and has cmd_ready set.
+
+                We snag the threadlock, add the command to the active_cmd list,
+                and either start a new thread or let the existing one handle it.
                 """
                 for client in self.client_list:
                         if (client.active and
                             client.cmd_ready):
                                 command = re.sub(r'(\x00)$', '', client.get_command())
                                 self.threadlock.acquire()
-                                if (client.ip not in self.threads or
-                                    self.threads[str(client.ip)] is None):
+                                if (client.uuid not in self.threads or
+                                    self.threads[str(client.uuid)] is None):
                                         self.logger.debug(
                                                 "Spawning up a new thread.")
                                         client.active_cmds += [
                                                 command]
                                         self.threadlock.release()
-                                        self.threads[client.ip] = CommandThread(
+                                        self.threads[client.uuid] = CommandThread(
                                                 client, self, name="thread")
-                                        self.threads[client.ip].start()
+                                        self.threads[client.uuid].start()
                                 else:
                                         self.logger.debug(
                                                 "Running in existing thread.")
@@ -224,7 +232,11 @@ class HoneyTelnetServer(TelnetServer):
 
         def return_prompt(self, client):
                 """
-                returns that prompt
+                Returns dat prompt!
+
+                The mode check is for connections that are made in
+                netcat mode (by default, all local connections)
+                where the prompt would ruin the experience. ;)
                 """
                 if client.mode == "telnet" and client.passwd_flag is None:
                         client.send(self.prompt)

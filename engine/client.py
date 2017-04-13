@@ -8,6 +8,23 @@ import os
 
 class HoneyTelnetClient(TelnetClient):
     def __init__(self, sock, addr_tup):
+        """
+        The HoneyTelnetClient is the actual client handler for telnet connections.
+
+        Quick overview:
+            dclient: Docker client
+            APIClient: Docker low-level api client
+            container: Docker container associated with client
+            pwd: client PWD in container
+            input_list: list of all input, exactly as entered, for pattern recognition
+            active_cmds: queue for threads
+            username: username used to log in
+            password: password used to log in
+            exit_status: last exit status
+            uuid: uuid for client
+            passwd_flag: checks to see if we're in the middle of passwd
+            ip: client ip
+        """
         super().__init__(sock, addr_tup)
         self.dclient = docker.from_env()
         self.APIClient = docker.APIClient(base_url='unix://var/run/docker.sock')
@@ -29,6 +46,8 @@ class HoneyTelnetClient(TelnetClient):
     def cleanup_container(self, server):
         """
         Cleans up a container.
+
+        Checks for any changes, and then stops/removes it.
         """
         self.check_changes(server)
         self.APIClient.remove_container(self.container.id, force=True)
@@ -51,6 +70,8 @@ class HoneyTelnetClient(TelnetClient):
     def save_file(self, server, filepath):
         """
         Grabs an MD5 of a file and decides if we're going to save it or not.
+
+        If we're going to save it, it'll be TAR'd up and saved in /logs/.
         """
         md5 = self.container.exec_run("md5sum {}".format(
             filepath)).decode("utf-8")
@@ -71,10 +92,15 @@ class HoneyTelnetClient(TelnetClient):
 
     def run_in_container(self, line):
         """
-        Takes in a command (pre-parsed/sanitized) and runs it in the client's
+        Takes in a command (already parsed/sanitized) and runs it in the client's
         container.
 
         Needs to use the low level APIClient in order to snag the exit code.
+        The higher level client doesn't seem to allow to grab the exit code
+        of the last exec (just the exit code of the container itself, if it stops)
+        but it IS a lot friendlier. So right now we have to
+        initialize both clients, which is not ideal. Should probably
+        just drop the higher level client altogether.
         """
         newcmd = '/bin/sh -c "cd {} && {};exit $?"'.format(self.pwd, line)
         self.exec = self.APIClient.exec_create(self.container.id, newcmd)
