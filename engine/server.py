@@ -178,7 +178,7 @@ class HoneyTelnetServer(TelnetServer):
                                 command = re.sub(r'(\x00)$', '', client.get_command())
                                 self.threadlock.acquire()
                                 if (client.uuid not in self.threads or
-                                    self.threads[str(client.uuid)] is None):
+                                    self.threads[client.uuid] is None):
                                         self.logger.debug(
                                                 "Spawning up a new thread.")
                                         client.active_cmds += [

@@ -40,6 +40,13 @@ def define_logger(settings):
     logger = logging.getLogger(settings['hostname'])
     logger.addHandler(infohandler)
 
+    """
+    Drops the requests loggers to WARNING level.
+    Super, duper spammy otherwise, because it'll try to show you
+    every GET/POST made to the dockerd
+    """
+    logging.getLogger("requests").setLevel(logging.WARNING)
+
 
 def parse_config():
     """

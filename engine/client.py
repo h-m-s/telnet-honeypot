@@ -39,7 +39,7 @@ class HoneyTelnetClient(TelnetClient):
         self.username = None
         self.password = None
         self.exit_status = 0
-        self.uuid = uuid.uuid4()
+        self.uuid = str(uuid.uuid4())
         self.passwd_flag = None
         self.ip = self.addrport().split(":")[0]
 
