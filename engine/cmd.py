@@ -99,14 +99,14 @@ def echo_cmd(server, client, line):
                 line = line.replace('//', '/')
                 line = line.replace('"', "'")
         server.logger.info(
-            "EXECUTING CMD {} : {}".format(
-                client.ip, line.split(' ')[0]))
+            "[{}]: EXECUTING CMD: {}".format(
+                client.addrport(), line.split(' ')[0]))
         response = client.run_in_container(line)
         if "exec failed" not in response:
             if response == "\n":
                 return
             server.logger.debug(
-                    "RESPONSE {}: {}".format(client.ip, response[:-1]))
+                    "[{}]: RESPONSE: {}".format(client.addrport(), response[:-1]))
             client.send(response)
             server.logger.debug(
                 client.exit_status)
@@ -128,7 +128,7 @@ def dd_cmd(server, client, line):
                   "\x09\x00\x28\x00\x1b\x00\x1a\x00")
         client.send(header)
         client.send("+10 records in\r\n1+0 records out\n")
-        server.logger.info("Sent fake DD to {}".format(client.ip))
+        server.logger.info("[{}]: SENT FAKE DD".format(client.addport()))
         client.exit_status = 0
 
 
@@ -189,7 +189,6 @@ def cat_cmd(server, client, line):
         proc stuff: Obviously we can't overwrite /proc/mounts or cpuinfo,
         both super common targets for bots.
         """
-        print("CAT: {}".format(line))
         try:
                 target = line.split(' ')[1]
         except:
@@ -214,7 +213,6 @@ def cat_cmd(server, client, line):
                             "\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54"
                             "\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00"
                             "\x09\x00\x28\x00\x1b\x00\x1a\x00")
-                print("Sending fake header.")
         else:
                 response = client.run_in_container(line)
         client.send(response)
@@ -233,7 +231,7 @@ def run_cmd(server, client, msg):
         and finally it'll check the container for changes and return the prompt.
         """
         client.input_list += msg
-        server.logger.info("RECEIVED INPUT {} : {}".format(client.ip, msg))
+        server.logger.info("[{}]: RECEIVED INPUT: {}".format(client.addrport(), msg))
         if msg == [""]:
                 server.logger.info("Ignoring empty input from {}".format(
                         client.ip))
@@ -314,11 +312,11 @@ def execute_cmd(client, server, msg):
         """
         cmd = msg.strip().split(' ')[0]
         if cmd[0] == "." or cmd in IGNORE:
-                server.logger.info("IGNORING {} : {}".format(client.ip, cmd))
+                server.logger.info("[{}]: IGNORING COMMAND: {}".format(client.addrport(), cmd))
                 return
         if 'busybox' in cmd:
-                server.logger.info("SCRIPTED CMD busybox : {}".format(
-                        client.ip, cmd))
+                server.logger.info("[{}]: SCRIPTED CMD: busybox".format(
+                        client.addrport(), cmd))
                 busybox(server, client, msg)
                 return
         if client.passwd_flag is not None:
@@ -326,22 +324,22 @@ def execute_cmd(client, server, msg):
                 return
         if cmd in SCRIPTED:
                 server.logger.info(
-                        "SCRIPTED CMD {} : {}".format(
-                                client.ip, cmd))
+                        "[{}]: SCRIPTED CMD: {}".format(
+                                client.addrport(), cmd))
                 method = getattr(sys.modules[__name__],
                                  "{}_cmd".format(cmd))
                 result = method(server, client, msg)
         elif cmd not in BLACK_LIST and cmd not in IGNORE:
                 server.logger.info(
-                        "EXECUTING CMD {} : {}".format(
-                                client.ip, cmd))
+                        "[{}]: EXECUTING CMD: {}".format(
+                                client.addrport(), cmd))
                 response = client.run_in_container(msg)
                 if "exec failed" not in response:
                         if response == "\n":
                                 return
                         server.logger.debug(
-                                "RESPONSE {}: {}".format(
-                                        client.ip, response[:-1]))
+                                "[{}]: RESPONSE: \n{}".format(
+                                        client.addrport(), response[:-1]))
                         client.send(response)
                         server.logger.debug(client.exit_status)
         else:
@@ -352,7 +350,7 @@ def not_found(client, server, command):
         """
         Defines the response to anything in the blacklist.
         """
-        server.logger.info("BLACKLIST {} : {}".format(client.ip, command))
+        server.logger.info("[{}]: BLACKLIST: {}".format(client.addrport(), command))
         client.send("sh: {}: command not found\n".format(command))
         client.exit_status = 127
 
@@ -364,7 +362,6 @@ def busybox(server, client, command):
         we script out.
         """
         accepted = ['echo', 'tftp', 'wget']
-        print("Entered busybox {}".format(command))
         if re.search(r'busybox ([A-Z]*)$', command, re.MULTILINE) or len(
                         command.split(' ')) == 1:
                 response = client.run_in_container(command)
@@ -376,7 +373,6 @@ def busybox(server, client, command):
                         client.send(response)
                         return
                 if newcommand[0] in accepted:
-                        print("Accepted, ran as {}".format(command))
                         response = client.run_in_container(command)
                 else:
                         execute_cmd(client, server, ' '.join(newcommand))

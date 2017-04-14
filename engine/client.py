@@ -79,12 +79,12 @@ class HoneyTelnetClient(TelnetClient):
         fname = "{}-{}".format(md5, filepath.split('/')[-1])
         if os.path.isfile("./logs/{}.tar".format(fname)):
             server.logger.info(
-                "Not saving duplicate file {} from {}.".
-                format(fname, self.ip))
+                "[{}]: NOT SAVING DUPLICATE FILE: {}".
+                format(self.addrport(), fname))
             return
         server.logger.info(
-            "Saving file {} from {}".
-            format(fname, self.ip))
+            "[{}]: SAVING FILE: {}".
+            format(self.addrport(), fname))
         with open("./logs/{}.tar".format(fname), "bw+") as f:
             strm, stat = self.container.get_archive(filepath)
             f.write(strm.data)

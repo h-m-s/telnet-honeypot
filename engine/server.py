@@ -129,7 +129,7 @@ class HoneyTelnetServer(TelnetServer):
                 the client to the client list, and
                 sends the login message.
                 """
-                self.logger.info("Opened connection to {}".format(
+                self.logger.info("[{}]: CONNECTION ESTABLISHED".format(
                         client.addrport()))
                 self.client_list.append(client)
                 if client.addrport().split(":")[0] == "127.0.0.1":
@@ -148,7 +148,7 @@ class HoneyTelnetServer(TelnetServer):
                 Cleanup ensure the container has no goodies we haven't already copied,
                 and then we close us the socket and check the client's input list for patterns.
                 """
-                self.logger.info("Lost connection to {}".format(
+                self.logger.info("[{}]: DISCONNECTED".format(
                         client.addrport()))
                 client.cleanup_container(self)
                 client.sock.close()
@@ -161,7 +161,7 @@ class HoneyTelnetServer(TelnetServer):
                 """
                 for client in self.client_list:
                         if client.idle() > IDLE_TIMEOUT:
-                                self.logger.info("Kicking idle client from {}".
+                                self.logger.info("[{}]: IDLE TIMEOUT, KICKING".
                                                  format(client.addrport()))
                                 client.active = False
 
@@ -180,7 +180,8 @@ class HoneyTelnetServer(TelnetServer):
                                 if (client.uuid not in self.threads or
                                     self.threads[client.uuid] is None):
                                         self.logger.debug(
-                                                "Spawning up a new thread.")
+                                                "[{}]: SPAWNING NEW THREAD".format(
+                                                        client.addrport()))
                                         client.active_cmds += [
                                                 command]
                                         self.threadlock.release()
@@ -189,7 +190,8 @@ class HoneyTelnetServer(TelnetServer):
                                         self.threads[client.uuid].start()
                                 else:
                                         self.logger.debug(
-                                                "Running in existing thread.")
+                                                "[{}]: USING EXISTING THREAD".format(
+                                                        client.addrport()))
                                         client.active_cmds += [
                                             command]
                                         self.threadlock.release()
@@ -214,7 +216,6 @@ class HoneyTelnetServer(TelnetServer):
                         elif not client.password:
                                 client.password = msg[0]
                                 if self.passwordmode is True:
-                                        print("TRUE")
                                         if (self.username is not None and
                                         (self.username != client.username or
                                         self.password != client.password)):
@@ -225,7 +226,7 @@ class HoneyTelnetServer(TelnetServer):
                                                 return
                                 self.return_prompt(client)
                                 self.logger.info(
-                                "{} logged in as {}-{}".format(
+                                "[{}]: LOGGED IN: {}-{}".format(
                                 client.addrport(),
                                 client.username,
                                 client.password))

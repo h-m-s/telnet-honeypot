@@ -43,7 +43,7 @@ def define_logger(settings):
     """
     Drops the requests loggers to WARNING level.
     Super, duper spammy otherwise, because it'll try to show you
-    every GET/POST made to the dockerd
+    every GET/POST made to the docker socket.
     """
     logging.getLogger("requests").setLevel(logging.WARNING)
 
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     )
 
     logger = logging.getLogger(settings['hostname'])
-    logger.info("Listening for connections on port {}. CTRL-C to break.".
+    logger.info("[SERVER] Listening for connections on port {}. CTRL-C to break.".
                 format(telnet_server.port))
     while telnet_server.SERVER_RUN is True:
         telnet_server.poll()
