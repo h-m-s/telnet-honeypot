@@ -4,59 +4,68 @@ import signal
 from engine.server import HoneyTelnetServer
 import os
 import configparser
-
-IDLE_TIMEOUT = 300
-SERVER_RUN = True
-
-LOG_LOCATION = "/var/log/hms/telnet-log.txt"
+import sys
 
 def signal_handler(signal, frame):
     """
     Handles exit on ctrl-c.
+    Setting SERVER_RUN ends the main loop below and the server
+    will go into clean_exit and close out all open containers.
     """
     print("\nClosing out cleanly...")
     telnet_server.SERVER_RUN = False
 
-def define_logger():
-    logging.basicConfig(level=logging.INFO)
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.DEBUG)
+def define_logger(settings):
+    """
+    Sets up the global formatting for logging.
+
+    By default the log file is set to INFO level,
+    and DEBUG level will only show up on stdout, but
+    another file handler could easily be added.
+    """
+    FORMAT = '%(asctime)s - %(name)s - %(message)s'
+    logging.basicConfig(stream=sys.stdout, level=logging.DEBUG,
+                        format=FORMAT)
+
     try:
-        infohandler = logging.FileHandler(LOG_LOCATION)
+        infohandler = logging.FileHandler(settings['log_location'])
     except:
         infohandler = logging.FileHandler("telnet-log.txt")
     infohandler.setLevel(logging.INFO)
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    infohandler.setFormatter(formatter)
+    infohandler.setFormatter(logging.Formatter(FORMAT))
+
+    debughandler = logging.StreamHandler()
+    debughandler.setLevel(logging.DEBUG)
+
+    logger = logging.getLogger(settings['hostname'])
     logger.addHandler(infohandler)
-    return (logger)
+
+    """
+    Drops the requests loggers to WARNING level.
+    Super, duper spammy otherwise, because it'll try to show you
+    every GET/POST made to the docker socket.
+    """
+    logging.getLogger("requests").setLevel(logging.WARNING)
+
 
 def parse_config():
-    port = 23
-    image = "honeybox"
-    passwordmode = False
-
+    """
+    Parses the local config file for server settings and returns
+    a dictionary.
+    """
+    settings = {}
     config = configparser.ConfigParser()
+    config.read('telnet.cfg')
+    settings['port'] = config.getint('Telnet', 'port')
+    settings['image'] = config.get('Telnet', 'image')
+    settings['passwordmode'] = config.getboolean('Telnet', 'password-mode')
+    settings['hostname'] = config.get('Telnet', 'hostname')
+    settings['log_location'] = config.get('Telnet', 'log')
+    settings['address'] = config.get('Telnet', 'address')
 
-    try:
-        config.read("telnet.cfg")
-    except Exception as e:
-        print("failed to read")
-        print(e)
-        return port, image, passwordmode
-
-    try:
-        port = config.getint('Telnet', 'port')
-        image = config.get('Telnet', 'image')
-        passwordmode = config.getboolean('Telnet', 'password-mode')
-    except:
-        print("failed to parse")
-        pass
-    return port, image, passwordmode
+    return settings
 
 if __name__ == '__main__':
-
     """
     Main loop.
 
@@ -65,18 +74,20 @@ if __name__ == '__main__':
     """
     signal.signal(signal.SIGINT, signal_handler)
 
-    logger = define_logger()
+    settings = parse_config()
 
-    port, image, passwordmode = parse_config()
+    define_logger(settings)
 
     telnet_server = HoneyTelnetServer(
-        port=port,
-        image=image,
-        address='',
-        logger=logger,
-        passwordmode=passwordmode
-        )
-    logger.info("Listening for connections on port {}. CTRL-C to break.".
+        hostname = settings['hostname'],
+        port = settings['port'],
+        address = settings['address'],
+        image = settings['image'],
+        passwordmode = settings['passwordmode'],
+    )
+
+    logger = logging.getLogger(settings['hostname'])
+    logger.info("[SERVER] Listening for connections on port {}. CTRL-C to break.".
                 format(telnet_server.port))
     while telnet_server.SERVER_RUN is True:
         telnet_server.poll()
