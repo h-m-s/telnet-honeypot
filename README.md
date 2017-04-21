@@ -40,8 +40,9 @@ Ensure you're running the latest version of Docker. Docker provides an easy inst
 
 This image can be built with `docker build -t telnet_honeypot .`
 
-and will also require you to build the image in images/ as whatever name you have set in the
-configuration file. Default tag is honeybox.
+You are also required to build the image in images/ as whatever name you have set in the
+configuration file. Default tag is honeybox. This is the image that will be presented in the honeypot,
+and includes any fake files you'd like to use.
 
 Run like so:
 ~~~~
@@ -50,10 +51,9 @@ docker run -itd -v /var/run/docker.sock:/var/run/docker.sock -p 23:23 telnet_hon
 
 The -v option ensures the host docker socket is mounted as a volume to the container.
 
-Full disclosure: The security of this has been questioned! Please be aware of the
+Full disclosure: The security of this is questionable at best, and setting up
+TLS is recommended. Please be aware of the possible
 consequences of mounting the socket as such, and be sure to never run this
 on a host system that may contain personal or sensitive information.
-It is, in my opinion, highly unlikely that an attacker could escape from the
-container, but precautions should always be taken!
 
 The -p option publishes the port the telnet server needs to communicate through.
