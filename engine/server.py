@@ -10,10 +10,7 @@ import sys
 import os
 import re
 import time
-<<<<<<< HEAD
 import docker
-=======
->>>>>>> 59174f8820a71017eb4786ccd0a8ad1464e3c983
 
 IDLE_TIMEOUT = 120
 
@@ -35,11 +32,8 @@ class HoneyTelnetServer(TelnetServer):
                 self.passwordmode = False
                 self.image = image
                 self.hostname = hostname
-<<<<<<< HEAD
                 self.dclient = docker.from_env()
                 self.APIClient = docker.APIClient(base_url='unix://var/run/docker.sock')
-=======
->>>>>>> 59174f8820a71017eb4786ccd0a8ad1464e3c983
 
         def poll(self):
             """

@@ -7,11 +7,7 @@ from threading import Thread
 import os
 
 class HoneyTelnetClient(TelnetClient):
-<<<<<<< HEAD
     def __init__(self, sock, addr_tup, server):
-=======
-    def __init__(self, sock, addr_tup):
->>>>>>> 59174f8820a71017eb4786ccd0a8ad1464e3c983
         """
         The HoneyTelnetClient is the actual client handler for telnet connections.
 
@@ -30,13 +26,7 @@ class HoneyTelnetClient(TelnetClient):
             ip: client ip
         """
         super().__init__(sock, addr_tup)
-<<<<<<< HEAD
         self.container = server.dclient.containers.run(
-=======
-        self.dclient = docker.from_env()
-        self.APIClient = docker.APIClient(base_url='unix://var/run/docker.sock')
-        self.container = self.dclient.containers.run(
->>>>>>> 59174f8820a71017eb4786ccd0a8ad1464e3c983
             "honeybox", "/bin/sh",
             detach=True,
             tty=True,
@@ -59,13 +49,8 @@ class HoneyTelnetClient(TelnetClient):
         Checks for any changes, and then stops/removes it.
         """
         self.check_changes(server)
-<<<<<<< HEAD
         self.server.APIClient.remove_container(self.container.id, force=True)
-        
-=======
-        self.APIClient.remove_container(self.container.id, force=True)
 
->>>>>>> 59174f8820a71017eb4786ccd0a8ad1464e3c983
     def check_changes(self, server):
         """
         Checks for the difference between the container's base image and the
@@ -117,15 +102,8 @@ class HoneyTelnetClient(TelnetClient):
         just drop the higher level client altogether.
         """
         newcmd = '/bin/sh -c "cd {} && {};exit $?"'.format(self.pwd, line)
-<<<<<<< HEAD
         self.exec = self.server.APIClient.exec_create(self.container.id, newcmd)
         result = self.server.APIClient.exec_start(self.exec['Id']).decode(
           "utf-8", "replace")
         self.exit_status = self.server.APIClient.exec_inspect(self.exec['Id'])['ExitCode']
-=======
-        self.exec = self.APIClient.exec_create(self.container.id, newcmd)
-        result = self.APIClient.exec_start(self.exec['Id']).decode(
-          "utf-8", "replace")
-        self.exit_status = self.APIClient.exec_inspect(self.exec['Id'])['ExitCode']
->>>>>>> 59174f8820a71017eb4786ccd0a8ad1464e3c983
         return(result)
