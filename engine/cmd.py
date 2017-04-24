@@ -121,11 +121,7 @@ def dd_cmd(server, client, line):
         Mirai and Hajime like this a lot more than a 64 bit response.
         Planning on adding more configurable choices soon.
         """
-        header = ("\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00"
-                  "\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00"
-                  "\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54"
-                  "\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00"
-                  "\x09\x00\x28\x00\x1b\x00\x1a\x00")
+        header = ("\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00")
         client.send(header)
         client.send("+10 records in\r\n1+0 records out\n")
         server.logger.info("[{}]: SENT FAKE DD".format(client.addport()))
@@ -361,7 +357,7 @@ def busybox(server, client, command):
         which commands run through /bin/busybox and which
         we script out.
         """
-        accepted = ['echo', 'tftp', 'wget']
+        not_accepted = ['nc']
         if re.search(r'busybox ([A-Z]*)$', command, re.MULTILINE) or len(
                         command.split(' ')) == 1:
                 response = client.run_in_container(command)
@@ -372,7 +368,7 @@ def busybox(server, client, command):
                         response = client.run_in_container(command)
                         client.send(response)
                         return
-                if newcommand[0] in accepted:
+                if newcommand[0] not in not_accepted:
                         response = client.run_in_container(command)
                 else:
                         execute_cmd(client, server, ' '.join(newcommand))
