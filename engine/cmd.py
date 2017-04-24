@@ -357,7 +357,7 @@ def busybox(server, client, command):
         which commands run through /bin/busybox and which
         we script out.
         """
-        not_accepted = ['nc']
+        not_accepted = ['nc', 'cat']
         if re.search(r'busybox ([A-Z]*)$', command, re.MULTILINE) or len(
                         command.split(' ')) == 1:
                 response = client.run_in_container(command)
