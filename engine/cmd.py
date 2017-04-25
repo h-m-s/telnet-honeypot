@@ -5,10 +5,20 @@ import os
 import threading
 from threading import Thread
 
-SCRIPTED = ["dd", "rm", "exit", "cd", "cat", "echo", "reboot", "passwd"]
-BLACK_LIST = ["docker", "nc"]
-IGNORE = ["sh", "chmod", "shell", "sleep"]
+SCRIPTED = ["rm", "exit", "cd", "cat", "echo", "reboot", "passwd", "sh"]
+BLACK_LIST = ["docker", "nc", "dd"]
+IGNORE = ["chmod", "shell", "sleep"]
 
+def sh_cmd(server, client, line):
+    """                                                                         
+    Serves up the default message from Busybox                                  
+    """
+
+    banner = ("\n\nBusyBox v1.18.4 (2015-10-21 12:02:45 CST) built-in shell (as\h)\n"
+              "Revision: 11734\n"
+              "Enter 'help' for a list of built-in commands.\n\n")
+    client.send(banner)
+                    
 
 def passwd_cmd(server, client, line):
         """
