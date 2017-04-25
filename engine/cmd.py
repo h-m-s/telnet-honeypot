@@ -1,5 +1,5 @@
 import re
-import time
+1;4205;0cimport time
 import sys
 import os
 import threading
@@ -18,7 +18,7 @@ def sh_cmd(server, client, line):
               "Revision: 11734\n"
               "Enter 'help' for a list of built-in commands.\n\n")
     client.send(banner)
-                    
+    return
 
 def passwd_cmd(server, client, line):
         """
@@ -133,7 +133,7 @@ def dd_cmd(server, client, line):
         
         header = ("\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00\x1b\x00\x1a\x00")
         client.send(header)
-        client.send("52+0 records in\r\n52+0 records out")
+        client.send("52+0 records in\r\n52+0 records out\n")
         server.logger.info("[{}]: SENT FAKE DD".format(client.addrport()))
         client.exit_status = 0
 
