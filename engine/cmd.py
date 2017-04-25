@@ -1,5 +1,5 @@
 import re
-1;4205;0cimport time
+import time
 import sys
 import os
 import threading
