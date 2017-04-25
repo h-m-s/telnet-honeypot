@@ -5,8 +5,8 @@ import os
 import threading
 from threading import Thread
 
-SCRIPTED = ["rm", "exit", "cd", "cat", "echo", "reboot", "passwd", "sh"]
-BLACK_LIST = ["docker", "nc", "dd"]
+SCRIPTED = ["rm", "exit", "cd", "cat", "echo", "reboot", "passwd", "sh", "dd"]
+BLACK_LIST = ["docker", "nc"]
 IGNORE = ["chmod", "shell", "sleep"]
 
 def sh_cmd(server, client, line):
@@ -121,7 +121,6 @@ def echo_cmd(server, client, line):
             server.logger.debug(
                 client.exit_status)
 
-
 def dd_cmd(server, client, line):
         """
         This command is tailored to Hajime, which uses dd to
@@ -131,12 +130,12 @@ def dd_cmd(server, client, line):
         Mirai and Hajime like this a lot more than a 64 bit response.
         Planning on adding more configurable choices soon.
         """
-        header = ("\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00")
+        
+        header = ("\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00\x1b\x00\x1a\x00")
         client.send(header)
-        client.send("+10 records in\r\n1+0 records out\n")
-        server.logger.info("[{}]: SENT FAKE DD".format(client.addport()))
+        client.send("52+0 records in\r\n52+0 records out")
+        server.logger.info("[{}]: SENT FAKE DD".format(client.addrport()))
         client.exit_status = 0
-
 
 def reboot_cmd(server, client, line):
         """
