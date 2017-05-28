@@ -13,6 +13,8 @@ class Attacker(BaseModel, Base):
     __tablename__ = 'attackers'
     ip = Column(postgresql.INET, primary_key=True)
     count = Column(Integer, nullable=False)
+    asn = Column(Integer)
+    asn_country_code = Column(String)
 
     def __init__(self, ip):
         self.ip = ip
@@ -22,5 +24,5 @@ class Attacker(BaseModel, Base):
     def get_attacker_asn(self, ip):
         whois_object = IPWhois(ip)
         results = whois_object.lookup()
-        return(results['asn'], results['asn_country_code'])
+        return(results['asn'].split(' ')[0], results['asn_country_code'])
 
