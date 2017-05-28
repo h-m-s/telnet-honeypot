@@ -2,7 +2,6 @@ import threading
 from miniboa.async import TelnetServer, _on_connect, _on_disconnect, select
 from engine.client import HoneyTelnetClient
 from engine.cmd import run_cmd
-from patterns.patterns import check_list
 from engine.threads import CommandThread
 import logging
 import threading
@@ -11,6 +10,7 @@ import os
 import re
 import time
 import docker
+from postgres_db.client import process_attack
 
 IDLE_TIMEOUT = 120
 
@@ -155,7 +155,7 @@ class HoneyTelnetServer(TelnetServer):
                         client.addrport()))
                 client.cleanup_container(self)
                 client.sock.close()
-                check_list(client, self)
+                process_attack(client)
                 self.client_list.remove(client)
 
         def kick_idle(self):
