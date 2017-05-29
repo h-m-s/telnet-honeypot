@@ -62,8 +62,15 @@ def sanitize_pattern(client):
 def process_attack(client):
     if client.ip == '127.0.0.1':
         return
-    try:
-        sanitized_pattern, md5 = sanitize_pattern(client)
-        add_attack(client.ip, sanitized_pattern, md5)
-    except TypeError:
-        return
+    tries = 0
+    while (tries < 5):
+        try:
+            sanitized_pattern, md5 = sanitize_pattern(client)
+            add_attack(client.ip, sanitized_pattern, md5)
+            return(True)
+        except TypeError:
+            return
+        except OperationalError as err:
+            print("Connection failed, retrying.")
+            storage.session.rollback()
+            tries += 1
