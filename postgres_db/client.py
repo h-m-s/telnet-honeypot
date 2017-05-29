@@ -4,8 +4,8 @@ Module
 """
 import hashlib
 import json
-from postgres_db.models import *
-from postgres_db.models import storage
+from models import *
+from models import storage
 import os
 import re
 import datetime

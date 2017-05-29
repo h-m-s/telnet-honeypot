@@ -2,27 +2,22 @@
 """                                                                                                                                                                    
 Definition for tweeted tweets mapping                                                                                                                                  
 """
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects import postgresql
-from postgres_db.models.base import BaseModel, Base
-from ipwhois import IPWhois
+from models.base import BaseModel, Base
 
-class Attacker(BaseModel, Base):
+class Pattern(BaseModel, Base):
     """                                                                                                                                                                    Class for attackers                                                                                                                                                    """
-    __tablename__ = 'attackers'
-    ip = Column(postgresql.INET, primary_key=True)
+    __tablename__ = 'attack_patterns'
+    pattern_id = Column(Integer, primary_key=True, autoincrement=True)
+    pattern = Column(String(500))
+    pattern_md5 = Column(Text)
     count = Column(Integer, nullable=False)
-    asn = Column(Integer)
-    asn_country_code = Column(String)
 
-    def __init__(self, ip):
-        self.ip = ip
+    def __init__(self, sanitized_pattern, pattern_md5):
+        self.pattern = sanitized_pattern
+        self.pattern_md5 = pattern_md5
         self.count = 1
-        self.asn, self.asn_country_code = self.get_attacker_asn(ip)
-
-    def get_attacker_asn(self, ip):
-        whois_object = IPWhois(ip)
-        results = whois_object.lookup()
-        return(results['asn'].split(' ')[0], results['asn_country_code'])
+        print(self.pattern)
 

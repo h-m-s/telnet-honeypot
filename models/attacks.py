@@ -6,10 +6,10 @@ Definition for tweeted tweets mapping
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects import postgresql
-from postgres_db.models.base import BaseModel, Base
-from postgres_db.models.attackers import Attacker
-from postgres_db.models.attack_patterns import Pattern
-from postgres_db.models.servers import Server
+from models.base import BaseModel, Base
+from models.attackers import Attacker
+from models.attack_patterns import Pattern
+from models.servers import Server
 import datetime
 
 class Attack(BaseModel, Base):
@@ -23,10 +23,9 @@ class Attack(BaseModel, Base):
     timestamp = Column(DateTime)
 
     def __init__(self, attacker, pattern_id, host, timestamp):
-        from postgres_db.models import storage
+        from models import storage
         self.attacker_ip = attacker.ip
         self.pattern_id = pattern_id
         self.host = host
         self.timestamp = timestamp
-        self.server_id = storage.uuid
-
+        self.server_id = storage.session.query(Server).filter(Server.ip == storage.ip).one().server_id
