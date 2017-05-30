@@ -1,6 +1,6 @@
-#!/usr/bin/python3                                                                                                                                                      
-"""                                                                                                                                                                    
-Definition for tweeted tweets mapping                                                                                                                                  
+#!/usr/bin/python3
+"""
+Defines attacker objects for the db.
 """
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
@@ -9,7 +9,11 @@ from models.base import BaseModel, Base
 from ipwhois import IPWhois
 
 class Attacker(BaseModel, Base):
-    """                                                                                                                                                                    Class for attackers                                                                                                                                                    """
+    """
+    Class definition for attackers.
+    Stores the ip and ASN information for attackers, and a count
+    to increment.
+    """
     __tablename__ = 'attackers'
     ip = Column(postgresql.INET, primary_key=True)
     count = Column(Integer, nullable=False)
@@ -25,4 +29,3 @@ class Attacker(BaseModel, Base):
         whois_object = IPWhois(ip)
         results = whois_object.lookup()
         return(results['asn'].split(' ')[0], results['asn_country_code'])
-

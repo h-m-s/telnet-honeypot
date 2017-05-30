@@ -1,6 +1,6 @@
-#!/usr/bin/python3                                                                                                                                                      
-"""                                                                                                                                                                    
-Definition for tweeted tweets mapping                                                                                                                                  
+#!/usr/bin/python3
+"""
+Module to map attack objects to Postgres DB
 """
 
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, JSON
@@ -13,7 +13,9 @@ from models.servers import Server
 import datetime
 
 class Attack(BaseModel, Base):
-    """                                                                                                                                                                    Class for attackers                                                                                                                                                    """
+    """
+    Class definition to map attack objects to Postgres DB
+    """
     __tablename__ = 'attacks'
     attack_id = Column(Integer, primary_key=True, autoincrement=True)
     attacker_ip = Column(postgresql.INET, ForeignKey("attackers.ip"))
