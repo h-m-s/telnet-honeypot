@@ -53,8 +53,8 @@ class HoneyTelnetServer(TelnetServer):
                 if client.active:
                     recv_list.append(client.fileno)
                 else:
-                    self.on_disconnect(client)
-                    del_list.append(client.fileno)
+                    if self.on_disconnect(client) == True:
+                        del_list.append(client.fileno)
             # Delete inactive connections from the dictionary
             for client in del_list:
                 del self.clients[client]
@@ -151,12 +151,15 @@ class HoneyTelnetServer(TelnetServer):
                 Cleanup ensure the container has no goodies we haven't already copied,
                 and then we close us the socket and check the client's input list for patterns.
                 """
+                if len(client.active_cmds) > 0:
+                    return False	
                 self.logger.info("[{}]: DISCONNECTED".format(
                         client.addrport()))
                 client.cleanup_container(self)
                 process_attack(client)
                 client.sock.close()
                 self.client_list.remove(client)
+                return True
 
         def kick_idle(self):
                 """
