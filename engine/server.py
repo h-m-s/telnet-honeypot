@@ -154,8 +154,8 @@ class HoneyTelnetServer(TelnetServer):
                 self.logger.info("[{}]: DISCONNECTED".format(
                         client.addrport()))
                 client.cleanup_container(self)
-                client.sock.close()
                 process_attack(client)
+                client.sock.close()
                 self.client_list.remove(client)
 
         def kick_idle(self):

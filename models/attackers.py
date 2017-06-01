@@ -26,6 +26,6 @@ class Attacker(BaseModel, Base):
         self.asn, self.asn_country_code = self.get_attacker_asn(ip)
 
     def get_attacker_asn(self, ip):
-        whois_object = IPWhois(ip)
-        results = whois_object.lookup()
+        whois = IPWhois(ip)
+        results = whois.lookup_whois()
         return(results['asn'].split(' ')[0], results['asn_country_code'])

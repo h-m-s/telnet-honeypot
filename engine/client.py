@@ -55,7 +55,8 @@ class HoneyTelnetClient(TelnetClient):
         try:
             self.check_changes(server)
             self.server.APIClient.remove_container(self.container.id, force=True)
-            self.store_files()
+            if server.postgres == True:
+                self.store_files()
         except:
             return
 
@@ -112,11 +113,15 @@ class HoneyTelnetClient(TelnetClient):
             if query.count() != 0:
                 malware_file = query.all()[0]
                 malware_file.count += 1
-                alt_names = json.loads(str(malware_file.alternative_names))
+                try:
+                    alt_names = json.loads(malware_file.alternative_names)
+                except Exception as err:
+                    print("Issue loading json for {}: {}".format(malware_file.md5, err))
                 if malware_file.file_name != malware['file_name']:
                     if malware['file_name'] not in alt_names:
                         alt_names += [malware['file_name']]
                 malware_file.alternative_names = json.dumps(alt_names)
+                servers = json.loads(malware_file.servers)
             else:
                 malware_file = MalwareFile(malware['file_name'], malware['md5'])
             malware_file.save()

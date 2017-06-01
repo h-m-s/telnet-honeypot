@@ -32,12 +32,12 @@ def add_pattern(pattern, md5):
     pattern.save()
     return(pattern)
 
-def add_attack(attacker_ip, pattern, md5):
+def add_attack(client, pattern, md5):
     timestamp = datetime.datetime.utcnow() # add option to change format in config
     host = os.getenv('HOSTNAME', 'honey') # add option to overwrite this in config
-    attacker = add_attacker(attacker_ip)
+    attacker = add_attacker(client.ip)
     attack_pattern = add_pattern(pattern, md5)
-    attack = Attack(attacker, attack_pattern.pattern_id, host, timestamp)
+    attack = Attack(attacker, attack_pattern.pattern_id, host, timestamp, client.files)
     attack.save()
 
 def sanitize_pattern(client):
@@ -66,11 +66,13 @@ def process_attack(client):
     while (tries < 5):
         try:
             sanitized_pattern, md5 = sanitize_pattern(client)
-            add_attack(client.ip, sanitized_pattern, md5)
+            add_attack(client, sanitized_pattern, md5)
             return(True)
         except TypeError:
             return
-        except OperationalError as err:
+        except Exception as err:
+            print(err)
             print("Connection failed, retrying.")
             storage.session.rollback()
             tries += 1
+        print("succeeded")

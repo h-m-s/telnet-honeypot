@@ -62,6 +62,7 @@ def parse_config():
     settings['hostname'] = config.get('Telnet', 'hostname')
     settings['log_location'] = config.get('Telnet', 'log')
     settings['address'] = config.get('Telnet', 'address')
+    settings['postgres'] = config.getboolean('Telnet', 'postgres')
 
     return settings
 
@@ -87,6 +88,7 @@ if __name__ == '__main__':
     )
 
     logger = logging.getLogger(settings['hostname'])
+    telnet_server.postgres = settings['postgres']
     logger.info("[SERVER] Listening for connections on port {}. CTRL-C to break.".
                 format(telnet_server.port))
     while telnet_server.SERVER_RUN is True:

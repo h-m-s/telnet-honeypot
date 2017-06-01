@@ -24,10 +24,11 @@ class Attack(BaseModel, Base):
     server_id = Column(postgresql.UUID, ForeignKey("servers.server_id"))
     timestamp = Column(DateTime)
 
-    def __init__(self, attacker, pattern_id, host, timestamp):
+    def __init__(self, attacker, pattern_id, host, timestamp, files):
         from models import storage
         self.attacker_ip = attacker.ip
         self.pattern_id = pattern_id
         self.host = host
         self.timestamp = timestamp
         self.server_id = storage.session.query(Server).filter(Server.ip == storage.ip).one().server_id
+        self.downloaded_files = files
