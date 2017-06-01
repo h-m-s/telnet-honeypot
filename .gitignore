@@ -107,3 +107,4 @@ ENV/
 # Specific stuff for telnet-honeypot #
 ######################################
 patterns.json
+telnet.cfg
