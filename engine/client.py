@@ -52,9 +52,12 @@ class HoneyTelnetClient(TelnetClient):
 
         Checks for any changes, and then stops/removes it.
         """
-        self.check_changes(server)
-        self.server.APIClient.remove_container(self.container.id, force=True)
-        self.store_files()
+        try:
+            self.check_changes(server)
+            self.server.APIClient.remove_container(self.container.id, force=True)
+            self.store_files()
+        except:
+            return
 
     def check_changes(self, server):
         """
