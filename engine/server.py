@@ -34,6 +34,7 @@ class HoneyTelnetServer(TelnetServer):
                 self.hostname = hostname
                 self.dclient = docker.from_env()
                 self.APIClient = docker.APIClient(base_url='unix://var/run/docker.sock')
+                self.negotiated = False
 
         def poll(self):
             """
@@ -42,7 +43,7 @@ class HoneyTelnetServer(TelnetServer):
 
             From miniboa:
             Perform a non-blocking scan of recv and send states on the server
-            and client connection sockets.  Process new connection requests,
+            tand client connection sockets.  Process new connection requests,
             read incomming data, and send outgoing data.  Sends and receives
             may be partial.
             """
@@ -131,7 +132,14 @@ class HoneyTelnetServer(TelnetServer):
                 On connect, logs the IP/port, appends
                 the client to the client list, and
                 sends the login message.
+
+                Experimenting with how to handle Telnet negotiation properly
                 """
+
+                client.request_dont_echo()
+                client.request_naws()
+                client.request_wont_echo()
+                client.send('\r\r\n')
                 self.logger.info("[{}]: CONNECTION ESTABLISHED".format(
                         client.addrport()))
                 self.client_list.append(client)
@@ -141,8 +149,7 @@ class HoneyTelnetServer(TelnetServer):
                         client.password = "local"
                 else:
                         client.mode = "telnet"
-                        client.request_terminal_type()
-                        client.send("{} login: ".format(self.hostname))
+                self.login_screen(client, None)
 
         def on_disconnect(self, client):
                 """
@@ -213,6 +220,9 @@ class HoneyTelnetServer(TelnetServer):
                 getting sent in with the username, so we'll just filter those
                 here until we can figure out how to fix that?
                 """
+                if msg is None:
+                        client.send("cam5 login: ")
+                        return
                 if msg != "" and client.mode == "telnet":
                         if not client.username:
                                 if "#" in msg[0]:

@@ -207,6 +207,20 @@ class TelnetClient(object):
         self._iac_do(SGA)
         self._note_reply_pending(SGA, True)
 
+    def request_will_sga(self):
+        """
+        tells the client we'll supress Go-Ahead.
+        """
+        self._iac_will(SGA)
+        self._note_reply_pending(SGA, True)
+
+    def request_dont_echo(self):
+        """
+        Don't echo us.
+        """
+        self._iac_dont(ECHO)
+        self._note_reply_pending(ECHO, True)
+
     def request_will_echo(self):
         """
         Tell the client that we would like to echo their text.  See RFC 857.
@@ -276,6 +290,7 @@ class TelnetClient(object):
         try:
             #Encode recieved bytes in ansi
             data = str(self.sock.recv(2048), "cp1252")
+            print(data)
         except socket.error as err:
             logging.error("RECIEVE socket error '{}' from {}".format(err, self.addrport()))
             raise ConnectionLost()
@@ -304,6 +319,8 @@ class TelnetClient(object):
             self.command_list.append(cmd)
             self.cmd_ready = True
             self.recv_buffer = self.recv_buffer[mark+1:]
+#            if self.recv_buffer[0] == '\n':
+#                self.recv_buffer = self.recv_buffer[1:]
 
     def _recv_byte(self, byte):
         """
