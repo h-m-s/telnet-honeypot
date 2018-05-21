@@ -84,7 +84,7 @@ class HoneyTelnetClient(TelnetClient):
         Should we check against db and not save if matching md5 in db?
         """
         md5 = self.container.exec_run("md5sum {}".format(
-            filepath)).decode("utf-8")
+            filepath))[1].decode("utf-8")
         if 'No such file' in md5:
             return
         md5 = md5.split(' ')[0]
@@ -104,7 +104,8 @@ class HoneyTelnetClient(TelnetClient):
             format(self.addrport(), fname))
         with open("./logs/{}.tar".format(fname), "bw+") as f:
             strm, stat = self.container.get_archive(filepath)
-            f.write(strm.data)
+            for line in strm:
+                f.write(line)
 
     def store_files(self):
         for malware in self.files:

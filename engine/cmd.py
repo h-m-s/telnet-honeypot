@@ -83,7 +83,7 @@ def rm_cmd(server, client, line):
         try:
                 target = line.split(' ')[1].strip()
         except:
-                client.send(client.container.exec_run("/bin/sh -c rm")
+                client.send(client.container.exec_run("/bin/sh -c rm")[1]
                             .decode("utf-8"))
                 return
         client.run_in_container("test -f {}")
@@ -161,11 +161,11 @@ def cd_cmd(server, client, line):
     """
     if len(line.split(' ')) < 2:
         client.pwd = client.container.exec_run(
-            "/bin/sh -c 'echo $HOME'").decode("utf-8")[:-1]
+            "/bin/sh -c 'echo $HOME'")[1].decode("utf-8")[:-1]
         return
     dir = line.split(' ')[1]
     response = client.container.exec_run(
-        '/bin/sh -c "cd ' + client.pwd + ';cd ' + dir + ';pwd' '"').decode(
+        '/bin/sh -c "cd ' + client.pwd + ';cd ' + dir + ';pwd' '"')[1].decode(
             "utf-8")
     if "can't cd" in response:
         message = "sh: cd: can't cd to {}\n".format(dir)
