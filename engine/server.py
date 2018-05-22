@@ -178,7 +178,7 @@ class HoneyTelnetServer(TelnetServer):
                 """
                 for client in self.client_list:
                         if client.idle() > IDLE_TIMEOUT:
-                                self.logger.info("Client timeout", extra={
+                                self.logger.debug("Client timeout", extra={
                                                          'client_ip': client.ip,
                                                          'client_port': client.remote_port
                                                          })
