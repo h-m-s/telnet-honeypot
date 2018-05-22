@@ -56,7 +56,8 @@ class HoneyTelnetClient(TelnetClient):
             self.server.APIClient.remove_container(self.container.id, force=True)
             if server.postgres == True:
                 self.store_files()
-        except:
+        except Exception as err:
+            logger.debug("Exception cleaning up container", extra={'exception', err})
             return
 
     def check_changes(self, server):
@@ -69,7 +70,7 @@ class HoneyTelnetClient(TelnetClient):
             for difference in self.container.diff():
                 result = self.container.exec_run(
                     '/bin/sh -c "test -d {} || echo NO"'.format(
-                        difference['Path']))
+                        difference['Path']))[1]
                 if "NO" in str(result):  # If echo 'NO' runs, file is not a dir
                     self.save_file(server, difference['Path'])
 
@@ -95,17 +96,17 @@ class HoneyTelnetClient(TelnetClient):
         fname = "{}-{}".format(md5, file_name)
         if os.path.isfile("./logs/{}.tar".format(fname)):
             server.logger.info("Not saving duplicate file", extra={
-                                                                'client_ip': client.ip,
-                                                                'client_port': client.remote_port,
-                                                                'filename': file_name,
-                                                                'md5': md5
+                                                                'client_ip': self.ip,
+                                                                'client_port': self.remote_port,
+                                                                'file_name': file_name,
+                                                                'file_md5': md5
                                                             })
             return
         server.logger.info("Saving new file", extra={
-                                              'client_ip': client.ip,
-                                              'client_port': client.remote_port,
-                                              'filename': file_name,
-                                              'md5': md5
+                                              'client_ip': self.ip,
+                                              'client_port': self.remote_port,
+                                              'file_name': file_name,
+                                              'file_md5': md5
                                               })
         with open("./logs/{}.tar".format(fname), "bw+") as f:
             strm, stat = self.container.get_archive(filepath)
