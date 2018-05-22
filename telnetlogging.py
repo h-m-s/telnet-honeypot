@@ -9,7 +9,7 @@ def setup_logging():
         'disable_existing_loggers': False,
         'formatters': {
             'json': {
-                'format': '%(message)s %(lineno)d %(pathname)s',
+                'format': '%(asctime)s %(message)s %(lineno)d %(pathname)s',
                 'class': 'pythonjsonlogger.jsonlogger.JsonFormatter'
             }
         },
