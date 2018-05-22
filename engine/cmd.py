@@ -108,9 +108,11 @@ def echo_cmd(server, client, line):
         if line.split(' ')[1] == '-e' or line.split(' ')[1] == '-ne':
                 line = line.replace('//', '/')
                 line = line.replace('"', "'")
-        server.logger.info(
-            "[{}]: EXECUTING CMD: {}".format(
-                client.addrport(), line.split(' ')[0]))
+        server.logger.info("Executing command", extra={
+                                                'client_ip': client.ip,
+                                                'client_port': client.remote_port,
+                                                'command': line.split(' ')[0]
+                                                })
         response = client.run_in_container(line)
         if "exec failed" not in response:
             if response == "\n":
@@ -134,7 +136,10 @@ def dd_cmd(server, client, line):
         header = ("\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00\x01\x00\x00\x00\xbc\x14\x01\x00\x34\x00\x00\x00\x54\x52\x00\x00\x02\x04\x00\x05\x34\x00\x20\x00\x09\x00\x28\x00\x1b\x00\x1a\x00")
         client.send(header)
         client.send("52+0 records in\r\n52+0 records out\n")
-        server.logger.info("[{}]: SENT FAKE DD".format(client.addrport()))
+        server.logger.info("Sent fake DD", extra={
+                                           'client_ip': client.ip,
+                                           'client_port': client.remote_port,
+                                           })
         client.exit_status = 0
 
 def reboot_cmd(server, client, line):
@@ -236,10 +241,16 @@ def run_cmd(server, client, msg):
         and finally it'll check the container for changes and return the prompt.
         """
         client.input_list += msg
-        server.logger.info("[{}]: RECEIVED INPUT: {}".format(client.addrport(), msg))
+        server.logger.info("Received input", extra={
+                                             'client_ip': client.ip,
+                                             'client_port': client.remote_port,
+                                             'input': msg,
+                                             })
         if msg == [""]:
-                server.logger.info("Ignoring empty input from {}".format(
-                        client.ip))
+                server.logger.info("Ignoring empty input", extra={
+                                                           'client_ip': client.ip,
+                                                           'client_port': client.remote_port,
+                                                           })
                 return
         if not client.username or not client.password:
                 server.login_screen(client, msg)
@@ -276,10 +287,8 @@ def loop_cmds(server, client, msg):
                                 if (client.exit_status != 0):
                                         server.logger.debug(
                                                 "EXIT NOT ZERO")
-                                        print(cmd[1])
                                         loop_cmds(server, client, [cmd[1]])
                                 else:
-                                        print("Exit zero, breaking")
                                         return
                 elif len(re.findall("(.*)&&(.*)", line)) > 0:
                         reg = re.findall("(.*)&&(.*)", line)
@@ -317,34 +326,44 @@ def execute_cmd(client, server, msg):
         """
         cmd = msg.strip().split(' ')[0]
         if cmd[0] == "." or cmd in IGNORE:
-                server.logger.info("[{}]: IGNORING COMMAND: {}".format(client.addrport(), cmd))
+                server.logger.info("Ignoring command", extra={
+                                                       'client_ip': client.ip,
+                                                       'client_port': client.remote_port,
+                                                       'command': cmd,
+                                                       })
                 return
         if 'busybox' in cmd:
-                server.logger.info("[{}]: SCRIPTED CMD: busybox".format(
-                        client.addrport(), cmd))
+                server.logger.info("Executing scripted command", extra={
+                                                       'client_ip': client.ip,
+                                                       'client_port': client.remote_port,
+                                                       'command': cmd
+                                                       })
                 busybox(server, client, msg)
                 return
         if client.passwd_flag is not None:
                 passwd_cmd(server, client, msg)
                 return
         if cmd in SCRIPTED:
-                server.logger.info(
-                        "[{}]: SCRIPTED CMD: {}".format(
-                                client.addrport(), cmd))
+                server.logger.info("Executing scripted command", extra={
+                                                       'client_ip': client.ip,
+                                                       'client_port': client.remote_port,
+                                                       'command': cmd
+                                                       })
                 method = getattr(sys.modules[__name__],
                                  "{}_cmd".format(cmd))
                 result = method(server, client, msg)
         elif cmd not in BLACK_LIST and cmd not in IGNORE:
-                server.logger.info(
-                        "[{}]: EXECUTING CMD: {}".format(
-                                client.addrport(), cmd))
+                server.logger.info("Executing raw command", extra={
+                                                       'client_ip': client.ip,
+                                                       'client_port': client.remote_port,
+                                                       'command': cmd
+                                                       })
                 response = client.run_in_container(msg)
                 if "exec failed" not in response:
                         if response == "\n":
                                 return
-                        server.logger.debug(
-                                "[{}]: RESPONSE: \n{}".format(
-                                        client.addrport(), response[:-1]))
+                        server.logger.debug("[{}]: RESPONSE: \n{}".format(
+                                                                   client.addrport(), response[:-1]))
                         client.send(response)
                         server.logger.debug(client.exit_status)
         else:
@@ -355,7 +374,11 @@ def not_found(client, server, command):
         """
         Defines the response to anything in the blacklist.
         """
-        server.logger.info("[{}]: BLACKLIST: {}".format(client.addrport(), command))
+        server.logger.info("Blacklisted command", extra={
+                                                  'client_ip': client.ip,
+                                                  'client_port': client.remote_port,
+                                                  'command': cmd
+                                                  })
         client.send("sh: {}: command not found\n".format(command))
         client.exit_status = 127
 

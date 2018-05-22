@@ -55,10 +55,15 @@ if __name__ == '__main__':
         passwordmode = settings['passwordmode'],
     )
 
-    logger = logging.getLogger(settings['hostname'])
+    logger = logging.getLogger('telnet')
     telnet_server.postgres = settings['postgres']
-    logger.info("[SERVER] Listening for connections on port {}. CTRL-C to break.".
-                format(telnet_server.port))
+    logger.info("Server started", extra={
+                                   'port': telnet_server.port,
+                                   'address': telnet_server.address,
+                                   'hostname': telnet_server.hostname,
+                                   'image': telnet_server.image,
+                                   'passwordmode': telnet_server.passwordmode
+                                    })
     while telnet_server.SERVER_RUN is True:
         telnet_server.poll()
         telnet_server.kick_idle()

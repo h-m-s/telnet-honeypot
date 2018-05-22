@@ -23,17 +23,18 @@ def setup_logging():
             'json': {
                 'class': 'logging.FileHandler',
 		'filename': '/var/log/hms/telnet.log',
-                'formatter': 'json'
+                'formatter': 'json',
+                'level': logging.INFO,
             }
         },
         'loggers': {
-            '': {
+            'telnet': {
                 'handlers': ['json', 'console'],
                 'level': logging.DEBUG
             }
         }
     })
-
+    
     configure(
         context_class=threadlocal.wrap_dict(dict),
         logger_factory=stdlib.LoggerFactory(),
@@ -47,7 +48,8 @@ def setup_logging():
             processors.StackInfoRenderer(),
             processors.format_exc_info,
             processors.UnicodeDecoder(),
-            stdlib.render_to_log_kwargs]
+            processors.KeyValueRenderer()
+        ]
     )
 
     """

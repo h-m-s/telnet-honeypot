@@ -4,41 +4,8 @@ Module
 """
 import hashlib
 import json
-from models import *
-from models import storage
-import os
 import re
-import datetime
-
-def add_attacker(attacker_ip):
-    query = storage.session.query(Attacker).filter_by(ip=attacker_ip).all()
-    if query:
-        a = query[0]
-        a.count += 1
-    else:
-        a = Attacker(attacker_ip)
-    a.save()
-    return(a)
-
-def add_pattern(pattern, md5):
-    query = storage.session.query(Pattern).filter_by(pattern_md5=md5).all()
-    if query:
-        print("MD5 recognized.")
-        pattern = query[0]
-        pattern.count += 1
-    else:
-        print("MD5 not recognized.")
-        pattern = Pattern(pattern, md5)
-    pattern.save()
-    return(pattern)
-
-def add_attack(client, pattern, md5):
-    timestamp = datetime.datetime.utcnow() # add option to change format in config
-    host = os.getenv('HOSTNAME', 'honey') # add option to overwrite this in config
-    attacker = add_attacker(client.ip)
-    attack_pattern = add_pattern(pattern, md5)
-    attack = Attack(attacker, attack_pattern.pattern_id, host, timestamp, client.files)
-    attack.save()
+import logging
 
 def sanitize_pattern(client):
     client_list = []
@@ -55,24 +22,19 @@ def sanitize_pattern(client):
                 r"(\d\d?\d?\.\d\d?\d?\.\d\d?\d?\.\d\d?\d?:?[0-9]*)",
                 "1.1.1.1", line)
         client_list += [line]
-    input_string = ";".join(client_list)
+    input_string = '\n'.join(client_list)
     md5 = hashlib.md5(input_string.encode("utf8")).hexdigest()
     return(input_string, md5)
 
 def process_attack(client):
+    logger = logging.getLogger('telnet')
     if client.ip == '127.0.0.1':
         return
-    tries = 0
-    while (tries < 5):
-        try:
-            sanitized_pattern, md5 = sanitize_pattern(client)
-            add_attack(client, sanitized_pattern, md5)
-            return(True)
-        except TypeError:
-            return
-        except Exception as err:
-            print(err)
-            print("Connection failed, retrying.")
-            storage.session.rollback()
-            tries += 1
-        print("succeeded")
+    sanitized_pattern, md5 = sanitize_pattern(client)
+    logger.info("Attack pattern stored", extra={
+                                             'client_ip': client.ip,
+                                             'client_port': client.remote_port,
+                                             'attack_md5': md5,
+                                             'attack_pattern': sanitized_pattern
+                                             })
+    

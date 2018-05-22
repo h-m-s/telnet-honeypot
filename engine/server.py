@@ -20,7 +20,7 @@ class HoneyTelnetServer(TelnetServer):
                 """ Wrapper for the TelnetServer init """
                 self.SERVER_RUN = True
                 self.hostname = hostname
-                self.logger = logging.getLogger(hostname)
+                self.logger = logging.getLogger('telnet')
                 super().__init__(port, address, self.on_connect,
                                  self.on_disconnect)
                 self.client_list = []
@@ -140,8 +140,10 @@ class HoneyTelnetServer(TelnetServer):
                 client.request_naws()
                 client.request_wont_echo()
                 client.send('\r\r\n')
-                self.logger.info("[{}]: CONNECTION ESTABLISHED".format(
-                        client.addrport()))
+                self.logger.info("Client connection", extra={
+                                                         'client_ip': client.ip,
+                                                         'client_port': client.remote_port
+                                                         })
                 self.client_list.append(client)
                 if client.addrport().split(":")[0] == "127.0.0.1":
                         client.mode = "netcat"
@@ -160,8 +162,10 @@ class HoneyTelnetServer(TelnetServer):
                 """
                 if len(client.active_cmds) > 0:
                     return False	
-                self.logger.info("[{}]: DISCONNECTED".format(
-                        client.addrport()))
+                self.logger.info("Client disconnection", extra={
+                                                         'client_ip': client.ip,
+                                                         'client_port': client.remote_port
+                                                         })
                 client.cleanup_container(self)
                 process_attack(client)
                 client.sock.close()
@@ -174,8 +178,10 @@ class HoneyTelnetServer(TelnetServer):
                 """
                 for client in self.client_list:
                         if client.idle() > IDLE_TIMEOUT:
-                                self.logger.info("[{}]: IDLE TIMEOUT, KICKING".
-                                                 format(client.addrport()))
+                                self.logger.info("Client timeout", extra={
+                                                         'client_ip': client.ip,
+                                                         'client_port': client.remote_port
+                                                         })
                                 client.active = False
 
         def process_clients(self):
@@ -192,9 +198,6 @@ class HoneyTelnetServer(TelnetServer):
                                 self.threadlock.acquire()
                                 if (client.uuid not in self.threads or
                                     self.threads[client.uuid] is None):
-                                        self.logger.debug(
-                                                "[{}]: SPAWNING NEW THREAD".format(
-                                                        client.addrport()))
                                         client.active_cmds += [
                                                 command]
                                         self.threadlock.release()
@@ -202,9 +205,6 @@ class HoneyTelnetServer(TelnetServer):
                                                 client, self, name="thread")
                                         self.threads[client.uuid].start()
                                 else:
-                                        self.logger.debug(
-                                                "[{}]: USING EXISTING THREAD".format(
-                                                        client.addrport()))
                                         client.active_cmds += [
                                             command]
                                         self.threadlock.release()
@@ -241,11 +241,12 @@ class HoneyTelnetServer(TelnetServer):
                                                 client.send("cam5 login: ")
                                                 return
                                 self.return_prompt(client)
-                                self.logger.info(
-                                "[{}]: LOGGED IN: {}-{}".format(
-                                client.addrport(),
-                                client.username,
-                                client.password))
+                                self.logger.info("Client logged in", extra={
+                                                                     'client_ip': client.ip,
+                                                                     'client_port': client.remote_port,
+                                                                     'username': client.username,
+                                                                     'password': client.password
+                                                                     })
 
         def return_prompt(self, client):
                 """

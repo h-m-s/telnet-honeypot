@@ -60,7 +60,11 @@ def check_list(client, server, filename="patterns.json"):
         client_list += [line]
         md5 += int(hashlib.md5(line.encode("utf8")).hexdigest(), 16)
     if str(md5) not in master_list.keys():
-        server.logger.info("[{}]: NEW ATTACK PATTERN FOUND".format(client.addrport()))
+        server.logger.info("New attack pattern found", extra={
+                                                       'client_ip': client.addrport()[0],
+                                                       'client_port': client.addrport()[1],
+                                                       'attack_md5': str(md5)
+                                                       })
         new_pattern = {'input': client_list,
                        'name': '',
                        'downloads': addresses,

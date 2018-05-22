@@ -43,6 +43,7 @@ class HoneyTelnetClient(TelnetClient):
         self.uuid = str(uuid.uuid4())
         self.passwd_flag = None
         self.ip = self.addrport().split(":")[0]
+        self.remote_port = self.addrport().split(":")[1]
         self.files = []
         self.server = server
 
@@ -95,13 +96,19 @@ class HoneyTelnetClient(TelnetClient):
         self.files += [{'md5': md5, 'file_name': file_name}]
         fname = "{}-{}".format(md5, file_name)
         if os.path.isfile("./logs/{}.tar".format(fname)):
-            server.logger.info(
-                "[{}]: NOT SAVING DUPLICATE FILE: {}".
-                format(self.addrport(), fname))
+            server.logger.info("Not saving duplicate file", extra={
+                                                                'client_ip': client.ip,
+                                                                'client_port': client.remote_port,
+                                                                'filename': file_name,
+                                                                'md5': md5
+                                                            })
             return
-        server.logger.info(
-            "[{}]: SAVING FILE: {}".
-            format(self.addrport(), fname))
+        server.logger.info("Saving new file", extra={
+                                              'client_ip': client.ip,
+                                              'client_port': client.remote_port,
+                                              'filename': file_name,
+                                              'md5': md5
+                                              })
         with open("./logs/{}.tar".format(fname), "bw+") as f:
             strm, stat = self.container.get_archive(filepath)
             for line in strm:
