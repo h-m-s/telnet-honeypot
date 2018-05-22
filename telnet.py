@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from telnetlogging import setup_logging
 import logging
 import signal
 from engine.server import HoneyTelnetServer
@@ -14,39 +15,6 @@ def signal_handler(signal, frame):
     """
     print("\nClosing out cleanly...")
     telnet_server.SERVER_RUN = False
-
-def define_logger(settings):
-    """
-    Sets up the global formatting for logging.
-
-    By default the log file is set to INFO level,
-    and DEBUG level will only show up on stdout, but
-    another file handler could easily be added.
-    """
-    FORMAT = '%(asctime)s - %(name)s - %(message)s'
-    logging.basicConfig(stream=sys.stdout, level=logging.DEBUG,
-                        format=FORMAT)
-
-    try:
-        infohandler = logging.FileHandler(settings['log_location'])
-    except:
-        infohandler = logging.FileHandler("telnet-log.txt")
-    infohandler.setLevel(logging.INFO)
-    infohandler.setFormatter(logging.Formatter(FORMAT))
-
-    debughandler = logging.StreamHandler()
-    debughandler.setLevel(logging.DEBUG)
-
-    logger = logging.getLogger(settings['hostname'])
-    logger.addHandler(infohandler)
-
-    """
-    Drops the requests loggers to WARNING level.
-    Super, duper spammy otherwise, because it'll try to show you
-    every GET/POST made to the docker socket.
-    """
-    logging.getLogger("requests").setLevel(logging.WARNING)
-
 
 def parse_config():
     """
@@ -77,7 +45,7 @@ if __name__ == '__main__':
 
     settings = parse_config()
 
-    define_logger(settings)
+    setup_logger(settings)
 
     telnet_server = HoneyTelnetServer(
         hostname = settings['hostname'],
