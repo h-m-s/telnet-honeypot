@@ -6,8 +6,6 @@ from miniboa.telnet import TelnetClient
 from threading import Thread
 import os
 import json
-from models import storage
-from models.malware_files import MalwareFile
 
 class HoneyTelnetClient(TelnetClient):
     def __init__(self, sock, addr_tup, server):
@@ -113,26 +111,6 @@ class HoneyTelnetClient(TelnetClient):
             strm, stat = self.container.get_archive(filepath)
             for line in strm:
                 f.write(line)
-
-    def store_files(self):
-        for malware in self.files:
-            query = storage.session.query(MalwareFile).filter(
-                MalwareFile.file_md5 == malware['md5'])
-            if query.count() != 0:
-                malware_file = query.all()[0]
-                malware_file.count += 1
-                try:
-                    alt_names = json.loads(malware_file.alternative_names)
-                except Exception as err:
-                    print("Issue loading json for {}: {}".format(malware_file.md5, err))
-                if malware_file.file_name != malware['file_name']:
-                    if malware['file_name'] not in alt_names:
-                        alt_names += [malware['file_name']]
-                malware_file.alternative_names = json.dumps(alt_names)
-                servers = json.loads(malware_file.servers)
-            else:
-                malware_file = MalwareFile(malware['file_name'], malware['md5'])
-            malware_file.save()
 
     def run_in_container(self, line):
         """
