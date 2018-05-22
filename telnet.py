@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     settings = parse_config()
 
-    setup_logger(settings)
+    setup_logging()
 
     telnet_server = HoneyTelnetServer(
         hostname = settings['hostname'],

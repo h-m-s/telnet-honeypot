@@ -1,5 +1,6 @@
 import logging
-
+from logging import config
+import sys
 from structlog import configure, processors, stdlib, threadlocal
 
 def setup_logging():
@@ -13,6 +14,12 @@ def setup_logging():
             }
         },
         'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+		'stream': sys.stdout,
+                'formatter': 'json',
+                'level': logging.DEBUG,
+            },
             'json': {
                 'class': 'logging.FileHandler',
 		'filename': '/var/log/hms/telnet.log',
@@ -21,8 +28,8 @@ def setup_logging():
         },
         'loggers': {
             '': {
-                'handlers': ['json'],
-                'level': logging.INFO
+                'handlers': ['json', 'console'],
+                'level': logging.DEBUG
             }
         }
     })
