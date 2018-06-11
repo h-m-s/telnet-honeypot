@@ -290,7 +290,6 @@ class TelnetClient(object):
         try:
             #Encode recieved bytes in ansi
             data = str(self.sock.recv(2048), "cp1252")
-            print(data)
         except socket.error as err:
             logging.error("RECIEVE socket error '{}' from {}".format(err, self.addrport()))
             raise ConnectionLost()
