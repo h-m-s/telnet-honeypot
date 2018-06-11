@@ -28,6 +28,10 @@ def sanitize_pattern(client):
 
 def process_attack(client):
     logger = logging.getLogger('telnet')
+    logger.info("Raw input", extra={
+                             'client_ip': client.ip,
+                             'client_port': client.remote_port,
+                             'input': client.input_list})
     if client.ip == '127.0.0.1':
         return
     try:
